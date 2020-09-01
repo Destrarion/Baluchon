@@ -21,8 +21,9 @@ struct FixerResponse: Decodable {
 class ExchangeRate {
     
     var symbolSelected : String = "Select a Symbol"
+    var resultCalculationRate : Double = 0
     
-// all thing under this commentary contain the AOI Request
+// all thing under this commentary contain the API Request
     static var shared = ExchangeRate()
     private init() {}
     
@@ -32,8 +33,7 @@ class ExchangeRate {
     init(exchangeRateSession: URLSession){
         self.exchangeRateSession = exchangeRateSession
     }
-    
-    private static let exchangeUrl = URL(string: "")!
+
     
     // Creation de la requete
     func getExchangeRate(callback : @escaping (Bool, FixerResponse?) -> Void) {
@@ -58,9 +58,6 @@ class ExchangeRate {
                         return
                 }
                 
-            print("data : \(String(describing: data))")
-            print("response \(String(describing: response))")
-            print("error : \(String(describing: error))")
                 
             // réponse de l'API
                 guard let responseJSON = try? JSONDecoder().decode(FixerResponse.self, from: data) else{
@@ -70,21 +67,14 @@ class ExchangeRate {
                 }
                 
                 resultLastRequestRate = responseJSON.rates
-                print(responseJSON.date)
                 let fixerResponse = FixerResponse(rates: responseJSON.rates, date: responseJSON.date)
                 callback(true,fixerResponse)
-                print(fixerResponse)
-                
-                print("data : \(String(describing: data))")
-                print("response \(String(describing: response))")
-                print("error : \(String(describing: error))")
-                print(data)
             }
         }
         task?.resume()
     }
    private static func createExchangeRateRequest() -> URLRequest {
-          var request = URLRequest(url: exchangeUrl)
+          var request = URLRequest(url: exchangeURL)
           request.httpMethod = "POST"
 
           let body = "method=getExchangeRate&format=json&lang=en"
@@ -92,6 +82,29 @@ class ExchangeRate {
 
           return request
       }
+    
+    func calculExchangeRateWithValue(_ symbol : String, _ value : String){
+        print(value)
+        print(symbol)
+        var valueDouble : Double = 0
+        if value == ""{
+            return
+        }
+        if value != nil{
+            valueDouble = Double(value)!
+        }else{
+            print("value nil")
+            return
+        }
+        if symbol == nil {
+            print("symbol nil")
+            return
+        }else{
+            print("calculExchangeRate is called")
+            resultCalculationRate = valueDouble * resultLastRequestRate[symbol]!
+            sendNotification(name: "updateValueToExchange")
+        }
+    }
 }
 
 /// Method created to simplify sending a notification

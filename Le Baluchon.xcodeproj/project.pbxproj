@@ -164,6 +164,8 @@
 			children = (
 				5F548F4F24C6D501008EF19A /* View */,
 				5F548F4E24C6D4F8008EF19A /* Model */,
+				5F548F4D24C6D4D9008EF19A /* Controller */,
+				5F3BB98624EBD59C004C3BB8 /* APIkey.swift */,
 				5F548F2624C6D479008EF19A /* Assets.xcassets */,
 				5F548F1F24C6D477008EF19A /* SceneDelegate.swift */,
 				5F548F1D24C6D477008EF19A /* AppDelegate.swift */,
@@ -203,11 +205,9 @@
 		5F548F4E24C6D4F8008EF19A /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				5F548F4D24C6D4D9008EF19A /* Controller */,
 				5F330A6824D9629500E58069 /* Weather */,
 				5F330A6524D9624600E58069 /* Translate */,
 				5F330A5724D9204500E58069 /* Exchange rate */,
-				5F3BB98624EBD59C004C3BB8 /* APIkey.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";

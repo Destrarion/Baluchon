@@ -105,6 +105,8 @@ class ExchangeRate {
             sendNotification(name: "updateValueToExchange")
         }
     }
+    
+
 }
 
 /// Method created to simplify sending a notification

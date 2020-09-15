@@ -31,9 +31,7 @@ class ExchangeRateViewController: UIViewController, UITextFieldDelegate {
     }
     
     @IBAction func EditingChanged(_ sender: UITextField) {
-        if selectSymbolButton.titleLabel?.text != "Select your local Symbol" {
             ExchangeRate.shared.calculExchangeRateWithValue(symbolSelected, valueToExchangeTextFieldLabel.text!)
-        }
     }
 
     
@@ -60,9 +58,9 @@ class ExchangeRateViewController: UIViewController, UITextFieldDelegate {
     @objc func sendRateToForm(notification : Notification) {
         //let formVC = notification.object as! TableViewController
         selectSymbolButton.titleLabel?.text = symbolSelected
-        if valueToExchangeTextFieldLabel.text != nil || valueToExchangeTextFieldLabel.text != "" {
+        /*if valueToExchangeTextFieldLabel.text != nil || valueToExchangeTextFieldLabel.text != "" {
             ExchangeRate.shared.calculExchangeRateWithValue(symbolSelected, valueToExchangeTextFieldLabel.text!)
-        }
+        }*/
         print("bien recu sir !")
         
     }

@@ -87,23 +87,16 @@ class ExchangeRate {
         print(value)
         print(symbol)
         var valueDouble : Double = 0
-        if value == ""{
-            return
-        }
-        if value != nil{
-            valueDouble = Double(value)!
-        }else{
+        guard value != nil || value != "" else {
             print("value nil")
             return
         }
-        if symbol == nil {
-            print("symbol nil")
-            return
-        }else{
-            print("calculExchangeRate is called")
-            resultCalculationRate = valueDouble * resultLastRequestRate[symbol]!
-            sendNotification(name: "updateValueToExchange")
-        }
+        valueDouble = Double(value)!
+        print("calculExchangeRate is called")
+        resultCalculationRate = valueDouble * resultLastRequestRate[symbol]!
+        sendNotification(name: "updateValueToExchange")
+        return
+        
     }
     
 

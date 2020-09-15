@@ -11,7 +11,7 @@ import UIKit
 class ExchangeRateViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var resultCalculExchangeLabel: UILabel!
     @IBOutlet weak var valueToExchangeTextFieldLabel: UITextField!
-    @IBOutlet weak var symbolSelectedLabel: UILabel!
+    @IBOutlet weak var selectSymbolButton: UIButton!
     
 
     
@@ -31,7 +31,9 @@ class ExchangeRateViewController: UIViewController, UITextFieldDelegate {
     }
     
     @IBAction func EditingChanged(_ sender: UITextField) {
-        ExchangeRate.shared.calculExchangeRateWithValue(symbolSelected, valueToExchangeTextFieldLabel.text!)
+        if selectSymbolButton.titleLabel?.text != "Select your local Symbol" {
+            ExchangeRate.shared.calculExchangeRateWithValue(symbolSelected, valueToExchangeTextFieldLabel.text!)
+        }
     }
 
     
@@ -48,7 +50,7 @@ class ExchangeRateViewController: UIViewController, UITextFieldDelegate {
                 print("don't work")
             }
         }
-        symbolSelectedLabel.text = symbolSelected
+        selectSymbolButton.titleLabel?.text = symbolSelected
     }
     
     @objc func updateValueToExchange () {
@@ -57,7 +59,10 @@ class ExchangeRateViewController: UIViewController, UITextFieldDelegate {
     
     @objc func sendRateToForm(notification : Notification) {
         //let formVC = notification.object as! TableViewController
-        symbolSelectedLabel.text = symbolSelected
+        selectSymbolButton.titleLabel?.text = symbolSelected
+        if valueToExchangeTextFieldLabel.text != nil || valueToExchangeTextFieldLabel.text != "" {
+            ExchangeRate.shared.calculExchangeRateWithValue(symbolSelected, valueToExchangeTextFieldLabel.text!)
+        }
         print("bien recu sir !")
         
     }
@@ -71,7 +76,7 @@ class ExchangeRateViewController: UIViewController, UITextFieldDelegate {
     
     func setcurrency(currency: String) {
         let symbolSelected = currency
-        symbolSelectedLabel.text = symbolSelected
+        selectSymbolButton.titleLabel?.text = symbolSelected
         print("set currency called")
     }
 }

@@ -89,4 +89,12 @@ class taux_de_change_APITests: XCTestCase {
         }
         wait(for: [expectation], timeout: 0.01)
     }
+    
+    func testGivenNilValueNumber_WhenCalculExchangeRate_ThenReturn(){
+        //Given
+        let valueRate : Any?
+        let exchangeRate = ExchangeRate(exchangeRateSession: URLSessionFake(data: FakeResponseData.rateCorrectData, response: FakeResponseData.responseOK, error: nil))
+        
+        
+    }
 }

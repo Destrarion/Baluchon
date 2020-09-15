@@ -1,34 +1,92 @@
 //
-//  Le_BaluchonTests.swift
-//  Le BaluchonTests
+//  taux_de_change_APITests.swift
+//  taux de change APITests
 //
-//  Created by Fabien Dietrich on 21/07/2020.
+//  Created by Fabien Dietrich on 23/05/2020.
 //  Copyright © 2020 Fabien Dietrich. All rights reserved.
 //
 
 import XCTest
-@testable import Le_Baluchon
+@testable import taux_de_change_API
 
-class Le_BaluchonTests: XCTestCase {
+class taux_de_change_APITests: XCTestCase {
 
-    override func setUpWithError() throws {
-        // Put setup code here. This method is called before the invocation of each test method in the class.
-    }
-
-    override func tearDownWithError() throws {
-        // Put teardown code here. This method is called after the invocation of each test method in the class.
-    }
-
-    func testExample() throws {
-        // This is an example of a functional test case.
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
-    }
-
-    func testPerformanceExample() throws {
-        // This is an example of a performance test case.
-        self.measure {
-            // Put the code you want to measure the time of here.
+    func testGetExchangeRateShouldPostFailedCallbackifError() {
+        //Given
+        let exchangeRate = ExchangeRate(
+            exchangeRateSession: URLSessionFake(data: nil, response: nil, error: FakeResponseData.error))
+        
+        //When
+        let expectation = XCTestExpectation(description: "Wait for queue change.")
+        exchangeRate.getExchangeRate { ( success, fixerResponse ) in
+            //Then
+            XCTAssertFalse(success)
+            XCTAssertNil(fixerResponse)
+            expectation.fulfill()
         }
+        wait(for: [expectation], timeout: 0.01)
     }
-
+    
+    func testGetExchangeRateShouldPostFailedCallbackNoData() {
+        //Given
+        let exchangeRate = ExchangeRate(
+            exchangeRateSession: URLSessionFake(data: nil, response: nil, error: nil))
+        
+        //When
+        let expectation = XCTestExpectation(description: "Wait for queue change.")
+        exchangeRate.getExchangeRate { ( success, fixerResponse ) in
+            //Then
+            XCTAssertFalse(success)
+            XCTAssertNil(fixerResponse)
+            expectation.fulfill()
+        }
+        wait(for: [expectation], timeout: 0.01)
+    }
+    
+    func testGetExchangeRateShouldPostFailedIfIncorrectResponse() {
+        //Given
+        let exchangeRate = ExchangeRate(
+            exchangeRateSession: URLSessionFake(data: FakeResponseData.rateCorrectData, response: FakeResponseData.responseKO, error: nil))
+        
+        //When
+        let expectation = XCTestExpectation(description: "Wait for queue change.")
+        exchangeRate.getExchangeRate { ( success, fixerResponse ) in
+            //Then
+            XCTAssertFalse(success)
+            XCTAssertNil(fixerResponse)
+            expectation.fulfill()
+        }
+        wait(for: [expectation], timeout: 0.01)
+    }
+    
+    func testGetExchangeRateShouldPostFailedCallbackIfIncorrectData() {
+        //Given
+        let exchangeRate = ExchangeRate(
+            exchangeRateSession: URLSessionFake(data: FakeResponseData.rateIncorrectData, response: FakeResponseData.responseOK, error: nil))
+        
+        //When
+        let expectation = XCTestExpectation(description: "Wait for queue change.")
+        exchangeRate.getExchangeRate { ( success, fixerResponse ) in
+            //Then
+            XCTAssertFalse(success)
+            XCTAssertNil(fixerResponse)
+            expectation.fulfill()
+        }
+        wait(for: [expectation], timeout: 0.01)
+    }
+    func testGetExchangeRateShouldPostFailedCallbackIfNoErroreAndCorrectData() {
+        //Given
+        let exchangeRate = ExchangeRate(
+            exchangeRateSession: URLSessionFake(data: FakeResponseData.rateCorrectData, response: FakeResponseData.responseOK, error: nil))
+        
+        //When
+        let expectation = XCTestExpectation(description: "Wait for queue change.")
+        exchangeRate.getExchangeRate { ( success, fixerResponse ) in
+            //Then
+            XCTAssertFalse(success)
+            XCTAssertNil(fixerResponse)
+            expectation.fulfill()
+        }
+        wait(for: [expectation], timeout: 0.01)
+    }
 }

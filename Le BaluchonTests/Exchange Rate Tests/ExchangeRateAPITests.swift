@@ -77,7 +77,7 @@ class taux_de_change_APITests: XCTestCase {
     func testGetExchangeRateShouldPostFailedCallbackIfNoErroreAndCorrectData() {
         //Given
         let exchangeRate = ExchangeRate(
-            exchangeRateSession: URLSessionFake(data: FakeResponseData.rateCorrectData, response: FakeResponseData.responseOK, error: nil))
+            exchangeRateSession: URLSessionFake(data: FakeResponseData.rateCorrectData, response: FakeResponseData.responseKO, error: nil))
         
         //When
         let expectation = XCTestExpectation(description: "Wait for queue change.")
@@ -90,11 +90,31 @@ class taux_de_change_APITests: XCTestCase {
         wait(for: [expectation], timeout: 0.01)
     }
     
-    func testGivenNilValueNumber_WhenCalculExchangeRate_ThenReturn(){
+    func testGivenEmptyValueNumber_WhenCalculExchangeRate_ThenReturn(){
         //Given
-        let valueRate : Any?
-        let exchangeRate = ExchangeRate(exchangeRateSession: URLSessionFake(data: FakeResponseData.rateCorrectData, response: FakeResponseData.responseOK, error: nil))
+        let exchangeRate = ExchangeRate(
+            exchangeRateSession: URLSessionFake(data: FakeResponseData.rateCorrectData, response: FakeResponseData.responseOK, error: nil))
         
+        exchangeRate.getExchangeRate{ (success , fixerResponse) in
+            if success, let _ = fixerResponse{
+                exchangeRate.calculExchangeRateWithValue("USD", "")
+                XCTAssertTrue(exchangeRate.resultCalculationRate == 0)
+                //print(stockrate.rates["USD"]!)
+            }
+        }
+    }
+    
+    func testGivenAValueNumber_WhenCalculExchangeRate_ThenReturn(){
+        //Given
+        let exchangeRate = ExchangeRate(
+            exchangeRateSession: URLSessionFake(data: FakeResponseData.rateCorrectData, response: FakeResponseData.responseOK, error: nil))
         
+        exchangeRate.getExchangeRate{ (success , fixerResponse) in
+            if success, let _ = fixerResponse{
+                exchangeRate.calculExchangeRateWithValue("USD", "1")
+                XCTAssertTrue(exchangeRate.resultCalculationRate == 1.124352)
+                //print(stockrate.rates["USD"]!)
+            }
+        }
     }
 }

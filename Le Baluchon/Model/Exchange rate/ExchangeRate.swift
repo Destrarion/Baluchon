@@ -87,7 +87,7 @@ class ExchangeRate {
         print(value)
         print(symbol)
         var valueDouble : Double = 0
-        guard value != nil || value != "" else {
+        guard value != "" else {
             print("value nil")
             return
         }

@@ -89,6 +89,8 @@ class ExchangeRate {
         var valueDouble : Double = 0
         guard value != "" else {
             print("value nil")
+            resultCalculationRate = 0
+            sendNotification(name: "updateValueToExchange")
             return
         }
         valueDouble = Double(value)!

@@ -25,7 +25,7 @@ class Translate {
         self.translateSession = translateSession
     }
     
-     private static let translateUrl = URL(string: "")!
+     private static let translateUrl = URL(string: "http://data.fixer.io/api/latest?access_key=AIzaSyBYdjtjO1n8O7L_Xsj0Yu1cfqj50Nwk2nc")!
     
     // Creation de la requete
     func getTranslation(callback : @escaping (Bool, TranslateResponse?) -> Void ){
@@ -88,11 +88,4 @@ class Translate {
 }
 
 
-/// Method created to simplify sending a notification
-/*
- func sendNotification(name: String) {
-    let name = Notification.Name(rawValue: name)
-    let notification = Notification(name: name)
-    NotificationCenter.default.post(notification)
-}
-*/
+

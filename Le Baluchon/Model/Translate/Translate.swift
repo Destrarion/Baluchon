@@ -25,8 +25,7 @@ class Translate {
         self.translateSession = translateSession
     }
     
-     private static let translateUrl = URL(string: "http://data.fixer.io/api/latest?access_key=AIzaSyBYdjtjO1n8O7L_Xsj0Yu1cfqj50Nwk2nc")!
-    
+
     // Creation de la requete
     func getTranslation(callback : @escaping (Bool, TranslateResponse?) -> Void ){
         let request = Translate.createTranslateRequest()
@@ -77,7 +76,7 @@ class Translate {
     }
     
     private static func createTranslateRequest() -> URLRequest {
-        var request = URLRequest(url: translateUrl)
+        var request = URLRequest(url: translateURL!)
         request.httpMethod = "Post"
         
         let body = "method=getTranslation&format=json&lang=en"

@@ -8,12 +8,17 @@
 
 import Foundation
 
-public var textToShow: String = ""
+
 // ce que on récupère de l'API
 struct TranslateResponse : Decodable {
     let translatedText : String
 }
+
+var languageSelectedFrom = "&target="
+var textToTranslate = "&q="
+var resultTranslate = ""
 class Translate {
+    
     
     static var shared = Translate()
     private init() {}
@@ -59,12 +64,12 @@ class Translate {
                     return
                 }
                               
-                textToShow = responseJSON.translatedText
+                textToTranslate = responseJSON.translatedText
                 print(responseJSON.translatedText)
                 let translateResponse = TranslateResponse(translatedText: responseJSON.translatedText)
                 callback(true,translateResponse)
                 print(translateResponse)
-                sendNotification(name: "updatePickerView")
+                resultTranslate = "\(translateResponse)"
                               
                 print("data : \(String(describing: data))")
                 print("response \(String(describing: response))")
@@ -76,8 +81,10 @@ class Translate {
     }
     
     private static func createTranslateRequest() -> URLRequest {
-        var request = URLRequest(url: translateURL!)
-        request.httpMethod = "Post"
+        var requestURLString =  "\(translateURLString)" + "\(languageSelectedFrom)" + "\(textToTranslate)"
+        let requestURL = URL(string: requestURLString)
+        var request = URLRequest(url: requestURL! )
+        request.httpMethod = "GET"
         
         let body = "method=getTranslation&format=json&lang=en"
         request.httpBody = body.data(using: .utf8)

@@ -26,7 +26,7 @@
 		5F548F2A24C6D479008EF19A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5F548F2824C6D479008EF19A /* LaunchScreen.storyboard */; };
 		5F548F4024C6D479008EF19A /* Le_BaluchonUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F548F3F24C6D479008EF19A /* Le_BaluchonUITests.swift */; };
 		5F55279624E972ED00B84E80 /* TableViewControllerSymbol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F55279524E972ED00B84E80 /* TableViewControllerSymbol.swift */; };
-		5FAEAC9B24E2785200C5A69D /* TableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FAEAC9A24E2785200C5A69D /* TableViewController.swift */; };
+		5F83AABB2526182900EEE6AD /* TranslateViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F83AABA2526182900EEE6AD /* TranslateViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -72,7 +72,7 @@
 		5F548F3F24C6D479008EF19A /* Le_BaluchonUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Le_BaluchonUITests.swift; sourceTree = "<group>"; };
 		5F548F4124C6D479008EF19A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		5F55279524E972ED00B84E80 /* TableViewControllerSymbol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewControllerSymbol.swift; sourceTree = "<group>"; };
-		5FAEAC9A24E2785200C5A69D /* TableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewController.swift; sourceTree = "<group>"; };
+		5F83AABA2526182900EEE6AD /* TranslateViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TranslateViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -235,7 +235,7 @@
 		5FAEAC9724E277B300C5A69D /* Translate */ = {
 			isa = PBXGroup;
 			children = (
-				5FAEAC9A24E2785200C5A69D /* TableViewController.swift */,
+				5F83AABA2526182900EEE6AD /* TranslateViewController.swift */,
 			);
 			path = Translate;
 			sourceTree = "<group>";
@@ -387,11 +387,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				5F330A5924D9207700E58069 /* ExchangeRate.swift in Sources */,
-				5FAEAC9B24E2785200C5A69D /* TableViewController.swift in Sources */,
 				5F3BB98724EBD59C004C3BB8 /* APIkey.swift in Sources */,
 				5F4727CA24CFE8EC009AF6A9 /* ExchangeRateViewController.swift in Sources */,
 				5F55279624E972ED00B84E80 /* TableViewControllerSymbol.swift in Sources */,
 				5F548F1E24C6D477008EF19A /* AppDelegate.swift in Sources */,
+				5F83AABB2526182900EEE6AD /* TranslateViewController.swift in Sources */,
 				5F548F2024C6D477008EF19A /* SceneDelegate.swift in Sources */,
 				5F330A6724D9626800E58069 /* Translate.swift in Sources */,
 			);

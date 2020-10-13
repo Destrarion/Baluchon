@@ -31,8 +31,8 @@ class TranslateViewController: UIViewController, UITextViewDelegate {
         } else {return}
         
         languageSelectedFrom = "&target=\(LabelLanguageSelected1.text!)"
-        Translate.shared.getTranslation { (success , translateresponse) in
-            if success, let _ = translateresponse{
+        Translate.shared.getTranslation { (success , translateResponse) in
+            if success, let _ = translateResponse{
                 print("that work translate")
             }else {
                 print("do not work translate")

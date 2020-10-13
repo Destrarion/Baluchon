@@ -26,19 +26,46 @@ class TranslateViewController: UIViewController, UITextViewDelegate {
     }
     
     @IBAction func TranslateButton(_ sender: UIButton) {
-        if UITextViewUpper.text != nil {
-        textToTranslate = "q&=\(UITextViewUpper.text!)"
-        } else {return}
         
-        languageSelectedFrom = "&target=\(LabelLanguageSelected1.text!)"
-        Translate.shared.getTranslation { (success , translateResponse) in
-            if success, let _ = translateResponse{
-                print("that work translate")
-            }else {
-                print("do not work translate")
+        guard let textToTranslate = UITextViewUpper.text else {
+            print("Could not get text from textview")
+            presentAlert(error: .unknownError)
+            return
+        }
+        
+        Translate.shared.getTranslation(
+            textToTranslate: textToTranslate,
+            targetLanguage: "EN",
+            sourceLanguage: "FR"
+        ) { (result) in
+            
+            switch result {
+            case .failure(let error):
+                self.presentAlert(error: error)
+            case .success(let response):
+                guard let translatedText = response.data.translations.first?.translatedText else { return }
+                print("that work translate \(translatedText)")
+                self.UITextViewLower.text = translatedText
             }
         }
-        UITextViewLower.text = resultTranslate
+        
+    }
+    
+    private func presentAlert(error: NetworkManagerError) {
+        print("do not work translate")
+        let alertController = UIAlertController(
+            title: "Error",
+            message: error.errorDescription,
+            preferredStyle: .alert
+        )
+        
+        alertController.addAction(
+            UIAlertAction(title: "OK", style: .default, handler: nil)
+        )
+        
+        
+        
+        present(alertController, animated: true, completion: nil)
     }
     
     

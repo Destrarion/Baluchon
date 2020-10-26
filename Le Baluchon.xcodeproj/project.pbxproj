@@ -30,7 +30,6 @@
 		5F548F4024C6D479008EF19A /* Le_BaluchonUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F548F3F24C6D479008EF19A /* Le_BaluchonUITests.swift */; };
 		5F55279624E972ED00B84E80 /* TableViewControllerSymbol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F55279524E972ED00B84E80 /* TableViewControllerSymbol.swift */; };
 		5F83AABB2526182900EEE6AD /* TranslateViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F83AABA2526182900EEE6AD /* TranslateViewController.swift */; };
-		5FE4D485253340E300F23F9D /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FE4D484253340E300F23F9D /* NetworkManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -80,7 +79,6 @@
 		5F548F4124C6D479008EF19A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		5F55279524E972ED00B84E80 /* TableViewControllerSymbol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewControllerSymbol.swift; sourceTree = "<group>"; };
 		5F83AABA2526182900EEE6AD /* TranslateViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TranslateViewController.swift; sourceTree = "<group>"; };
-		5FE4D484253340E300F23F9D /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -237,7 +235,6 @@
 				5F330A6824D9629500E58069 /* Weather */,
 				5F330A6524D9624600E58069 /* Translate */,
 				5F330A5724D9204500E58069 /* Exchange rate */,
-				5FE4D484253340E300F23F9D /* NetworkManager.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -406,7 +403,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				5FE4D485253340E300F23F9D /* NetworkManager.swift in Sources */,
 				5F330A5924D9207700E58069 /* ExchangeRate.swift in Sources */,
 				5F482F7B2535B88A001DD924 /* NetworkManager.swift in Sources */,
 				5F3BB98724EBD59C004C3BB8 /* APIkey.swift in Sources */,

@@ -8,6 +8,27 @@
 
 import UIKit
 
+
+enum Language {
+    case english, french
+    
+    
+    var languageCode: String {
+        switch self {
+        case .english: return "EN"
+        case .french: return "FR"
+        }
+    }
+    
+    
+    var name: String {
+        switch self {
+        case .english: return "English"
+        case .french: return "French"
+        }
+    }
+}
+
 class TranslateViewController: UIViewController, UITextViewDelegate {
 
     @IBOutlet weak var LabelLanguageSelected1: UILabel!
@@ -22,7 +43,21 @@ class TranslateViewController: UIViewController, UITextViewDelegate {
         // Do any additional setup after loading the view.
     }
     
+    
+    private var sourceLanguageSelected: Language = .english {
+        didSet {
+            LabelLanguageSelected1.text = sourceLanguageSelected.name
+        }
+    }
+    
+    private var targetLanguageSelected: Language = .french {
+        didSet {
+            LabelLanguageSelected2.text = targetLanguageSelected.name
+        }
+    }
+    
     @IBAction func ReverseLanguageButton(_ sender: UIButton) {
+        swap(&sourceLanguageSelected, &targetLanguageSelected)
     }
     
     @IBAction func TranslateButton(_ sender: UIButton) {
@@ -35,8 +70,8 @@ class TranslateViewController: UIViewController, UITextViewDelegate {
         
         Translate.shared.getTranslation(
             textToTranslate: textToTranslate,
-            targetLanguage: "EN",
-            sourceLanguage: "FR"
+            targetLanguage: targetLanguageSelected.languageCode,
+            sourceLanguage: sourceLanguageSelected.languageCode
         ) { (result) in
             
             switch result {

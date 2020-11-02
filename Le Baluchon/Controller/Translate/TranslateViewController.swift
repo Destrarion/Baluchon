@@ -83,7 +83,6 @@ class TranslateViewController: UIViewController, UITextViewDelegate {
                 self.UITextViewLower.text = translatedText
             }
         }
-        
     }
     
     private func presentAlert(error: NetworkManagerError) {
@@ -97,8 +96,6 @@ class TranslateViewController: UIViewController, UITextViewDelegate {
         alertController.addAction(
             UIAlertAction(title: "OK", style: .default, handler: nil)
         )
-        
-        
         
         present(alertController, animated: true, completion: nil)
     }

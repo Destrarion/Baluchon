@@ -8,22 +8,18 @@
 
 import Foundation
 
-public var resultLastRequestRate : [String : Double] = [:]
+//public var resultLastRequestRate : [String : Double] = [:]
 
-// ce que on récupère de l'API
-struct FixerResponse: Decodable {
-    let rates: [String: Double]
-    let date: String
-}
 
 
 
 class ExchangeRate {
+    private let networkManager = NetworkManager()
+    private let urlCreation = UrlCreation()
     
-    var symbolSelected : String = "Select a Symbol"
     var resultCalculationRate : Double = 0
     
-// all thing under this commentary contain the API Request
+    // all thing under this commentary contain the API Request
     static var shared = ExchangeRate()
     private init() {}
     
@@ -33,13 +29,23 @@ class ExchangeRate {
     init(exchangeRateSession: URLSession){
         self.exchangeRateSession = exchangeRateSession
     }
-
+    
+    // Here is the function that should replace getExchangeRate, inspired by getTranslation
+    func getRate(callback : @escaping (Result<ExchangeResponse, NetworkManagerError>)-> Void) {
+        guard let requestURL = urlCreation.createExchangeRateRequestUrl()
+            else{
+                callback(.failure(.couldNotCreateURL))
+                return
+        }
+        print(requestURL)
+        networkManager.fetch(url: requestURL, callback: callback)
+    }
     
     // Creation de la requete
-    func getExchangeRate(callback : @escaping (Bool, FixerResponse?) -> Void) {
+    /*func getExchangeRate(callback : @escaping (Bool, FixerResponse?) -> Void) {
         let request = ExchangeRate.createExchangeRateRequest()
         
-       task?.cancel()
+        task?.cancel()
         task = exchangeRateSession.dataTask(with: request) { (data, response, error) in
             DispatchQueue.main.async {
                 guard let data = data, error == nil else {
@@ -51,7 +57,7 @@ class ExchangeRate {
                     callback(false, nil)
                     return
                 }
-
+                
                 guard (try? JSONDecoder().decode(FixerResponse.self, from: data)) != nil
                     else{
                         callback(false,nil)
@@ -59,7 +65,7 @@ class ExchangeRate {
                 }
                 
                 
-            // réponse de l'API
+                // réponse de l'API
                 guard let responseJSON = try? JSONDecoder().decode(FixerResponse.self, from: data) else{
                     callback(false,nil)
                     print("error")
@@ -73,39 +79,40 @@ class ExchangeRate {
         }
         task?.resume()
     }
-   private static func createExchangeRateRequest() -> URLRequest {
-          var request = URLRequest(url: exchangeURL)
-          request.httpMethod = "POST"
-
-          let body = "method=getExchangeRate&format=json&lang=en"
-          request.httpBody = body.data(using: .utf8)
-
-          return request
-      }
-    
-    func calculExchangeRateWithValue(_ symbol : String, _ value : String){
-        print(value)
-        print(symbol)
-        var valueDouble : Double = 0
-        guard value != "" else {
-            print("value nil")
-            resultCalculationRate = 0
-            sendNotification(name: "updateValueToExchange")
-            return
-        }
-        valueDouble = Double(value)!
-        print("calculExchangeRate is called")
-        resultCalculationRate = valueDouble * resultLastRequestRate[symbol]!
-        sendNotification(name: "updateValueToExchange")
-        return
+ */
+    private static func createExchangeRateRequest() -> URLRequest {
+        var request = URLRequest(url: exchangeURL)
+        request.httpMethod = "POST"
         
+        let body = "method=getExchangeRate&format=json&lang=en"
+        request.httpBody = body.data(using: .utf8)
+        
+        return request
     }
     
-
+//    func calculExchangeRateWithValue(_ symbol: String, _ value: String){
+//        print(value)
+//        print(symbol)
+//        var valueDouble : Double = 0
+//        guard value != "" else {
+//            print("value nil")
+//            resultCalculationRate = 0
+//            sendNotification(name: "updateValueToExchange")
+//            return
+//        }
+//        valueDouble = Double(value)!
+//        print("calculExchangeRate is called")
+//        resultCalculationRate = valueDouble * resultLastRequestRate[symbol]!
+//        sendNotification(name: "updateValueToExchange")
+//        return
+//
+//    }
+    
+    
 }
 
 /// Method created to simplify sending a notification
- func sendNotification(name: String) {
+func sendNotification(name: String) {
     let name = Notification.Name(rawValue: name)
     let notification = Notification(name: name)
     NotificationCenter.default.post(notification)

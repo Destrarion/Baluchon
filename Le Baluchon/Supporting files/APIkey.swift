@@ -8,6 +8,35 @@
 
 import Foundation
 
-public let exchangeURL = URL(string: "http://data.fixer.io/api/latest?access_key=bf34b73ea045d5497e74fe133b2846a2")!
-public let translateURL = URL(string: "http://data.fixer.io/api/latest?access_key=AIzaSyCJb-64s8cpsAcdwa03C4fx-iJ3ZfwuXxU")
-public let translateURLString = "http://data.fixer.io/api/latest?access_key=AIzaSyCJb-64s8cpsAcdwa03C4fx-iJ3ZfwuXxU"
+class UrlCreation {
+    
+     func createExchangeRateRequestUrl() -> URL? {
+        var urlComponents = URLComponents()
+        
+        urlComponents.scheme = "http"
+        urlComponents.host = "data.fixer.io"
+        urlComponents.path = "/api/latest"
+        urlComponents.queryItems = [
+            .init(name: "access_key", value: "bf34b73ea045d5497e74fe133b2846a2")
+        ]
+    
+        
+        return urlComponents.url
+    }
+    
+    func createTranslateRequestUrl(textToTranslate: String, targetLanguage: String, sourceLanguage: String) -> URL? {
+        var urlComponents = URLComponents()
+        
+        urlComponents.scheme = "https"
+        urlComponents.host = "translation.googleapis.com"
+        urlComponents.path = "/language/translate/v2"
+        urlComponents.queryItems = [
+            .init(name: "key", value: "AIzaSyCJb-64s8cpsAcdwa03C4fx-iJ3ZfwuXxU"),
+            .init(name: "q", value: textToTranslate),
+            .init(name: "target", value: targetLanguage),
+            .init(name: "source", value: sourceLanguage)
+        ]
+        
+        return urlComponents.url
+    }
+}

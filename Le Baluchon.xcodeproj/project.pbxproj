@@ -12,7 +12,6 @@
 		5F330A5E24D9229D00E58069 /* Rate.json in Resources */ = {isa = PBXBuildFile; fileRef = 5F330A5D24D9229D00E58069 /* Rate.json */; };
 		5F330A6024D922C000E58069 /* FakeResponseDataExchangeRate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F330A5F24D922C000E58069 /* FakeResponseDataExchangeRate.swift */; };
 		5F330A6224D92E0200E58069 /* URLSessionFake.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F330A6124D92E0200E58069 /* URLSessionFake.swift */; };
-		5F330A6424D9556E00E58069 /* Onboarding .storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5F330A6324D9556E00E58069 /* Onboarding .storyboard */; };
 		5F330A6724D9626800E58069 /* Translate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F330A6624D9626800E58069 /* Translate.swift */; };
 		5F3BB98724EBD59C004C3BB8 /* APIkey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F3BB98624EBD59C004C3BB8 /* APIkey.swift */; };
 		5F4727CA24CFE8EC009AF6A9 /* ExchangeRateViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F4727C924CFE8EC009AF6A9 /* ExchangeRateViewController.swift */; };
@@ -30,6 +29,7 @@
 		5F548F4024C6D479008EF19A /* Le_BaluchonUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F548F3F24C6D479008EF19A /* Le_BaluchonUITests.swift */; };
 		5F55279624E972ED00B84E80 /* TableViewControllerSymbol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F55279524E972ED00B84E80 /* TableViewControllerSymbol.swift */; };
 		5F83AABB2526182900EEE6AD /* TranslateViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F83AABA2526182900EEE6AD /* TranslateViewController.swift */; };
+		5FA6A90125478B610089FE8F /* ExchangeResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FA6A90025478B610089FE8F /* ExchangeResponse.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -55,7 +55,6 @@
 		5F330A5D24D9229D00E58069 /* Rate.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = Rate.json; sourceTree = "<group>"; };
 		5F330A5F24D922C000E58069 /* FakeResponseDataExchangeRate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FakeResponseDataExchangeRate.swift; sourceTree = "<group>"; };
 		5F330A6124D92E0200E58069 /* URLSessionFake.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLSessionFake.swift; sourceTree = "<group>"; };
-		5F330A6324D9556E00E58069 /* Onboarding .storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = "Onboarding .storyboard"; sourceTree = "<group>"; };
 		5F330A6624D9626800E58069 /* Translate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Translate.swift; sourceTree = "<group>"; };
 		5F3BB98624EBD59C004C3BB8 /* APIkey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIkey.swift; sourceTree = "<group>"; };
 		5F4727C924CFE8EC009AF6A9 /* ExchangeRateViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExchangeRateViewController.swift; sourceTree = "<group>"; };
@@ -79,6 +78,7 @@
 		5F548F4124C6D479008EF19A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		5F55279524E972ED00B84E80 /* TableViewControllerSymbol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewControllerSymbol.swift; sourceTree = "<group>"; };
 		5F83AABA2526182900EEE6AD /* TranslateViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TranslateViewController.swift; sourceTree = "<group>"; };
+		5FA6A90025478B610089FE8F /* ExchangeResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExchangeResponse.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -110,6 +110,7 @@
 			isa = PBXGroup;
 			children = (
 				5F330A5824D9207700E58069 /* ExchangeRate.swift */,
+				5FA6A90025478B610089FE8F /* ExchangeResponse.swift */,
 			);
 			path = "Exchange rate";
 			sourceTree = "<group>";
@@ -244,7 +245,6 @@
 			children = (
 				5F548F2824C6D479008EF19A /* LaunchScreen.storyboard */,
 				5F548F2324C6D477008EF19A /* Main.storyboard */,
-				5F330A6324D9556E00E58069 /* Onboarding .storyboard */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -373,7 +373,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				5F330A6424D9556E00E58069 /* Onboarding .storyboard in Resources */,
 				5F548F2A24C6D479008EF19A /* LaunchScreen.storyboard in Resources */,
 				5F548F2724C6D479008EF19A /* Assets.xcassets in Resources */,
 				5F548F2524C6D477008EF19A /* Main.storyboard in Resources */,
@@ -410,6 +409,7 @@
 				5F55279624E972ED00B84E80 /* TableViewControllerSymbol.swift in Sources */,
 				5F548F1E24C6D477008EF19A /* AppDelegate.swift in Sources */,
 				5F83AABB2526182900EEE6AD /* TranslateViewController.swift in Sources */,
+				5FA6A90125478B610089FE8F /* ExchangeResponse.swift in Sources */,
 				5F548F2024C6D477008EF19A /* SceneDelegate.swift in Sources */,
 				5F482F7D2535B8B9001DD924 /* NetworkManagerError.swift in Sources */,
 				5F330A6724D9626800E58069 /* Translate.swift in Sources */,

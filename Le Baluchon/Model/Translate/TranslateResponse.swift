@@ -2,11 +2,11 @@ import Foundation
 
 // MARK: - TranslateResponse
 struct TranslateResponse: Codable {
-    let data: DataClass
+    let data: TranslateDataClass
 }
 
 // MARK: - DataClass
-struct DataClass: Codable {
+struct TranslateDataClass: Codable {
     let translations: [Translation]
 }
 

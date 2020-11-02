@@ -23,19 +23,19 @@ class Translate {
     }
     
     private func createTranslateRequestUrl(textToTranslate: String, targetLanguage: String, sourceLanguage: String) -> URL? {
-        var urlConponents = URLComponents()
+        var urlComponents = URLComponents()
         
-        urlConponents.scheme = "https"
-        urlConponents.host = "translation.googleapis.com"
-        urlConponents.path = "/language/translate/v2"
-        urlConponents.queryItems = [
+        urlComponents.scheme = "https"
+        urlComponents.host = "translation.googleapis.com"
+        urlComponents.path = "/language/translate/v2"
+        urlComponents.queryItems = [
             .init(name: "key", value: "AIzaSyCJb-64s8cpsAcdwa03C4fx-iJ3ZfwuXxU"),
             .init(name: "q", value: textToTranslate),
             .init(name: "target", value: targetLanguage),
             .init(name: "source", value: sourceLanguage)
         ]
         
-        return urlConponents.url
+        return urlComponents.url
     }
 }
 

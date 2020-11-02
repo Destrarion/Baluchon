@@ -8,12 +8,19 @@
 
 import UIKit
 
-var symbolSelected: String = "Select a Symbol"
+
+protocol TableViewControllerSymbolDelegate: class {
+    func didSelectSymbol(synbol: String)
+}
 
 
 class TableViewControllerSymbol: UIViewController {
+    
+    weak var delegate: TableViewControllerSymbolDelegate?
+    
+    let resultLastRequestRate = ["USD", "EUR", "CHF"]
 
-    @IBOutlet var tableViewSymbol : UITableView!
+    @IBOutlet var tableViewSymbol: UITableView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -36,12 +43,9 @@ class TableViewControllerSymbol: UIViewController {
 
 extension TableViewControllerSymbol : UITableViewDelegate{
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        symbolSelected = "\(Array(resultLastRequestRate.keys)[indexPath.row])"
-       // performSegue(withIdentifier: "RateToForm", sender: self)
-        let sendRateToForm = Notification.Name(rawValue: "sendRateToForm")
-        NotificationCenter.default.post(name: sendRateToForm, object: self)
+        let symbol = "\(resultLastRequestRate[indexPath.row])"
+        delegate?.didSelectSymbol(synbol: symbol)
         self.dismiss(animated: true, completion: nil)
-        print("\(symbolSelected)")
     }
 }
     
@@ -49,7 +53,7 @@ extension TableViewControllerSymbol : UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "Ratecell", for: indexPath)
         
-        cell.textLabel?.text = "\(Array(resultLastRequestRate.keys)[indexPath.row])"
+        cell.textLabel?.text = "\(resultLastRequestRate[indexPath.row])"
 
         return cell
     }

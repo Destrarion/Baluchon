@@ -39,4 +39,15 @@ class UrlCreation {
         
         return urlComponents.url
     }
+    
+    func createWeatherRequestUrl () -> URL? {
+        var urlComponents = URLComponents()
+        
+        urlComponents.queryItems = [
+            .init(name:"key", value: "864fbc812b28e30ad18d55bc00bc96c2"),
+        
+        ]
+        
+        return urlComponents.url
+    }
 }

@@ -25,6 +25,12 @@ class ExchangeRateViewController: UIViewController, UITextFieldDelegate {
     @IBAction func didTapConvertButton() {
         convertValueWithRate()
     }
+    @IBAction func valuesChangedTextField() {
+        convertValueWithRate()
+    }
+    
+    
+    private let exchangeRate = ExchangeRate()
     
     private func convertValueWithRate() {
         guard
@@ -45,7 +51,7 @@ class ExchangeRateViewController: UIViewController, UITextFieldDelegate {
         //receivingNotification(name: "updateValueToExchange")
         //NotificationCenter.default.addObserver(self, selector: #selector(sendRateToForm(notification:)), name: NSNotification.Name(rawValue: "sendRateToForm"), object: nil)
        // receivingNotification(name: "updatePickerView")
-       ExchangeRate.shared.getRate {(result) in
+        exchangeRate.getRate {(result) in
             
             switch result{
             case .failure(let error):
@@ -136,7 +142,7 @@ class ExchangeRateViewController: UIViewController, UITextFieldDelegate {
 
 extension ExchangeRateViewController: TableViewControllerSymbolDelegate {
     func didSelectSymbol(synbol: String) {
-        selectSymbolButton.titleLabel?.text = synbol
+        selectSymbolButton.setTitle(synbol, for: .normal)
         selectedCurrencySymbol = synbol
     }
     

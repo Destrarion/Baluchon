@@ -8,11 +8,6 @@
 
 import Foundation
 
-//public var resultLastRequestRate : [String : Double] = [:]
-
-
-
-
 class ExchangeRate {
     private let networkManager = NetworkManager()
     private let urlCreation = UrlCreation()
@@ -20,30 +15,28 @@ class ExchangeRate {
     var resultCalculationRate : Double = 0
     
     // all thing under this commentary contain the API Request
-    static var shared = ExchangeRate()
-    private init() {}
     
     private var task: URLSessionDataTask?
-    private var exchangeRateSession = URLSession(configuration: .default)
+    private let exchangeRateSession: URLSession
     
-    init(exchangeRateSession: URLSession){
+    init(exchangeRateSession: URLSession = URLSession(configuration: .default)) {
         self.exchangeRateSession = exchangeRateSession
     }
     
     // Here is the function that should replace getExchangeRate, inspired by getTranslation
     func getRate(callback : @escaping (Result<ExchangeResponse, NetworkManagerError>)-> Void) {
-        guard let requestURL = urlCreation.createExchangeRateRequestUrl()
-            else{
-                callback(.failure(.couldNotCreateURL))
-                return
+        guard let requestURL = urlCreation.createExchangeRateRequestUrl() else {
+            callback(.failure(.couldNotCreateURL))
+            return
         }
         print(requestURL)
         networkManager.fetch(url: requestURL, callback: callback)
     }
     
-    private func createExchangeRateRequest() -> URLRequest {
-        let exchangeURL = urlCreation.createExchangeRateRequestUrl()
-        var request = URLRequest(url: exchangeURL!)
+    private func createExchangeRateRequest() -> URLRequest? {
+
+        guard let exchangeURL = urlCreation.createExchangeRateRequestUrl() else { return nil }
+        var request = URLRequest(url: exchangeURL)
         request.httpMethod = "POST"
         
         let body = "method=getExchangeRate&format=json&lang=en"

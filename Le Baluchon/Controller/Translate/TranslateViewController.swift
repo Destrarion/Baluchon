@@ -40,6 +40,7 @@ class TranslateViewController: UIViewController, UITextViewDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        UITextViewUpper.delegate = self
         // Do any additional setup after loading the view.
     }
     
@@ -61,7 +62,11 @@ class TranslateViewController: UIViewController, UITextViewDelegate {
     }
     
     @IBAction func TranslateButton(_ sender: UIButton) {
-        
+        translateText()
+      
+    }
+    
+    private func translateText() {
         guard let textToTranslate = UITextViewUpper.text else {
             print("Could not get text from textview")
             presentAlert(error: .unknownError)
@@ -100,6 +105,14 @@ class TranslateViewController: UIViewController, UITextViewDelegate {
         present(alertController, animated: true, completion: nil)
     }
     
+    
+    func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
+        if (text == "\n") {
+            translateText()
+            textView.resignFirstResponder()
+        }
+        return true
+    }
     
 
 }

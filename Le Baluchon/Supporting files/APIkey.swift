@@ -10,7 +10,7 @@ import Foundation
 
 class UrlCreation {
     
-     func createExchangeRateRequestUrl() -> URL? {
+    func createExchangeRateRequestUrl() -> URL? {
         var urlComponents = URLComponents()
         
         urlComponents.scheme = "http"
@@ -19,7 +19,6 @@ class UrlCreation {
         urlComponents.queryItems = [
             .init(name: "access_key", value: "bf34b73ea045d5497e74fe133b2846a2")
         ]
-    
         
         return urlComponents.url
     }
@@ -45,7 +44,7 @@ class UrlCreation {
         
         urlComponents.queryItems = [
             .init(name:"key", value: "864fbc812b28e30ad18d55bc00bc96c2"),
-        
+            
         ]
         
         return urlComponents.url

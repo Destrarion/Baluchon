@@ -10,7 +10,7 @@ import UIKit
 
 
 protocol TableViewControllerSymbolDelegate: class {
-    func didSelectSymbol(synbol: String)
+    func didSelectSymbol(synbol: String, currencySelectionType: CurrencySelectionType)
 }
 
 
@@ -19,6 +19,8 @@ class TableViewControllerSymbol: UIViewController {
     weak var delegate: TableViewControllerSymbolDelegate?
     
     let resultLastRequestRate = ["USD", "EUR", "CHF"]
+    
+    var currencySelectionType: CurrencySelectionType?
 
     @IBOutlet var tableViewSymbol: UITableView!
     
@@ -44,7 +46,9 @@ class TableViewControllerSymbol: UIViewController {
 extension TableViewControllerSymbol : UITableViewDelegate{
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let symbol = "\(resultLastRequestRate[indexPath.row])"
-        delegate?.didSelectSymbol(synbol: symbol)
+        
+        guard let currencySelectionType = currencySelectionType else { return }
+        delegate?.didSelectSymbol(synbol: symbol, currencySelectionType: currencySelectionType)
         self.dismiss(animated: true, completion: nil)
     }
 }

@@ -11,7 +11,8 @@ import UIKit
 class ExchangeRateViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var resultCalculExchangeLabel: UILabel!
     @IBOutlet weak var valueToExchangeTextField: UITextField!
-    @IBOutlet weak var selectSymbolButton: UIButton!
+    @IBOutlet weak var selectTargetCurrencySymbolButton: UIButton!
+    @IBOutlet weak var selectSourceCurrencyButton: UIButton!
     
     
     @IBAction func dismissKeyboard(_ sender: UITapGestureRecognizer) {
@@ -67,14 +68,19 @@ class ExchangeRateViewController: UIViewController, UITextFieldDelegate {
     }
     
     private var usedRate: Double? {
-        guard let rates = rates else { return nil  }
-        return rates[selectedCurrencySymbol]
+        guard
+            let rates = rates,
+            let sourceRate = rates[selectedSourceCurrencySymbol],
+            let targetRate = rates[selectedTargetCurrencySymbol]
+            else { return nil  }
+       
+        return targetRate / sourceRate
     }
-    
     
     private var rates: [String: Double]?
     
-    private var selectedCurrencySymbol = "USD"
+    private var selectedSourceCurrencySymbol = "EUR"
+    private var selectedTargetCurrencySymbol = "USD"
     
     private var valueToConvert: Double? {
         guard
@@ -136,15 +142,37 @@ class ExchangeRateViewController: UIViewController, UITextFieldDelegate {
         guard let currencySelectionViewController = segue.destination as? TableViewControllerSymbol else { return }
         
         currencySelectionViewController.delegate = self
+    
+        if segue.identifier == "SourceCurrencySegue" {
+            currencySelectionViewController.currencySelectionType = .source
+        } else {
+            currencySelectionViewController.currencySelectionType = .target
+        }
+        
+        
+       
         
     }
 }
 
 extension ExchangeRateViewController: TableViewControllerSymbolDelegate {
-    func didSelectSymbol(synbol: String) {
-        selectSymbolButton.setTitle(synbol, for: .normal)
-        selectedCurrencySymbol = synbol
+    func didSelectSymbol(synbol: String, currencySelectionType: CurrencySelectionType) {
+        switch currencySelectionType {
+        case .source:
+            selectSourceCurrencyButton.setTitle(synbol, for: .normal)
+            selectedSourceCurrencySymbol = synbol
+        case .target:
+            selectTargetCurrencySymbolButton.setTitle(synbol, for: .normal)
+            selectedTargetCurrencySymbol = synbol
+        }
+       
     }
     
     
+}
+
+
+enum CurrencySelectionType {
+    case source
+    case target
 }

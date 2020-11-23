@@ -33,7 +33,7 @@ class TranslateViewController: UIViewController, UITextViewDelegate {
 
     @IBOutlet weak var LabelLanguageSelected1: UILabel!
     @IBOutlet weak var LabelLanguageSelected2: UILabel!
-    
+    @IBOutlet var spinner : UIActivityIndicatorView!
     @IBOutlet weak var UITextViewUpper: UITextView!
     @IBOutlet weak var UITextViewLower: UITextView!
     
@@ -67,6 +67,7 @@ class TranslateViewController: UIViewController, UITextViewDelegate {
     }
     
     private func translateText() {
+        spinner.startAnimating()
         guard let textToTranslate = UITextViewUpper.text else {
             print("Could not get text from textview")
             presentAlert(error: .unknownError)
@@ -88,6 +89,7 @@ class TranslateViewController: UIViewController, UITextViewDelegate {
                 self.UITextViewLower.text = translatedText
             }
         }
+        spinner.stopAnimating()
     }
     
     private func presentAlert(error: NetworkManagerError) {

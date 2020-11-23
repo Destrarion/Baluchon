@@ -13,7 +13,7 @@ class ExchangeRateViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var valueToExchangeTextField: UITextField!
     @IBOutlet weak var selectTargetCurrencySymbolButton: UIButton!
     @IBOutlet weak var selectSourceCurrencyButton: UIButton!
-    
+    @IBOutlet weak var spinner : UIActivityIndicatorView!
     
     @IBAction func dismissKeyboard(_ sender: UITapGestureRecognizer) {
         valueToExchangeTextField.resignFirstResponder()
@@ -52,6 +52,7 @@ class ExchangeRateViewController: UIViewController, UITextFieldDelegate {
         //receivingNotification(name: "updateValueToExchange")
         //NotificationCenter.default.addObserver(self, selector: #selector(sendRateToForm(notification:)), name: NSNotification.Name(rawValue: "sendRateToForm"), object: nil)
        // receivingNotification(name: "updatePickerView")
+        spinner.startAnimating()
         exchangeRate.getRate {(result) in
             
             switch result{
@@ -63,7 +64,7 @@ class ExchangeRateViewController: UIViewController, UITextFieldDelegate {
                 
             }
         }
-        
+        spinner.stopAnimating()
  
     }
     

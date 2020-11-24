@@ -8,71 +8,50 @@
 
 import UIKit
 
+
 class ExchangeRateViewController: UIViewController, UITextFieldDelegate {
-    @IBOutlet weak var resultCalculExchangeLabel: UILabel!
-    @IBOutlet weak var valueToExchangeTextField: UITextField!
-    @IBOutlet weak var selectTargetCurrencySymbolButton: UIButton!
-    @IBOutlet weak var selectSourceCurrencyButton: UIButton!
-    @IBOutlet weak var spinner : UIActivityIndicatorView!
+
     
-    @IBAction func dismissKeyboard(_ sender: UITapGestureRecognizer) {
-        valueToExchangeTextField.resignFirstResponder()
+    // MARK: - INTERNAL
+    
+    // MARK: Internal - Methods
+    
+
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        getRateInformation()
+        
     }
     
-    //IBAction func EditingChanged(_ sender: UITextField) {
-    //ExchangeRate.shared.calculExchangeRateWithValue(symbolSelected, valueToExchangeTextFieldLabel.text!)
-    //}
     
-    @IBAction func didTapConvertButton() {
-        convertValueWithRate()
-    }
-    @IBAction func valuesChangedTextField() {
-        convertValueWithRate()
-    }
     
+    
+    // MARK: - PRIVATE
+    
+    // MARK: Private - Properties - Outlets
+    
+    @IBOutlet private weak var resultCalculExchangeLabel: UILabel!
+    @IBOutlet private weak var valueToExchangeTextField: UITextField!
+    @IBOutlet private weak var selectTargetCurrencySymbolButton: UIButton!
+    @IBOutlet private weak var selectSourceCurrencyButton: UIButton!
+    @IBOutlet private weak var spinner: UIActivityIndicatorView!
+    
+    
+    
+    // MARK: Private - Properties - Models
     
     private let exchangeRate = ExchangeRate()
     
-    private func convertValueWithRate() {
-        guard
-            let usedRate = usedRate,
-            let valueToConvert = valueToConvert
-            else {
-                return
-        }
-        
-        let convertedValue = valueToConvert * usedRate
-        
-        resultCalculExchangeLabel.text = convertedValue.description
-    }
     
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        //receivingNotification(name: "updateValueToExchange")
-        //NotificationCenter.default.addObserver(self, selector: #selector(sendRateToForm(notification:)), name: NSNotification.Name(rawValue: "sendRateToForm"), object: nil)
-       // receivingNotification(name: "updatePickerView")
-        spinner.startAnimating()
-        exchangeRate.getRate {(result) in
-            
-            switch result{
-            case .failure(let error):
-                self.presentAlert(error: error)
-            case .success(let response):
-                self.rates = response.rates
+    // MARK: Private - Properties - General
 
-                
-            }
-        }
-        spinner.stopAnimating()
- 
-    }
     
     private var usedRate: Double? {
         guard
             let rates = rates,
-            let sourceRate = rates[selectedSourceCurrencySymbol],
-            let targetRate = rates[selectedTargetCurrencySymbol]
+            let sourceRate = rates[selectedSourceCurrency.currencyCode],
+            let targetRate = rates[selectedTargetCurrency.currencyCode]
             else { return nil  }
        
         return targetRate / sourceRate
@@ -80,8 +59,8 @@ class ExchangeRateViewController: UIViewController, UITextFieldDelegate {
     
     private var rates: [String: Double]?
     
-    private var selectedSourceCurrencySymbol = "EUR"
-    private var selectedTargetCurrencySymbol = "USD"
+    private var selectedSourceCurrency: Currency = .euro
+    private var selectedTargetCurrency: Currency = .usDollar
     
     private var valueToConvert: Double? {
         guard
@@ -94,32 +73,64 @@ class ExchangeRateViewController: UIViewController, UITextFieldDelegate {
     
     
     
-//    @objc func updateValueToExchange () {
-//        resultCalculExchangeLabel.text = "\(ExchangeRate.shared.resultCalculationRate)"
-//    }
-//
-//    @objc func sendRateToForm(notification : Notification) {
-//        //let formVC = notification.object as! TableViewController
-//        selectSymbolButton.titleLabel?.text = symbolSelected
-//        /*if valueToExchangeTextFieldLabel.text != nil || valueToExchangeTextFieldLabel.text != "" {
-//            ExchangeRate.shared.calculExchangeRateWithValue(symbolSelected, valueToExchangeTextFieldLabel.text!)
-//        }*/
-//        print("bien recu sir !")
-//
-//    }
-//
-    // function for receiving notification
-//    private func receivingNotification(name: String) {
-//        let notificationName = Notification.Name(rawValue: name)
-//        let selector = Selector((name))
-//        NotificationCenter.default.addObserver(self, selector: selector, name: notificationName, object: nil)
-//    }
-//
-//    func setcurrency(currency: String) {
-//        let symbolSelected = currency
-//        selectSymbolButton.titleLabel?.text = symbolSelected
-//        print("set currency called")
-//    }
+    
+    
+    // MARK: Private - Methods - IBActions
+    
+    @IBAction private func dismissKeyboard(_ sender: UITapGestureRecognizer) {
+        valueToExchangeTextField.resignFirstResponder()
+    }
+    
+
+    @IBAction private func valuesChangedTextField() {
+        convertValueWithRate()
+    }
+    
+    
+    // MARK: Private - Methods - General
+    
+    private func convertValueWithRate() {
+        guard
+            let usedRate = usedRate,
+            let valueToConvert = valueToConvert
+            else {
+                return
+        }
+        
+        let convertedValue = valueToConvert * usedRate
+        
+        
+        let numberFormatter = NumberFormatter()
+        
+        numberFormatter.numberStyle = .currency
+        numberFormatter.maximumFractionDigits = 2
+        numberFormatter.currencySymbol = selectedTargetCurrency.symbol
+        
+        let formattedStringValue = numberFormatter.string(from: convertedValue as NSNumber)
+        
+        resultCalculExchangeLabel.text = formattedStringValue
+    }
+
+    
+    private func getRateInformation() {
+        spinner.startAnimating()
+        
+        DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
+            self.exchangeRate.getRate {(result) in
+                self.spinner.stopAnimating()
+                
+                switch result{
+                case .failure(let error):
+                    self.presentAlert(error: error)
+                case .success(let response):
+                    self.rates = response.rates
+
+                    
+                }
+            }
+        }
+    }
+    
     
     private func presentAlert(error: NetworkManagerError) {
         print("do not work translate")
@@ -149,22 +160,20 @@ class ExchangeRateViewController: UIViewController, UITextFieldDelegate {
         } else {
             currencySelectionViewController.currencySelectionType = .target
         }
-        
-        
-       
+    
         
     }
 }
 
 extension ExchangeRateViewController: TableViewControllerSymbolDelegate {
-    func didSelectSymbol(synbol: String, currencySelectionType: CurrencySelectionType) {
+    func didSelectSymbol(currency: Currency, currencySelectionType: CurrencySelectionType) {
         switch currencySelectionType {
         case .source:
-            selectSourceCurrencyButton.setTitle(synbol, for: .normal)
-            selectedSourceCurrencySymbol = synbol
+            selectSourceCurrencyButton.setTitle(currency.currencyCode, for: .normal)
+            selectedSourceCurrency = currency
         case .target:
-            selectTargetCurrencySymbolButton.setTitle(synbol, for: .normal)
-            selectedTargetCurrencySymbol = synbol
+            selectTargetCurrencySymbolButton.setTitle(currency.currencyCode, for: .normal)
+            selectedTargetCurrency = currency
         }
        
     }
@@ -172,8 +181,3 @@ extension ExchangeRateViewController: TableViewControllerSymbolDelegate {
     
 }
 
-
-enum CurrencySelectionType {
-    case source
-    case target
-}

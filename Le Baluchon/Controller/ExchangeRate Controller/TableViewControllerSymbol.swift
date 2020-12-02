@@ -1,19 +1,14 @@
 import UIKit
 
-
+// MARK: - PUBLIC
 protocol TableViewControllerSymbolDelegate: class {
     func didSelectSymbol(currency: Currency, currencySelectionType: CurrencySelectionType)
 }
 
 
 class TableViewControllerSymbol: UIViewController {
-    
-    weak var delegate: TableViewControllerSymbolDelegate?
-    
-    var currencySelectionType: CurrencySelectionType?
-    
-    @IBOutlet var tableViewSymbol: UITableView!
-    
+
+//MARK: - Internal - Methods
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -21,10 +16,19 @@ class TableViewControllerSymbol: UIViewController {
         tableViewSymbol.dataSource = self
     }
     
+// MARK: Private - Properties - Outlets
+    @IBOutlet private var tableViewSymbol: UITableView!
+    
+    
+// MARK: Private - Methods - IBActions
     @IBAction func dismissView(_ sender: UIButton) {
         self.dismiss(animated: true, completion: nil)
     }
     
+    // MARK: Private - Properties - General
+    weak var delegate: TableViewControllerSymbolDelegate?
+    
+    var currencySelectionType: CurrencySelectionType?
     
     private let selectableCurrencies: [Currency] = [.usDollar, .euro, .swissFrancs]
 }

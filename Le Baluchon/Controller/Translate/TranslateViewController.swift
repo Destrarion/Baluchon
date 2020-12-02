@@ -1,7 +1,7 @@
 import UIKit
 
 
-class TranslateViewController: UIViewController, UITextViewDelegate {
+class TranslateViewController: UIViewController {
     
     // MARK: - INTERNAL
     
@@ -15,6 +15,10 @@ class TranslateViewController: UIViewController, UITextViewDelegate {
     
     
     // MARK: - PRIVATE
+    
+    // NARK: Private - Properties - Services
+    
+    private let translateService = TranslateService()
     
     // MARK: Private - Properties - Outlets
     @IBOutlet private weak var LabelLanguageSelected1: UILabel!
@@ -34,7 +38,7 @@ class TranslateViewController: UIViewController, UITextViewDelegate {
         
     }
     
-    // MARK: Private - Properties - Models
+    // MARK: Private - Properties - General
     private var sourceLanguageSelected: Language = .english {
         didSet {
             LabelLanguageSelected1.text = sourceLanguageSelected.name
@@ -55,7 +59,7 @@ class TranslateViewController: UIViewController, UITextViewDelegate {
             return
         }
         
-        Translate.shared.getTranslation(
+        translateService.getTranslation(
             textToTranslate: textToTranslate,
             targetLanguage: targetLanguageSelected.languageCode,
             sourceLanguage: sourceLanguageSelected.languageCode
@@ -89,6 +93,12 @@ class TranslateViewController: UIViewController, UITextViewDelegate {
     }
     
     
+    
+    
+    
+}
+
+extension TranslateViewController: UITextViewDelegate {
     func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
         if (text == "\n") {
             translateText()
@@ -96,6 +106,4 @@ class TranslateViewController: UIViewController, UITextViewDelegate {
         }
         return true
     }
-    
-    
 }

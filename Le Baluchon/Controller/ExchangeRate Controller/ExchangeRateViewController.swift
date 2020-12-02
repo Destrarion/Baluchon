@@ -1,11 +1,3 @@
-//
-//  ViewController.swift
-//  taux de change API
-//
-//  Created by Fabien Dietrich on 23/05/2020.
-//  Copyright © 2020 Fabien Dietrich. All rights reserved.
-//
-
 import UIKit
 
 
@@ -40,7 +32,7 @@ class ExchangeRateViewController: UIViewController, UITextFieldDelegate {
     
     // MARK: Private - Properties - Models
     
-    private let exchangeRate = ExchangeRate()
+    private let exchangeRate = ExchangeRateService()
     
     
     

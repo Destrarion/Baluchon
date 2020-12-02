@@ -6,11 +6,7 @@ class NetworkManager {
     init(session: URLSession = URLSession.shared) {
         self.session = session
     }
-    
-    private let session: URLSession
-    
-    private var task: URLSessionDataTask?
-    
+//MARK: - Public
     func fetch<T: Decodable>(url: URL, callback: @escaping (Result<T, NetworkManagerError>) -> Void) {
         
         task?.cancel()
@@ -46,4 +42,10 @@ class NetworkManager {
         }
         task?.resume()
     }
+//MARK: - Private
+    private let session: URLSession
+    
+    private var task: URLSessionDataTask?
+    
+   
 }

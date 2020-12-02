@@ -1,16 +1,22 @@
-import Foundation
 
-class Translate {
+class TranslateService {
     
-    static var shared = Translate()
-    private init() {}
+    init(
+        networkManager: NetworkManager = NetworkManager(),
+        translateUrlProvider: TranslateUrlProvider = TranslateUrlProvider()
+    ) {
+        self.networkManager = networkManager
+        self.translateUrlProvider = translateUrlProvider
+    }
     
-    private let networkManager = NetworkManager()
-    private let urlCreation = UrlCreation()
+    
+    
+    private let networkManager: NetworkManager
+    private let translateUrlProvider: TranslateUrlProvider
     
     // Creation de la requete
     func getTranslation(textToTranslate: String, targetLanguage: String, sourceLanguage: String, callback: @escaping (Result<TranslateResponse, NetworkManagerError>) -> Void) {
-        guard let requestURL = urlCreation.createTranslateRequestUrl(
+        guard let requestURL = translateUrlProvider.createTranslateRequestUrl(
             textToTranslate: textToTranslate,
             targetLanguage: targetLanguage,
             sourceLanguage: sourceLanguage

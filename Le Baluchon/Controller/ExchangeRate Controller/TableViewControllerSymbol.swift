@@ -1,11 +1,3 @@
-//
-//  TableViewControllerSymbol.swift
-//  Le Baluchon
-//
-//  Created by Fabien Dietrich on 16/08/2020.
-//  Copyright © 2020 Fabien Dietrich. All rights reserved.
-//
-
 import UIKit
 
 
@@ -19,7 +11,7 @@ class TableViewControllerSymbol: UIViewController {
     weak var delegate: TableViewControllerSymbolDelegate?
     
     var currencySelectionType: CurrencySelectionType?
-
+    
     @IBOutlet var tableViewSymbol: UITableView!
     
     override func viewDidLoad() {
@@ -29,13 +21,6 @@ class TableViewControllerSymbol: UIViewController {
         tableViewSymbol.dataSource = self
     }
     
-   /* override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "RateToForm"{
-            let formVC = segue.destination as! ExchangeRateViewController
-            formVC.symbolSelected = symbolSelected
-        }
-    }
-    */
     @IBAction func dismissView(_ sender: UIButton) {
         self.dismiss(animated: true, completion: nil)
     }
@@ -53,18 +38,18 @@ extension TableViewControllerSymbol : UITableViewDelegate{
         self.dismiss(animated: true, completion: nil)
     }
 }
-    
+
 extension TableViewControllerSymbol : UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "Ratecell", for: indexPath)
         
         cell.textLabel?.text = selectableCurrencies[indexPath.row].currencyCode
-
+        
         return cell
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return selectableCurrencies.count
     }
- 
+    
 }

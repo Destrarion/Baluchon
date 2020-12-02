@@ -1,11 +1,3 @@
-//
-//  ExchangeRate.swift
-//  taux de change API
-//
-//  Created by Fabien Dietrich on 23/05/2020.
-//  Copyright © 2020 Fabien Dietrich. All rights reserved.
-//
-
 import Foundation
 
 class ExchangeRate {
@@ -13,8 +5,6 @@ class ExchangeRate {
     private let urlCreation = UrlCreation()
     
     var resultCalculationRate : Double = 0
-    
-    // all thing under this commentary contain the API Request
     
     private var task: URLSessionDataTask?
     private let exchangeRateSession: URLSession
@@ -34,7 +24,7 @@ class ExchangeRate {
     }
     
     private func createExchangeRateRequest() -> URLRequest? {
-
+        
         guard let exchangeURL = urlCreation.createExchangeRateRequestUrl() else { return nil }
         var request = URLRequest(url: exchangeURL)
         request.httpMethod = "POST"

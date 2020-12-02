@@ -31,6 +31,7 @@
 		5F548F4024C6D479008EF19A /* Le_BaluchonUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F548F3F24C6D479008EF19A /* Le_BaluchonUITests.swift */; };
 		5F55279624E972ED00B84E80 /* TableViewControllerSymbol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F55279524E972ED00B84E80 /* TableViewControllerSymbol.swift */; };
 		5F83AABB2526182900EEE6AD /* TranslateViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F83AABA2526182900EEE6AD /* TranslateViewController.swift */; };
+		5FA08AA4256DAC91002BEDC2 /* Language.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FA08AA3256DAC91002BEDC2 /* Language.swift */; };
 		5FA6A90125478B610089FE8F /* ExchangeResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FA6A90025478B610089FE8F /* ExchangeResponse.swift */; };
 /* End PBXBuildFile section */
 
@@ -82,6 +83,7 @@
 		5F548F4124C6D479008EF19A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		5F55279524E972ED00B84E80 /* TableViewControllerSymbol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewControllerSymbol.swift; sourceTree = "<group>"; };
 		5F83AABA2526182900EEE6AD /* TranslateViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TranslateViewController.swift; sourceTree = "<group>"; };
+		5FA08AA3256DAC91002BEDC2 /* Language.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Language.swift; sourceTree = "<group>"; };
 		5FA6A90025478B610089FE8F /* ExchangeResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExchangeResponse.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -259,6 +261,7 @@
 			isa = PBXGroup;
 			children = (
 				5F83AABA2526182900EEE6AD /* TranslateViewController.swift */,
+				5FA08AA3256DAC91002BEDC2 /* Language.swift */,
 			);
 			path = Translate;
 			sourceTree = "<group>";
@@ -414,6 +417,7 @@
 				5F4727CA24CFE8EC009AF6A9 /* ExchangeRateViewController.swift in Sources */,
 				5F55279624E972ED00B84E80 /* TableViewControllerSymbol.swift in Sources */,
 				5F548F1E24C6D477008EF19A /* AppDelegate.swift in Sources */,
+				5FA08AA4256DAC91002BEDC2 /* Language.swift in Sources */,
 				5F83AABB2526182900EEE6AD /* TranslateViewController.swift in Sources */,
 				5F49596D256CFC9900CFD804 /* CurrencySelectionType.swift in Sources */,
 				5FA6A90125478B610089FE8F /* ExchangeResponse.swift in Sources */,

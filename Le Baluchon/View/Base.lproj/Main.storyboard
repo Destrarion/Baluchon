@@ -50,7 +50,7 @@
         <!--Meteo Page-->
         <scene sceneID="cgi-JS-M81">
             <objects>
-                <viewController id="eV3-tJ-eks" customClass="StartViewController" customModule="Le_Baluchon" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="eV3-tJ-eks" customClass="WeatherViewController" customModule="Le_Baluchon" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="4gY-2D-WME">
                         <rect key="frame" x="0.0" y="0.0" width="428" height="843"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -61,7 +61,7 @@
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="67" translatesAutoresizingMaskIntoConstraints="NO" id="0Z4-Xk-a5R">
                                         <rect key="frame" x="0.0" y="0.0" width="428" height="352.66666666666669"/>
                                         <subviews>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Town" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DeZ-Rd-aQm">
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="New York" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DeZ-Rd-aQm">
                                                 <rect key="frame" x="0.0" y="0.0" width="428" height="73"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <nil key="textColor"/>
@@ -111,6 +111,10 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Meteo Page" id="hbo-Sj-Gqj"/>
+                    <connections>
+                        <outlet property="BottomLabelTemperature" destination="H44-FG-JmP" id="9MC-bv-gyG"/>
+                        <outlet property="TopLabelTemperature" destination="0bQ-z7-NJj" id="rlt-Ie-X8R"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="92j-Qc-9y6" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>

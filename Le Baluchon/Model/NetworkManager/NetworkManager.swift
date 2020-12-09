@@ -9,8 +9,6 @@ class NetworkManager {
 //MARK: - Public
     func fetch<T: Decodable>(url: URL, callback: @escaping (Result<T, NetworkManagerError>) -> Void) {
         
-        task?.cancel()
-        
         task = URLSession.shared.dataTask(with: url) { (data, response, error) in
             DispatchQueue.main.async {
                 
@@ -41,7 +39,43 @@ class NetworkManager {
             }
         }
         task?.resume()
+        
+        
+       
     }
+    
+    
+    
+    
+    func fetchData(url: URL, callback: @escaping (Result<Data, NetworkManagerError>) -> Void) {
+        
+        task = URLSession.shared.dataTask(with: url) { (data, response, error) in
+            DispatchQueue.main.async {
+                
+                guard error == nil else {
+                    callback(.failure(.unknownError))
+                    return
+                }
+                
+                guard
+                    let response = response as? HTTPURLResponse,
+                    response.statusCode == 200
+                else {
+                    callback(.failure(.responseCodeIsInvalid))
+                    return
+                }
+                
+                guard let data = data else {
+                    callback(.failure(.noData))
+                    return
+                }
+
+                callback(.success(data))
+            }
+        }
+        task?.resume()
+    }
+    
 //MARK: - Private
     private let session: URLSession
     

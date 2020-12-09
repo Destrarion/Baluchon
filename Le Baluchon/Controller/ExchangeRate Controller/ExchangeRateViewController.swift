@@ -108,14 +108,14 @@ class ExchangeRateViewController: UIViewController, UITextFieldDelegate {
         spinner.startAnimating()
         
         DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
-            self.exchangeRate.getRate {(result) in
-                self.spinner.stopAnimating()
+            self.exchangeRate.getRate { [weak self] (result) in
+                self?.spinner.stopAnimating()
                 
                 switch result{
                 case .failure(let error):
-                    self.presentAlert(error: error)
+                    self?.presentAlert(error: error)
                 case .success(let response):
-                    self.rates = response.rates
+                    self?.rates = response.rates
 
                     
                 }

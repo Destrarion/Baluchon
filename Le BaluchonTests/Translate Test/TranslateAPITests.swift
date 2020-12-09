@@ -11,20 +11,20 @@ import XCTest
 
 class TranslateAPITests: XCTestCase {
 //
-//    func testGetTranslationShouldPostFailedCallbackifError(){
-//        let translate = TranslateService(
-//            translateSession: URLSessionFake(data: nil, response: nil, error: FakeResponseData.error))
+ //  func testGetTranslationShouldPostFailedCallbackifError(){
+ //     let translate = TranslateService(
+ //         translateSession: URLSessionFake(data: nil, response: nil, error: FakeResponseData.error))
 //
-//        let expectation = XCTestExpectation(description: "Wait for queue change.")
-//        translate.getTranslation { ( success, translateresponse ) in
+ //     let expectation = XCTestExpectation(description: "Wait for queue change.")
+ //     translate.getTranslation { ( success, translateresponse ) in
 //
-//            XCTAssertFalse(success)
-//            XCTAssertNil(translateresponse)
-//            expectation.fulfill()
-//        }
-//        wait(for: [expectation], timeout: 0.01)
-//
-//    }
+ //         XCTAssertFalse(success)
+ //       XCTAssertNil(translateresponse)
+ //       expectation.fulfill()
+ //    }
+ //    wait(for: [expectation], timeout: 0.01)
+ //
+//}
 //
 //    func testGetExchangeRateShouldPostFailedCallbackNoData() {
 //        let translate = TranslateService(translateSession: URLSessionFake(data: nil, response: nil, error: nil))

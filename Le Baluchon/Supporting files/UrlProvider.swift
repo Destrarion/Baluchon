@@ -1,53 +1,14 @@
-//
-//  APIkey.swift
-//  Le Baluchon
-//
-//  Created by Fabien Dietrich on 18/08/2020.
-//  Copyright © 2020 Fabien Dietrich. All rights reserved.
-//
-
 import Foundation
 
-protocol URLComponentsProtocol {
-    var scheme: String? { get set }
-    var host: String? { get set }
-    var path: String { get set }
-    var queryItems: [URLQueryItem]? { get set }
-    var url: URL? { get }
-}
-
-
-class URLComponentsMock: URLComponentsProtocol {
-    init(scheme: String? = nil, host: String? = nil, path: String = "", queryItems: [URLQueryItem]? = nil, url: URL? = nil) {
-        self.scheme = scheme
-        self.host = host
-        self.path = path
-        self.queryItems = queryItems
-        self.url = url
-    }
-
-    
-    var scheme: String?
-    var host: String?
-    var path: String
-    var queryItems: [URLQueryItem]?
-    var url: URL?
-}
-
-
-
 extension URLComponents: URLComponentsProtocol { }
-
+//MARK:- EXCHANGE RATE
 class CurrencyUrlProvider {
-    
     
     init(urlComponents: URLComponentsProtocol = URLComponents()) {
         self.urlComponents = urlComponents
     }
     
-    
     private var urlComponents: URLComponentsProtocol
-    
     
     func createExchangeRateRequestUrl() -> URL? {
         urlComponents.scheme = "http"
@@ -62,14 +23,11 @@ class CurrencyUrlProvider {
     
 }
 
-
+//MARK:- TRANSLATE
 class TranslateUrlProvider {
-    
-    
     init(urlComponents: URLComponentsProtocol = URLComponents()) {
         self.urlComponents = urlComponents
     }
-    
     
     private var urlComponents: URLComponentsProtocol
     
@@ -89,8 +47,11 @@ class TranslateUrlProvider {
     }
 }
 
+
+
+
+// MARK:- WEATHER
 class WeatherUrlProvider {
-    
     
     init(urlComponents: URLComponentsProtocol = URLComponents()) {
         self.urlComponents = urlComponents
@@ -99,14 +60,52 @@ class WeatherUrlProvider {
     
     private var urlComponents: URLComponentsProtocol
     
-    func createWeatherRequestUrl() -> URL? {
+    func createWeatherRequestUrl(town: String) -> URL? {
         var urlComponents = URLComponents()
-        
+        urlComponents.scheme = "http"
+        urlComponents.host = "api.openweathermap.org"
+        urlComponents.path = "/data/2.5/weather"
         urlComponents.queryItems = [
-            .init(name:"key", value: "864fbc812b28e30ad18d55bc00bc96c2"),
-            
+            .init(name: "q", value: town),
+            .init(name: "appid", value: "864fbc812b28e30ad18d55bc00bc96c2"),
+            .init(name: "units", value: "metric")
         ]
-        
+        print(urlComponents.url)
         return urlComponents.url
     }
 }
+
+
+
+
+
+
+
+//MARK:- URL COMPONENTS
+protocol URLComponentsProtocol {
+    var scheme: String? { get set }
+    var host: String? { get set }
+    var path: String { get set }
+    var queryItems: [URLQueryItem]? { get set }
+    var url: URL? { get }
+}
+
+
+class URLComponentsMock: URLComponentsProtocol {
+    init(scheme: String? = nil, host: String? = nil, path: String = "", queryItems: [URLQueryItem]? = nil, url: URL? = nil) {
+        self.scheme = scheme
+        self.host = host
+        self.path = path
+        self.queryItems = queryItems
+        self.url = url
+    }
+    
+    
+    var scheme: String?
+    var host: String?
+    var path: String
+    var queryItems: [URLQueryItem]?
+    var url: URL?
+}
+
+

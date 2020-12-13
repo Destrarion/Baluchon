@@ -31,6 +31,7 @@ class WeatherService {
         }
         networkManager.fetch(url: requestURL, callback: callback)
     }
+    
     // [°C] = ([°F] - 32) x 5/9
     //[°F] = [°C] x 9/5 + 32
     private func celsiusConvertionToFahrenheit(celsius: Int ) -> Int{
@@ -41,4 +42,6 @@ class WeatherService {
         let celsius = (fahrenheit - 32) * 5/9
         return celsius
     }
+    
+    
 }

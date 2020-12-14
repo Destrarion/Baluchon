@@ -73,9 +73,12 @@ class WeatherUrlProvider {
         print(urlComponents.url)
         return urlComponents.url
     }
+    
+    
+    
     // http://openweathermap.org/img/wn/10d@2x.png
     
-    func createWeatherImageRequestUrl(imageCode: String) -> URL? {
+    func createWeatherImageCodeRequestUrl(imageCode: String) -> URL? {
         var urlComponents = URLComponents()
         urlComponents.scheme = "http"
         urlComponents.host = "openweathermap.org"

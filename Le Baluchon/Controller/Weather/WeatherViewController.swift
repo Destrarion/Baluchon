@@ -32,7 +32,6 @@ class WeatherViewController: UIViewController {
     
     private func getWeather(town: String, temperatureLabel: UILabel, WeatherImage: UIImageView) {
         
-        var codeImage : String = ""
         
         weatherService.getWeather(
             town: town
@@ -47,27 +46,26 @@ class WeatherViewController: UIViewController {
                 let cityTemperature = response.main.temp
                 temperatureLabel.text = "\(cityTemperature)"
                 guard let imageCode = response.weather.first?.icon.description else { return }
-                codeImage = imageCode
-                print("codeimage:\(codeImage)")
+    
+                print("codeimage:\(imageCode)")
                 
-            }
-        }
-        DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
-            self.weatherService.getWeatherImage(
-                imageCode: codeImage
-            ) { [weak self] (result) in
-                
-                switch result {
-                case .failure(let error):
-                    print("error !")
-                    print(error)
-                    //self.presentAlert(error: error)
-                    print("failure on weather service on result for getting Image")
-                case .success(let response):
-                    print(response)
-                    let loadedImage = UIImage(data: response)
-                    WeatherImage.image = loadedImage
+                self?.weatherService.getWeatherImageData(
+                    imageCode: imageCode
+                ) { [weak self] (result) in
+                    
+                    switch result {
+                    case .failure(let error):
+                        print("error !")
+                        print(error)
+                        //self.presentAlert(error: error)
+                        print("failure on weather service on result for getting Image")
+                    case .success(let response):
+                        print(response)
+                        let loadedImage = UIImage(data: response)
+                        WeatherImage.image = loadedImage
+                    }
                 }
+                
             }
         }
     }

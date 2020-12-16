@@ -236,7 +236,7 @@
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="wPq-Fy-kRa">
                                         <rect key="frame" x="0.0" y="377.66666666666674" width="428" height="377.33333333333326"/>
                                         <subviews>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Converted value" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FU5-mV-Jcz">
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FU5-mV-Jcz">
                                                 <rect key="frame" x="0.0" y="0.0" width="428" height="377.33333333333331"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -459,11 +459,12 @@
                                 </constraints>
                             </stackView>
                             <activityIndicatorView hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="large" translatesAutoresizingMaskIntoConstraints="NO" id="R4g-9D-hUW">
-                                <rect key="frame" x="164" y="371.66666666666669" width="100" height="100"/>
+                                <rect key="frame" x="164" y="271.66666666666669" width="100" height="100"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="100" id="MhV-A0-Iwh"/>
                                     <constraint firstAttribute="width" constant="100" id="uht-Ob-3JS"/>
                                 </constraints>
+                                <color key="color" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </activityIndicatorView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="lro-h9-bco"/>
@@ -471,7 +472,7 @@
                         <constraints>
                             <constraint firstItem="R4g-9D-hUW" firstAttribute="centerX" secondItem="NiW-Z8-qBq" secondAttribute="centerX" id="6s6-kH-g7w"/>
                             <constraint firstItem="lro-h9-bco" firstAttribute="trailing" secondItem="X54-Uq-OeS" secondAttribute="trailing" id="82r-8u-I3J"/>
-                            <constraint firstItem="R4g-9D-hUW" firstAttribute="centerY" secondItem="NiW-Z8-qBq" secondAttribute="centerY" id="KGu-aH-PW0"/>
+                            <constraint firstItem="R4g-9D-hUW" firstAttribute="centerY" secondItem="NiW-Z8-qBq" secondAttribute="centerY" constant="-100" id="KGu-aH-PW0"/>
                             <constraint firstItem="X54-Uq-OeS" firstAttribute="top" secondItem="lro-h9-bco" secondAttribute="top" id="KQY-pg-dTv"/>
                             <constraint firstItem="lro-h9-bco" firstAttribute="trailing" secondItem="Jtk-3r-ppC" secondAttribute="trailing" constant="10" id="NdD-sS-92W"/>
                             <constraint firstItem="lro-h9-bco" firstAttribute="bottom" secondItem="X54-Uq-OeS" secondAttribute="bottom" id="QJd-Fk-ffJ"/>

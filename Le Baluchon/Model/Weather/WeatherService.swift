@@ -35,7 +35,7 @@ class WeatherService {
     
     //MARK:- Get Image
     
-    func getWeatherImage (imageCode: String, callback: @escaping (Result< Data, NetworkManagerError>) -> Void) {
+    func getWeatherImageData(imageCode: String, callback: @escaping (Result<Data, NetworkManagerError>) -> Void) {
         guard let requestURL = weatherUrlProvider.createWeatherImageCodeRequestUrl(
             imageCode: imageCode
         )else {
@@ -44,16 +44,5 @@ class WeatherService {
         }
         print(requestURL)
         networkManager.fetchData(url: requestURL, callback: callback)
-    }
-    
-    //MARK:- Get Image Code
-    func getWeatherImageCode (town: String, callback: @escaping (Result<WeatherResponse, NetworkManagerError>) -> Void) {
-        guard let requestURL = weatherUrlProvider.createWeatherRequestUrl(
-            town: town
-        )else {
-            callback(.failure(.couldNotCreateURL))
-            return
-        }
-        networkManager.fetch(url: requestURL, callback: callback)
     }
 }

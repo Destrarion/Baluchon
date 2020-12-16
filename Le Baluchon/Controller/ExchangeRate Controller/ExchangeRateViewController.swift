@@ -8,6 +8,16 @@ class ExchangeRateViewController: UIViewController, UITextFieldDelegate {
     
     // MARK: Internal - Methods
     
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        valueToExchangeTextField.attributedPlaceholder = NSAttributedString(
+            string: "Insert your value here",
+            attributes: [.foregroundColor: UIColor.white]
+        )
+    }
+    
 
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
@@ -107,20 +117,19 @@ class ExchangeRateViewController: UIViewController, UITextFieldDelegate {
     private func getRateInformation() {
         spinner.startAnimating()
         
-        DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
-            self.exchangeRate.getRate { [weak self] (result) in
-                self?.spinner.stopAnimating()
-                
-                switch result{
-                case .failure(let error):
-                    self?.presentAlert(error: error)
-                case .success(let response):
-                    self?.rates = response.rates
+        self.exchangeRate.getRate { [weak self] (result) in
+            self?.spinner.stopAnimating()
+            
+            switch result{
+            case .failure(let error):
+                self?.presentAlert(error: error)
+            case .success(let response):
+                self?.rates = response.rates
 
-                    
-                }
+                
             }
         }
+    
     }
     
     

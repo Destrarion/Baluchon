@@ -70,7 +70,6 @@ class WeatherUrlProvider {
             .init(name: "appid", value: "864fbc812b28e30ad18d55bc00bc96c2"),
             .init(name: "units", value: "metric")
         ]
-        print(urlComponents.url)
         return urlComponents.url
     }
     
@@ -84,7 +83,6 @@ class WeatherUrlProvider {
         urlComponents.host = "openweathermap.org"
         urlComponents.path = "/img/wn/\(imageCode)@2x.png"
         
-        print(urlComponents.url)
         return urlComponents.url
     }
 }

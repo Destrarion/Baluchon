@@ -9,14 +9,9 @@ class ExchangeRateService {
         self.currencyUrlProvider = currencyUrlProvider
     }
     
-    
+
     private let networkManager: NetworkManager
     private let currencyUrlProvider: CurrencyUrlProvider
-    
-
-    
-    
-    
     
     // Here is the function that should replace getExchangeRate, inspired by getTranslation
     func getRate(callback : @escaping (Result<ExchangeResponse, NetworkManagerError>)-> Void) {
@@ -24,7 +19,6 @@ class ExchangeRateService {
             callback(.failure(.couldNotCreateURL))
             return
         }
-        print(requestURL)
         networkManager.fetch(url: requestURL, callback: callback)
     }
     

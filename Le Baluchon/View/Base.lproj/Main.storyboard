@@ -129,11 +129,11 @@
                                     </stackView>
                                 </subviews>
                             </stackView>
-                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="large" translatesAutoresizingMaskIntoConstraints="NO" id="jaj-DE-46E" userLabel="Top Activity Indicator">
+                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="large" translatesAutoresizingMaskIntoConstraints="NO" id="jaj-DE-46E" userLabel="Top Activity Indicator">
                                 <rect key="frame" x="178.66666666666666" y="225" width="70" height="70"/>
                                 <color key="color" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </activityIndicatorView>
-                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="large" translatesAutoresizingMaskIntoConstraints="NO" id="Esy-Gm-jeR">
+                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="large" translatesAutoresizingMaskIntoConstraints="NO" id="Esy-Gm-jeR" userLabel="Bottom Activity Indicator">
                                 <rect key="frame" x="180" y="680" width="70" height="20"/>
                                 <color key="color" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </activityIndicatorView>
@@ -161,8 +161,10 @@
                     </view>
                     <navigationItem key="navigationItem" title="Meteo Page" id="hbo-Sj-Gqj"/>
                     <connections>
+                        <outlet property="BottomActivityIndicator" destination="Esy-Gm-jeR" id="6xt-Zg-nXo"/>
                         <outlet property="BottomImageContainer" destination="SNP-z4-ZkY" id="q0R-7O-BWO"/>
                         <outlet property="BottomLabelTemperature" destination="H44-FG-JmP" id="9MC-bv-gyG"/>
+                        <outlet property="TopActivityIndicator" destination="jaj-DE-46E" id="4y0-eO-gC6"/>
                         <outlet property="TopImageContainer" destination="Gbv-TU-iak" id="ieA-F4-4nj"/>
                         <outlet property="TopLabelTemperature" destination="0bQ-z7-NJj" id="rlt-Ie-X8R"/>
                     </connections>

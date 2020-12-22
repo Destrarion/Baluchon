@@ -55,7 +55,6 @@ class TranslateViewController: UIViewController {
         spinner.startAnimating()
         guard let textToTranslate = UITextViewUpper.text else {
             spinner.stopAnimating()
-            print("Could not get text from textview")
             presentAlert(error: .unknownError)
             return
         }
@@ -71,14 +70,12 @@ class TranslateViewController: UIViewController {
                 self.presentAlert(error: error)
             case .success(let response):
                 guard let translatedText = response.data.translations.first?.translatedText else { return }
-                print("that work translate \(translatedText)")
                 self.UITextViewLower.text = translatedText
             }
         }
     }
     
     private func presentAlert(error: NetworkManagerError) {
-        print("do not work translate")
         let alertController = UIAlertController(
             title: "Error",
             message: error.errorDescription,

@@ -134,7 +134,6 @@ class ExchangeRateViewController: UIViewController, UITextFieldDelegate {
     
     
     private func presentAlert(error: NetworkManagerError) {
-        print("do not work translate")
         let alertController = UIAlertController(
             title: "Error",
             message: error.errorDescription,

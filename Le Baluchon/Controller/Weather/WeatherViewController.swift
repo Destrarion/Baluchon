@@ -17,7 +17,9 @@ class WeatherViewController: UIViewController {
     
     @IBOutlet weak var TopActivityIndicator: UIActivityIndicatorView!
     @IBOutlet weak var BottomActivityIndicator: UIActivityIndicatorView!
+    
     private let weatherService = WeatherService()
+    private let alertManager = AlertManager()
     
     private func getAllWeather() {
         getWeather(town: "New York", temperatureLabel: TopLabelTemperature, WeatherImage: TopImageContainer, spinner: TopActivityIndicator)
@@ -34,7 +36,7 @@ class WeatherViewController: UIViewController {
             switch result {
             case .failure(let error):
                 spinner.stopAnimating()
-                self?.presentAlert(error: error)
+                self?.alertManager.presentAlert(on: self, error: error)
             case .success(let response):
                 let cityTemperature = response.main.temp
                 temperatureLabel.text = "\(cityTemperature)°C"
@@ -46,7 +48,7 @@ class WeatherViewController: UIViewController {
                     spinner.stopAnimating()
                     switch result {
                     case .failure(let error):
-                        self?.presentAlert(error: error)
+                        self?.alertManager.presentAlert(on: self, error: error)
                     case .success(let response):
                         let loadedImage = UIImage(data: response)
                         WeatherImage.image = loadedImage
@@ -57,18 +59,6 @@ class WeatherViewController: UIViewController {
         }
     }
     
-    private func presentAlert(error: NetworkManagerError) {
-        let alertController = UIAlertController(
-            title: "Error",
-            message: error.errorDescription,
-            preferredStyle: .alert
-        )
-        
-        alertController.addAction(
-            UIAlertAction(title: "OK", style: .default, handler: nil)
-        )
-        
-        present(alertController, animated: true, completion: nil)
-    }
+   
     
 }

@@ -28,9 +28,10 @@
 		5F548F2724C6D479008EF19A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5F548F2624C6D479008EF19A /* Assets.xcassets */; };
 		5F548F2A24C6D479008EF19A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5F548F2824C6D479008EF19A /* LaunchScreen.storyboard */; };
 		5F548F4024C6D479008EF19A /* Le_BaluchonUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F548F3F24C6D479008EF19A /* Le_BaluchonUITests.swift */; };
-		5F55279624E972ED00B84E80 /* TableViewControllerSymbol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F55279524E972ED00B84E80 /* TableViewControllerSymbol.swift */; };
+		5F55279624E972ED00B84E80 /* CurrencySymbolPickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F55279524E972ED00B84E80 /* CurrencySymbolPickerViewController.swift */; };
 		5F7AAE08257D896D0079E685 /* WeatherService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F7AAE07257D896D0079E685 /* WeatherService.swift */; };
 		5F7AAE0D257D8AA80079E685 /* WeatherResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F7AAE0C257D8AA80079E685 /* WeatherResponse.swift */; };
+		5F7FB7C92593380D009885D0 /* AlertManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F7FB7C82593380D009885D0 /* AlertManager.swift */; };
 		5F83AABB2526182900EEE6AD /* TranslateViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F83AABA2526182900EEE6AD /* TranslateViewController.swift */; };
 		5FA08AA4256DAC91002BEDC2 /* Language.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FA08AA3256DAC91002BEDC2 /* Language.swift */; };
 		5FA6A90125478B610089FE8F /* ExchangeResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FA6A90025478B610089FE8F /* ExchangeResponse.swift */; };
@@ -84,9 +85,10 @@
 		5F548F3B24C6D479008EF19A /* Le BaluchonUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Le BaluchonUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		5F548F3F24C6D479008EF19A /* Le_BaluchonUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Le_BaluchonUITests.swift; sourceTree = "<group>"; };
 		5F548F4124C6D479008EF19A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		5F55279524E972ED00B84E80 /* TableViewControllerSymbol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewControllerSymbol.swift; sourceTree = "<group>"; };
+		5F55279524E972ED00B84E80 /* CurrencySymbolPickerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencySymbolPickerViewController.swift; sourceTree = "<group>"; };
 		5F7AAE07257D896D0079E685 /* WeatherService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherService.swift; sourceTree = "<group>"; };
 		5F7AAE0C257D8AA80079E685 /* WeatherResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherResponse.swift; sourceTree = "<group>"; };
+		5F7FB7C82593380D009885D0 /* AlertManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertManager.swift; sourceTree = "<group>"; };
 		5F83AABA2526182900EEE6AD /* TranslateViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TranslateViewController.swift; sourceTree = "<group>"; };
 		5FA08AA3256DAC91002BEDC2 /* Language.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Language.swift; sourceTree = "<group>"; };
 		5FA6A90025478B610089FE8F /* ExchangeResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExchangeResponse.swift; sourceTree = "<group>"; };
@@ -161,7 +163,7 @@
 			isa = PBXGroup;
 			children = (
 				5F4727C924CFE8EC009AF6A9 /* ExchangeRateViewController.swift */,
-				5F55279524E972ED00B84E80 /* TableViewControllerSymbol.swift */,
+				5F55279524E972ED00B84E80 /* CurrencySymbolPickerViewController.swift */,
 			);
 			path = "ExchangeRate Controller";
 			sourceTree = "<group>";
@@ -242,6 +244,7 @@
 				5F330A6924D963C800E58069 /* ExchangeRate Controller */,
 				5FAEAC9724E277B300C5A69D /* Translate */,
 				5F7AAE11257D91090079E685 /* Weather */,
+				5F7FB7C82593380D009885D0 /* AlertManager.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -434,9 +437,10 @@
 				5F482F7B2535B88A001DD924 /* NetworkManager.swift in Sources */,
 				5F3BB98724EBD59C004C3BB8 /* UrlProvider.swift in Sources */,
 				5F4727CA24CFE8EC009AF6A9 /* ExchangeRateViewController.swift in Sources */,
-				5F55279624E972ED00B84E80 /* TableViewControllerSymbol.swift in Sources */,
+				5F55279624E972ED00B84E80 /* CurrencySymbolPickerViewController.swift in Sources */,
 				5F548F1E24C6D477008EF19A /* AppDelegate.swift in Sources */,
 				5FB4C6CB25777FB1006DEF25 /* TranslateService.swift in Sources */,
+				5F7FB7C92593380D009885D0 /* AlertManager.swift in Sources */,
 				5F7AAE0D257D8AA80079E685 /* WeatherResponse.swift in Sources */,
 				5FA08AA4256DAC91002BEDC2 /* Language.swift in Sources */,
 				5F83AABB2526182900EEE6AD /* TranslateViewController.swift in Sources */,

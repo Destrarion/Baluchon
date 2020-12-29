@@ -22,4 +22,20 @@ class ExchangeRateService {
         networkManager.fetch(url: requestURL, callback: callback)
     }
     
+    var usedRate: Double? {
+        guard
+            let rates = rates,
+            let sourceRate = rates[selectedSourceCurrency.currencyCode],
+            let targetRate = rates[selectedTargetCurrency.currencyCode]
+            else { return nil  }
+       
+        return targetRate / sourceRate
+    }
+    
+    var rates: [String: Double]?
+    
+    var selectedSourceCurrency: Currency = .euro
+    var selectedTargetCurrency: Currency = .usDollar
+    
+    
 }

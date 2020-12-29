@@ -6,7 +6,7 @@ protocol TableViewControllerSymbolDelegate: class {
 }
 
 
-class TableViewControllerSymbol: UIViewController {
+class CurrencySymbolPickerViewController: UIViewController {
 
 //MARK: - Internal - Methods
     override func viewDidLoad() {
@@ -33,7 +33,7 @@ class TableViewControllerSymbol: UIViewController {
     private let selectableCurrencies: [Currency] = [.usDollar, .euro, .swissFrancs]
 }
 
-extension TableViewControllerSymbol : UITableViewDelegate{
+extension CurrencySymbolPickerViewController : UITableViewDelegate{
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let selectedCurrency = selectableCurrencies[indexPath.row]
         
@@ -43,7 +43,7 @@ extension TableViewControllerSymbol : UITableViewDelegate{
     }
 }
 
-extension TableViewControllerSymbol : UITableViewDataSource {
+extension CurrencySymbolPickerViewController : UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "Ratecell", for: indexPath)
         

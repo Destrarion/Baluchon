@@ -11,6 +11,7 @@ class TranslateViewController: UIViewController {
         super.viewDidLoad()
         
         UITextViewUpper.delegate = self
+
     }
     
     
@@ -39,6 +40,9 @@ class TranslateViewController: UIViewController {
     }
     
     // MARK: Private - Properties - General
+    private let alertManager = AlertManager()
+    
+    
     private var sourceLanguageSelected: Language = .english {
         didSet {
             LabelLanguageSelected1.text = sourceLanguageSelected.name
@@ -55,7 +59,7 @@ class TranslateViewController: UIViewController {
         spinner.startAnimating()
         guard let textToTranslate = UITextViewUpper.text else {
             spinner.stopAnimating()
-            presentAlert(error: .unknownError)
+            alertManager.presentAlert(on: self, error: .unknownError)
             return
         }
         
@@ -63,31 +67,19 @@ class TranslateViewController: UIViewController {
             textToTranslate: textToTranslate,
             targetLanguage: targetLanguageSelected.languageCode,
             sourceLanguage: sourceLanguageSelected.languageCode
-        ) { (result) in
-            self.spinner.stopAnimating()
+        ) { [weak self] (result) in
+            self?.spinner.stopAnimating()
             switch result {
             case .failure(let error):
-                self.presentAlert(error: error)
+                self?.alertManager.presentAlert(on: self, error: error)
             case .success(let response):
                 guard let translatedText = response.data.translations.first?.translatedText else { return }
-                self.UITextViewLower.text = translatedText
+                self?.UITextViewLower.text = translatedText
             }
         }
     }
     
-    private func presentAlert(error: NetworkManagerError) {
-        let alertController = UIAlertController(
-            title: "Error",
-            message: error.errorDescription,
-            preferredStyle: .alert
-        )
-        
-        alertController.addAction(
-            UIAlertAction(title: "OK", style: .default, handler: nil)
-        )
-        
-        present(alertController, animated: true, completion: nil)
-    }
+
     
     
     

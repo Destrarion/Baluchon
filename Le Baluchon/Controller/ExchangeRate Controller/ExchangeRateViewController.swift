@@ -14,7 +14,7 @@ class ExchangeRateViewController: UIViewController, UITextFieldDelegate {
         
         valueToExchangeTextField.attributedPlaceholder = NSAttributedString(
             string: "Insert your value here",
-            attributes: [.foregroundColor: UIColor.white]
+            attributes: [.foregroundColor: UIColor.systemOrange]
         )
     }
     
@@ -43,26 +43,12 @@ class ExchangeRateViewController: UIViewController, UITextFieldDelegate {
     // MARK: Private - Properties - Models
     
     private let exchangeRate = ExchangeRateService()
+    private let alertManager = AlertManager()
     
     
     
     // MARK: Private - Properties - General
 
-    
-    private var usedRate: Double? {
-        guard
-            let rates = rates,
-            let sourceRate = rates[selectedSourceCurrency.currencyCode],
-            let targetRate = rates[selectedTargetCurrency.currencyCode]
-            else { return nil  }
-       
-        return targetRate / sourceRate
-    }
-    
-    private var rates: [String: Double]?
-    
-    private var selectedSourceCurrency: Currency = .euro
-    private var selectedTargetCurrency: Currency = .usDollar
     
     private var valueToConvert: Double? {
         guard
@@ -72,8 +58,6 @@ class ExchangeRateViewController: UIViewController, UITextFieldDelegate {
         
         return doubleValue
     }
-    
-    
     
     
     
@@ -91,13 +75,13 @@ class ExchangeRateViewController: UIViewController, UITextFieldDelegate {
     
     // MARK: Private - Methods - General
     
+    
+    // A déplacer dans le model
     private func convertValueWithRate() {
         guard
-            let usedRate = usedRate,
+            let usedRate = exchangeRate.usedRate,
             let valueToConvert = valueToConvert
-            else {
-                return
-        }
+            else { return }
         
         let convertedValue = valueToConvert * usedRate
         
@@ -106,7 +90,7 @@ class ExchangeRateViewController: UIViewController, UITextFieldDelegate {
         
         numberFormatter.numberStyle = .currency
         numberFormatter.maximumFractionDigits = 2
-        numberFormatter.currencySymbol = selectedTargetCurrency.symbol
+        numberFormatter.currencySymbol = exchangeRate.selectedTargetCurrency.symbol
         
         let formattedStringValue = numberFormatter.string(from: convertedValue as NSNumber)
         
@@ -122,9 +106,9 @@ class ExchangeRateViewController: UIViewController, UITextFieldDelegate {
             
             switch result{
             case .failure(let error):
-                self?.presentAlert(error: error)
+                self?.alertManager.presentAlert(on: self, error: error)
             case .success(let response):
-                self?.rates = response.rates
+                self?.exchangeRate.rates = response.rates
 
                 
             }
@@ -132,26 +116,12 @@ class ExchangeRateViewController: UIViewController, UITextFieldDelegate {
     
     }
     
-    
-    private func presentAlert(error: NetworkManagerError) {
-        let alertController = UIAlertController(
-            title: "Error",
-            message: error.errorDescription,
-            preferredStyle: .alert
-        )
-        
-        alertController.addAction(
-            UIAlertAction(title: "OK", style: .default, handler: nil)
-        )
-        
-        present(alertController, animated: true, completion: nil)
-    }
-    
+
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         super.prepare(for: segue, sender: sender)
         
-        guard let currencySelectionViewController = segue.destination as? TableViewControllerSymbol else { return }
+        guard let currencySelectionViewController = segue.destination as? CurrencySymbolPickerViewController else { return }
         
         currencySelectionViewController.delegate = self
     
@@ -170,10 +140,10 @@ extension ExchangeRateViewController: TableViewControllerSymbolDelegate {
         switch currencySelectionType {
         case .source:
             selectSourceCurrencyButton.setTitle(currency.currencyCode, for: .normal)
-            selectedSourceCurrency = currency
+            exchangeRate.selectedSourceCurrency = currency
         case .target:
             selectTargetCurrencySymbolButton.setTitle(currency.currencyCode, for: .normal)
-            selectedTargetCurrency = currency
+            exchangeRate.selectedTargetCurrency = currency
         }
        
     }

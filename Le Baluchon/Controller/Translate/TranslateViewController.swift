@@ -10,7 +10,8 @@ class TranslateViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        UITextViewUpper.delegate = self
+        
+        setupToolBar()
 
     }
     
@@ -22,13 +23,16 @@ class TranslateViewController: UIViewController {
     private let translateService = TranslateService()
     
     // MARK: Private - Properties - Outlets
-    @IBOutlet private weak var LabelLanguageSelected1: UILabel!
-    @IBOutlet private weak var LabelLanguageSelected2: UILabel!
-    @IBOutlet private var spinner : UIActivityIndicatorView!
-    @IBOutlet private weak var UITextViewUpper: UITextView!
-    @IBOutlet private weak var UITextViewLower: UITextView!
+    @IBOutlet private weak var sourceLanguageSelectedLabel: UILabel!
+    @IBOutlet private weak var targetLanguageSelectedLabel: UILabel!
+    
+    @IBOutlet private var spinner: UIActivityIndicatorView!
+    
+    @IBOutlet private weak var textToTranslateTextView: UITextView!
+    @IBOutlet private weak var translatedTextTextView: UITextView!
     
     
+
     // MARK: Private - Methods - IBActions
     @IBAction func ReverseLanguageButton(_ sender: UIButton) {
         swap(&sourceLanguageSelected, &targetLanguageSelected)
@@ -45,19 +49,33 @@ class TranslateViewController: UIViewController {
     
     private var sourceLanguageSelected: Language = .english {
         didSet {
-            LabelLanguageSelected1.text = sourceLanguageSelected.name
+            sourceLanguageSelectedLabel.text = sourceLanguageSelected.name
         }
     }
     
     private var targetLanguageSelected: Language = .french {
         didSet {
-            LabelLanguageSelected2.text = targetLanguageSelected.name
+            targetLanguageSelectedLabel.text = targetLanguageSelected.name
         }
     }
     
-    private func translateText() {
+    private func setupToolBar() {
+        let toolBar = UIToolbar()
+        toolBar.sizeToFit()
+        toolBar.items = [
+            UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil),
+            UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(translateText))
+        ]
+        
+        
+        textToTranslateTextView.inputAccessoryView = toolBar
+    }
+    
+    @objc private func translateText() {
+        textToTranslateTextView.resignFirstResponder()
+        
         spinner.startAnimating()
-        guard let textToTranslate = UITextViewUpper.text else {
+        guard let textToTranslate = textToTranslateTextView.text else {
             spinner.stopAnimating()
             alertManager.presentAlert(on: self, error: .unknownError)
             return
@@ -74,25 +92,21 @@ class TranslateViewController: UIViewController {
                 self?.alertManager.presentAlert(on: self, error: error)
             case .success(let response):
                 guard let translatedText = response.data.translations.first?.translatedText else { return }
-                self?.UITextViewLower.text = translatedText
+                
+                self?.translatedTextTextView.text = translatedText.htmlDecoded
             }
         }
     }
     
-
-    
-    
-    
-    
-    
 }
 
-extension TranslateViewController: UITextViewDelegate {
-    func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
-        if (text == "\n") {
-            translateText()
-            textView.resignFirstResponder()
-        }
-        return true
+extension String {
+    var htmlDecoded: String {
+        let decoded = try? NSAttributedString(data: Data(utf8), options: [
+            .documentType: NSAttributedString.DocumentType.html,
+            .characterEncoding: String.Encoding.utf8.rawValue
+            ], documentAttributes: nil).string
+
+        return decoded ?? self
     }
 }

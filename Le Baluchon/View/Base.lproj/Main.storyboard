@@ -17,8 +17,9 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="49"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <color key="barTintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <color key="selectedImageTintColor" systemColor="systemOrangeColor"/>
+                        <color key="selectedImageTintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </tabBar>
                     <connections>
                         <segue destination="yfB-M5-38j" kind="relationship" relationship="viewControllers" id="BRO-77-dzL"/>
@@ -34,9 +35,7 @@
         <scene sceneID="Yjc-TC-Lww">
             <objects>
                 <navigationController id="yfB-M5-38j" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Weather" image="cloud.fill" catalog="system" selectedImage="cloud.fill" id="DfS-Gp-SCA">
-                        <color key="badgeColor" red="0.038772791780000003" green="0.082315037300000005" blue="0.64337885660000005" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                    </tabBarItem>
+                    <tabBarItem key="tabBarItem" title="Weather" image="Cloud_NotSelected" selectedImage="Cloud_Selected" id="DfS-Gp-SCA"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="Ydx-cb-kKq">
                         <rect key="frame" x="0.0" y="44" width="428" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -197,9 +196,7 @@
         <scene sceneID="79L-5i-6FV">
             <objects>
                 <navigationController id="2tc-Kp-RrB" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Exchange rate" image="Euro currency original" selectedImage="Euro currency original" id="icf-Ma-wIL">
-                        <color key="badgeColor" red="0.85719066860000004" green="0.43779474499999999" blue="0.14084649090000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                    </tabBarItem>
+                    <tabBarItem key="tabBarItem" title="Exchange rate" image="Currency_NotSelected" selectedImage="Currency_Selected" id="icf-Ma-wIL"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="7a5-V3-KDH">
                         <rect key="frame" x="0.0" y="44" width="428" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -559,11 +556,11 @@
                     </view>
                     <navigationItem key="navigationItem" title="Translation " id="9jW-WM-eOn"/>
                     <connections>
-                        <outlet property="LabelLanguageSelected1" destination="ark-4y-Xf3" id="h4B-vQ-pww"/>
-                        <outlet property="LabelLanguageSelected2" destination="SU1-C1-Iun" id="mow-1j-NfE"/>
-                        <outlet property="UITextViewLower" destination="pHY-D9-Znn" id="HSY-RP-YaS"/>
-                        <outlet property="UITextViewUpper" destination="M4v-8Y-v14" id="vkn-fI-dGT"/>
+                        <outlet property="sourceLanguageSelectedLabel" destination="ark-4y-Xf3" id="h4B-vQ-pww"/>
                         <outlet property="spinner" destination="R4g-9D-hUW" id="loZ-0o-dkp"/>
+                        <outlet property="targetLanguageSelectedLabel" destination="SU1-C1-Iun" id="mow-1j-NfE"/>
+                        <outlet property="textToTranslateTextView" destination="M4v-8Y-v14" id="vkn-fI-dGT"/>
+                        <outlet property="translatedTextTextView" destination="pHY-D9-Znn" id="HSY-RP-YaS"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="qFg-ZC-C1u" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -575,20 +572,19 @@
         <segue reference="UjH-gc-SaT"/>
     </inferredMetricsTieBreakers>
     <resources>
-        <image name="Euro currency original" width="25" height="25"/>
+        <image name="Cloud_NotSelected" width="25" height="25"/>
+        <image name="Cloud_Selected" width="25" height="25"/>
+        <image name="Currency_NotSelected" width="25" height="25"/>
+        <image name="Currency_Selected" width="25" height="25"/>
         <image name="Le baluchon background version 1" width="1125" height="2436"/>
         <image name="Reverse Icon Blanche" width="380" height="380"/>
         <image name="TranslateBackground_Version2" width="1125" height="2436"/>
         <image name="Weather_Le_baluchon_Background" width="1125" height="2436"/>
-        <image name="cloud.fill" catalog="system" width="128" height="84"/>
         <image name="translation_not_selected" width="25" height="25"/>
         <image name="translation_selected_tab_bar_item 25x25" width="25" height="25"/>
         <image name="xmark" catalog="system" width="128" height="113"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-        </systemColor>
-        <systemColor name="systemOrangeColor">
-            <color red="1" green="0.58431372549019611" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>

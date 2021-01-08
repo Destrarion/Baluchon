@@ -9,7 +9,9 @@ class TranslateViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        textToTranslateTextView.delegate = self
+        textToTranslateTextView.insertText("Enter your text to translate here")
+        textToTranslateTextView.textColor = .gray
         
         setupToolBar()
 
@@ -99,6 +101,17 @@ class TranslateViewController: UIViewController {
     }
     
 }
+
+extension TranslateViewController: UITextViewDelegate {
+    
+    func textViewDidBeginEditing(_ textView: UITextView) {
+        textView.text = ""
+        textView.textColor = .white
+    }
+    
+}
+
+
 
 extension String {
     var htmlDecoded: String {

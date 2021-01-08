@@ -9,7 +9,7 @@
 import Foundation
 
 class URLSessionFake: URLSession {
-    
+
     var data: Data?
     var response: URLResponse?
     var error: Error?
@@ -39,6 +39,17 @@ class URLSessionFake: URLSession {
 }
 
 class URLSessionDataTaskFake: URLSessionDataTask {
+    init(completionHandler: ((Data?, URLResponse?, Error?) -> Void)? = nil, data: Data? = nil, urlResponse: URLResponse? = nil, responseError: Error? = nil) {
+        self.completionHandler = completionHandler
+        self.data = data
+        self.urlResponse = urlResponse
+        self.responseError = responseError
+    }
+    
+    
+  
+    
+    
     var completionHandler: ((Data?,URLResponse?, Error?) -> Void)?
     
     var data: Data?

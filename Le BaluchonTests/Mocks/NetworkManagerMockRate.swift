@@ -10,7 +10,7 @@ import Foundation
 @testable import Le_Baluchon
 
 
-
-class NetworkManagerMockRate: NetworkManagerProtocol {
-    
-}
+//
+//class NetworkManagerMockRate: NetworkManagerProtocol {
+//
+//}

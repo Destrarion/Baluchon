@@ -14,23 +14,23 @@ class taux_de_change_APITests: XCTestCase {
     
     
     
-    func testBlqblqSuccess() {
-        
-        let networkManagerMock = NetworkManagerMockRate()
-        let exchangeService = ExchangeRateService(networkManager: networkManagerMock)
-        
-        exchangeService.getRate { (result) in
-            switch result {
-            case .failure:
-                XCTFail()
-            case .success(let response):
-                XCTAssertEqual(
-                    response.rates,
-                    ["USD":1.5]
-                )
-            }
-        }
-    }
+//    func testBlqblqSuccess() {
+//
+//        let networkManagerMock = NetworkManagerMockRate()
+//        let exchangeService = ExchangeRateService(networkManager: networkManagerMock)
+//
+//        exchangeService.getRate { (result) in
+//            switch result {
+//            case .failure:
+//                XCTFail()
+//            case .success(let response):
+//                XCTAssertEqual(
+//                    response.rates,
+//                    ["USD":1.5]
+//                )
+//            }
+//        }
+//    }
 
 //    func testGetExchangeRateShouldPostFailedCallbackifError() {
 //        //Given

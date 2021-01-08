@@ -62,15 +62,19 @@ class TranslateViewController: UIViewController {
     }
     
     private func setupToolBar() {
-        let toolBar = UIToolbar()
-        toolBar.sizeToFit()
+        let toolBar = UIToolbar(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: 35))
+
         toolBar.items = [
             UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil),
             UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(translateText))
         ]
         
-        
         textToTranslateTextView.inputAccessoryView = toolBar
+        
+        toolBar.sizeToFit()
+        
+        
+
     }
     
     @objc private func translateText() {

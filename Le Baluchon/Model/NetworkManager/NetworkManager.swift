@@ -11,8 +11,8 @@ class NetworkManager {
 //MARK: - Public
     func fetch<T: Decodable>(url: URL, callback: @escaping (Result<T, NetworkManagerError>) -> Void) {
         
-        task = URLSession.shared.dataTask(with: url) { (data, response, error) in
-            DispatchQueue.main.async {
+        task = session.dataTask(with: url) { (data, response, error) in
+           
                 
                 guard error == nil else {
                     callback(.failure(.unknownError))
@@ -38,7 +38,7 @@ class NetworkManager {
                 }
                 
                 callback(.success(decodedData))
-            }
+            
         }
         task?.resume()
         

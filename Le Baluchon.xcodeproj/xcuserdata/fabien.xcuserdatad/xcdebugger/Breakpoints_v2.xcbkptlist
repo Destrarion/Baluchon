@@ -36,5 +36,85 @@
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "D3FAB7C1-57C6-4488-8BB5-A832D930DA91"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Le BaluchonTests/NetworkManagerTests/NetworkManagerTests.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "145"
+            endingLineNumber = "145"
+            landmarkName = "testFetchDataGivenCorrectDataResponseOkNoErrorWhenFetchDateThenSuccess()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "987BBCFA-4D09-4753-AC88-1C77CC216749"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Le BaluchonTests/NetworkManagerTests/NetworkManagerTests.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "149"
+            endingLineNumber = "149"
+            landmarkName = "testFetchDataGivenCorrectDataResponseOkNoErrorWhenFetchDateThenSuccess()"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "987BBCFA-4D09-4753-AC88-1C77CC216749 - 8135dae963e2b8bb"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Le_BaluchonTests.NetworkManagerTests.testFetchDataGivenCorrectDataResponseOkNoErrorWhenFetchDateThenSuccess() -&gt; ()"
+                  moduleName = "Le BaluchonTests"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/fabien/Desktop/Projet%20Openclassrooms/Projet%209/Le%20Baluchon/Le%20BaluchonTests/NetworkManagerTests/NetworkManagerTests.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "149"
+                  endingLineNumber = "149"
+                  offsetFromSymbolStart = "291">
+               </Location>
+               <Location
+                  uuid = "987BBCFA-4D09-4753-AC88-1C77CC216749 - c091c72a600407a9"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (Swift.Result&lt;Foundation.Data, Le_Baluchon.NetworkManagerError&gt;) -&gt; () in Le_BaluchonTests.NetworkManagerTests.testFetchDataGivenCorrectDataResponseOkNoErrorWhenFetchDateThenSuccess() -&gt; ()"
+                  moduleName = "Le BaluchonTests"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/fabien/Desktop/Projet%20Openclassrooms/Projet%209/Le%20Baluchon/Le%20BaluchonTests/NetworkManagerTests/NetworkManagerTests.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "149"
+                  endingLineNumber = "149"
+                  offsetFromSymbolStart = "97">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "DAEB4D30-032C-4C8A-AF04-2E00FA99B4E2"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Le BaluchonTests/NetworkManagerTests/NetworkManagerTests.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "152"
+            endingLineNumber = "152"
+            landmarkName = "testFetchDataGivenCorrectDataResponseOkNoErrorWhenFetchDateThenSuccess()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
    </Breakpoints>
 </Bucket>

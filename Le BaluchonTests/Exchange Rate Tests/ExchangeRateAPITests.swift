@@ -120,7 +120,7 @@ class taux_de_change_APITests: XCTestCase {
 //            if success, let _ = fixerResponse{
 //                exchangeRate.calculExchangeRateWithValue("USD", "")
 //                XCTAssertTrue(exchangeRate.resultCalculationRate == 0)
-//                //print(stockrate.rates["USD"]!)
+//                
 //            }
 //        }
 //    }
@@ -134,7 +134,7 @@ class taux_de_change_APITests: XCTestCase {
 //            if success, let _ = fixerResponse{
 //                exchangeRate.calculExchangeRateWithValue("USD", "1")
 //                XCTAssertTrue(exchangeRate.resultCalculationRate == 1.124352)
-//                //print(stockrate.rates["USD"]!)
+//
 //            }
 //        }
 //    }

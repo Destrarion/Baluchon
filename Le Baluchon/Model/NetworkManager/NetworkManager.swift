@@ -52,7 +52,6 @@ class NetworkManager {
     func fetchData(url: URL, callback: @escaping (Result<Data, NetworkManagerError>) -> Void) {
         
         task = URLSession.shared.dataTask(with: url) { (data, response, error) in
-            DispatchQueue.main.async {
                 
                 guard error == nil else {
                     callback(.failure(.unknownError))
@@ -74,7 +73,6 @@ class NetworkManager {
 
                 callback(.success(data))
             }
-        }
         task?.resume()
     }
     

@@ -34,7 +34,6 @@ class WeatherService {
             callback(.failure(.couldNotCreateURL))
             return
         }
-        print(requestURL)
         networkManager.fetchData(url: requestURL, callback: callback)
     }
 }

@@ -2,19 +2,19 @@ import Foundation
 
 class ExchangeRateService {
     init(
-        networkManager: NetworkManager = NetworkManager(),
-        currencyUrlProvider: CurrencyUrlProvider = CurrencyUrlProvider()
+        networkManager: NetworkManagerProtocol = NetworkManager(),
+        currencyUrlProvider: CurrencyUrlProviderProtocol = CurrencyUrlProvider()
     ) {
         self.networkManager = networkManager
         self.currencyUrlProvider = currencyUrlProvider
     }
     
 
-    private let networkManager: NetworkManager
-    private let currencyUrlProvider: CurrencyUrlProvider
+    private let networkManager: NetworkManagerProtocol
+    private let currencyUrlProvider: CurrencyUrlProviderProtocol
     
     // Here is the function that should replace getExchangeRate, inspired by getTranslation
-    func getRate(callback : @escaping (Result<ExchangeResponse, NetworkManagerError>)-> Void) {
+    func getRate(callback : @escaping (Result<ExchangeResponse, NetworkManagerError>) -> Void) {
         guard let requestURL = currencyUrlProvider.createExchangeRateRequestUrl() else {
             callback(.failure(.couldNotCreateURL))
             return
@@ -31,7 +31,7 @@ class ExchangeRateService {
        
         return targetRate / sourceRate
     }
-    
+    // should be private 
     var rates: [String: Double]?
     
     var selectedSourceCurrency: Currency = .euro

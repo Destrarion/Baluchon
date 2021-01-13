@@ -13,24 +13,38 @@ class taux_de_change_APITests: XCTestCase {
     
     
     
+    func testGivenBadUrlWhenGetRateThenGetCouldNotCreateUrlError() {
+        let failUrlProvider = CurrencyUrlProviderAlwazsFailMock()
+        let exchangeRateService = ExchangeRateService(currencyUrlProvider: failUrlProvider)
+        
+        
+        exchangeRateService.getRate { (result) in
+            switch result {
+            case .failure(let error):
+                XCTAssertEqual(error, .couldNotCreateURL)
+            case .success:
+                XCTFail()
+            }
+        }
+    }
     
-//    func testBlqblqSuccess() {
-//
-//        let networkManagerMock = NetworkManagerMockRate()
-//        let exchangeService = ExchangeRateService(networkManager: networkManagerMock)
-//
-//        exchangeService.getRate { (result) in
-//            switch result {
-//            case .failure:
-//                XCTFail()
-//            case .success(let response):
-//                XCTAssertEqual(
-//                    response.rates,
-//                    ["USD":1.5]
-//                )
-//            }
-//        }
-//    }
+    
+    func testGivenBadWhenGetRateThenGetCouldNotCreateUrlError() {
+        let networkManagerRateSuccessMock = NetworkManagerRateSuccessMock()
+        let exchangeRateService = ExchangeRateService(networkManager: networkManagerRateSuccessMock)
+        
+        
+        exchangeRateService.getRate { (result) in
+            switch result {
+            case .failure:
+                XCTFail()
+            case .success:
+               XCTAssert(true)
+            }
+        }
+    }
+    
+
 
 //    func testGetExchangeRateShouldPostFailedCallbackifError() {
 //        //Given

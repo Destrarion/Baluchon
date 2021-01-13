@@ -1,8 +1,18 @@
 import Foundation
 
 extension URLComponents: URLComponentsProtocol { }
+
+
+
+
+
 //MARK:- EXCHANGE RATE
-class CurrencyUrlProvider {
+
+protocol CurrencyUrlProviderProtocol {
+    func createExchangeRateRequestUrl() -> URL?
+}
+
+class CurrencyUrlProvider: CurrencyUrlProviderProtocol {
     
     init(urlComponents: URLComponentsProtocol = URLComponents()) {
         self.urlComponents = urlComponents

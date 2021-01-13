@@ -64,7 +64,7 @@ class NetworkManagerTests: XCTestCase {
     }
     
     func testFetchGivenIncorrectDataWhenFetchThenFailedToDecodeJsonToCodableStruct(){
-        let urlSessionFake = URLSessionFake(data: FakeResponseData.rateIncorrectData , response: FakeResponseData.responseOK , error: nil)
+        let urlSessionFake = URLSessionFake(data: FakeResponseData.incorrectData, response: FakeResponseData.responseOK , error: nil)
         
         let networkManager = NetworkManager(session: urlSessionFake)
         
@@ -153,6 +153,21 @@ class NetworkManagerTests: XCTestCase {
                 
             case .failure:
                 XCTFail()
+            }
+        }
+    }
+    
+    func testFetchDataGivenEroorWhenFetchThenError(){
+        let urlSessionFake = URLSessionFake(data: FakeResponseData.rateCorrectData, response: FakeResponseData.responseOK , error: FakeResponseData.error)
+        
+        let networkManager = NetworkManager(session: urlSessionFake)
+        
+        networkManager.fetchData(url: URL(string: "www.test.com")!) { (result: Result<Data, NetworkManagerError>) in
+            switch result {
+            case .success:
+                XCTFail()
+            case .failure(let error):
+                XCTAssertEqual(error, .unknownError)
             }
         }
     }

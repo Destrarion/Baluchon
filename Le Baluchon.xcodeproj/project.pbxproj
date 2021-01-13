@@ -7,11 +7,14 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5F10EAA625AED7400000F8F8 /* URLSessionDataTaskFake.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F10EAA525AED7400000F8F8 /* URLSessionDataTaskFake.swift */; };
+		5F10EAB325AED9940000F8F8 /* FakeResponseData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F330A5F24D922C000E58069 /* FakeResponseData.swift */; };
+		5F10EAB825AEDBF30000F8F8 /* NetworkManagerAlwysFailMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F10EAB725AEDBF30000F8F8 /* NetworkManagerAlwysFailMock.swift */; };
+		5F10EABD25AEDDCF0000F8F8 /* CurrencyUrlProviderMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F10EABC25AEDDCF0000F8F8 /* CurrencyUrlProviderMock.swift */; };
 		5F2EB4DA25A86505003ECC2B /* NetworkManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F2EB4D925A86505003ECC2B /* NetworkManagerTests.swift */; };
 		5F330A5924D9207700E58069 /* ExchangeRateService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F330A5824D9207700E58069 /* ExchangeRateService.swift */; };
 		5F330A5C24D921FF00E58069 /* ExchangeRateAPITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F330A5B24D921FF00E58069 /* ExchangeRateAPITests.swift */; };
 		5F330A5E24D9229D00E58069 /* Rate.json in Resources */ = {isa = PBXBuildFile; fileRef = 5F330A5D24D9229D00E58069 /* Rate.json */; };
-		5F330A6024D922C000E58069 /* FakeResponseDataExchangeRate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F330A5F24D922C000E58069 /* FakeResponseDataExchangeRate.swift */; };
 		5F330A6224D92E0200E58069 /* URLSessionFake.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F330A6124D92E0200E58069 /* URLSessionFake.swift */; };
 		5F3BB98724EBD59C004C3BB8 /* UrlProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F3BB98624EBD59C004C3BB8 /* UrlProvider.swift */; };
 		5F4727CA24CFE8EC009AF6A9 /* ExchangeRateViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F4727C924CFE8EC009AF6A9 /* ExchangeRateViewController.swift */; };
@@ -59,11 +62,14 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		5F10EAA525AED7400000F8F8 /* URLSessionDataTaskFake.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLSessionDataTaskFake.swift; sourceTree = "<group>"; };
+		5F10EAB725AEDBF30000F8F8 /* NetworkManagerAlwysFailMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManagerAlwysFailMock.swift; sourceTree = "<group>"; };
+		5F10EABC25AEDDCF0000F8F8 /* CurrencyUrlProviderMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyUrlProviderMock.swift; sourceTree = "<group>"; };
 		5F2EB4D925A86505003ECC2B /* NetworkManagerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManagerTests.swift; sourceTree = "<group>"; };
 		5F330A5824D9207700E58069 /* ExchangeRateService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExchangeRateService.swift; sourceTree = "<group>"; };
 		5F330A5B24D921FF00E58069 /* ExchangeRateAPITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExchangeRateAPITests.swift; sourceTree = "<group>"; };
 		5F330A5D24D9229D00E58069 /* Rate.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = Rate.json; sourceTree = "<group>"; };
-		5F330A5F24D922C000E58069 /* FakeResponseDataExchangeRate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FakeResponseDataExchangeRate.swift; sourceTree = "<group>"; };
+		5F330A5F24D922C000E58069 /* FakeResponseData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FakeResponseData.swift; sourceTree = "<group>"; };
 		5F330A6124D92E0200E58069 /* URLSessionFake.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLSessionFake.swift; sourceTree = "<group>"; };
 		5F330A6624D9626800E58069 /* TranslateService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TranslateService.swift; sourceTree = "<group>"; };
 		5F3BB98624EBD59C004C3BB8 /* UrlProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UrlProvider.swift; sourceTree = "<group>"; };
@@ -148,7 +154,6 @@
 			children = (
 				5F330A5B24D921FF00E58069 /* ExchangeRateAPITests.swift */,
 				5F330A5D24D9229D00E58069 /* Rate.json */,
-				5F330A5F24D922C000E58069 /* FakeResponseDataExchangeRate.swift */,
 			);
 			path = "Exchange Rate Tests";
 			sourceTree = "<group>";
@@ -236,6 +241,8 @@
 				5F2EB4D825A864D2003ECC2B /* NetworkManagerTests */,
 				5F712E04259C7A7300482390 /* Mocks */,
 				5F330A6124D92E0200E58069 /* URLSessionFake.swift */,
+				5F10EAA525AED7400000F8F8 /* URLSessionDataTaskFake.swift */,
+				5F330A5F24D922C000E58069 /* FakeResponseData.swift */,
 				5F330A5A24D9209A00E58069 /* Exchange Rate Tests */,
 				5F5115C22521391900B92A43 /* Translate Test */,
 				5F548F3624C6D479008EF19A /* Info.plist */,
@@ -287,6 +294,8 @@
 			isa = PBXGroup;
 			children = (
 				5F712E05259C7A9C00482390 /* NetworkManagerMockRate.swift */,
+				5F10EAB725AEDBF30000F8F8 /* NetworkManagerAlwysFailMock.swift */,
+				5F10EABC25AEDDCF0000F8F8 /* CurrencyUrlProviderMock.swift */,
 			);
 			path = Mocks;
 			sourceTree = "<group>";
@@ -480,12 +489,15 @@
 			buildActionMask = 2147483647;
 			files = (
 				5F712E06259C7A9C00482390 /* NetworkManagerMockRate.swift in Sources */,
+				5F10EAB325AED9940000F8F8 /* FakeResponseData.swift in Sources */,
 				5F330A6224D92E0200E58069 /* URLSessionFake.swift in Sources */,
+				5F10EAA625AED7400000F8F8 /* URLSessionDataTaskFake.swift in Sources */,
 				5F5115C425214A4D00B92A43 /* TranslateAPITests.swift in Sources */,
 				5F5115C82521626900B92A43 /* FakeResponseTranslate.swift in Sources */,
+				5F10EAB825AEDBF30000F8F8 /* NetworkManagerAlwysFailMock.swift in Sources */,
 				5F2EB4DA25A86505003ECC2B /* NetworkManagerTests.swift in Sources */,
-				5F330A6024D922C000E58069 /* FakeResponseDataExchangeRate.swift in Sources */,
 				5F330A5C24D921FF00E58069 /* ExchangeRateAPITests.swift in Sources */,
+				5F10EABD25AEDDCF0000F8F8 /* CurrencyUrlProviderMock.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

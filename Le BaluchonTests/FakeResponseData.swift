@@ -11,17 +11,25 @@ import Foundation
 class FakeResponseData {
     // MARK: - Data
     static var rateCorrectData: Data? {
-        let bundle = Bundle(for: FakeResponseData.self)
-        let url = bundle.url(forResource: "Rate", withExtension: "json")!
-        return try! Data(contentsOf: url)
+        getDataFromJsonFile(fileName: "Rate")
     }
 
-    static let rateIncorrectData = "erreur".data(using: .utf8)!
+    static var translateCorrectData: Data? {
+        getDataFromJsonFile(fileName: "TranslateTest")
+    }
+    
+    private static func getDataFromJsonFile(fileName: String) -> Data? {
+        let bundle = Bundle(for: FakeResponseData.self)
+        let url = bundle.url(forResource: fileName, withExtension: "json")!
+        return try! Data(contentsOf: url)
+    }
+    
+    static let incorrectData = "erreur".data(using: .utf8)!
     
 
     // MARK: - Response
     static let responseOK = HTTPURLResponse(
-        url: URL(string: "https://openclassrooms.com")!,
+        url: URL(string: "https://openclassrooms.com")!, 
         statusCode: 200, httpVersion: nil, headerFields: [:])!
 
     static let responseKO = HTTPURLResponse(
@@ -30,6 +38,6 @@ class FakeResponseData {
 
 
     // MARK: - Error
-    class RateError: Error {}
-    static let error = RateError()
+    class MockError: Error {}
+    static let error = MockError()
 }

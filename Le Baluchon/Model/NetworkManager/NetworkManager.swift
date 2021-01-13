@@ -3,7 +3,13 @@ import Foundation
 
 
 
-class NetworkManager {
+protocol NetworkManagerProtocol {
+    func fetch<T: Decodable>(url: URL, callback: @escaping (Result<T, NetworkManagerError>) -> Void)
+    func fetchData(url: URL, callback: @escaping (Result<Data, NetworkManagerError>) -> Void)
+}
+
+class NetworkManager: NetworkManagerProtocol {
+    
     
     init(session: URLSession = URLSession.shared) {
         self.session = session
@@ -51,32 +57,33 @@ class NetworkManager {
     
     func fetchData(url: URL, callback: @escaping (Result<Data, NetworkManagerError>) -> Void) {
         
-        task = URLSession.shared.dataTask(with: url) { (data, response, error) in
-                
-                guard error == nil else {
-                    callback(.failure(.unknownError))
-                    return
-                }
-                
-                guard
-                    let response = response as? HTTPURLResponse,
-                    response.statusCode == 200
-                else {
-                    callback(.failure(.responseCodeIsInvalid))
-                    return
-                }
-                
-                guard let data = data else {
-                    callback(.failure(.noData))
-                    return
-                }
-
-                callback(.success(data))
+        task = session.dataTask(with: url) { (data, response, error) in
+            
+            guard error == nil else {
+                callback(.failure(.unknownError))
+                return
             }
+            
+            guard
+                let response = response as? HTTPURLResponse,
+                response.statusCode == 200
+            else {
+                callback(.failure(.responseCodeIsInvalid))
+                return
+            }
+            
+            guard let data = data else {
+                callback(.failure(.noData))
+                return
+            }
+            
+            callback(.success(data))
+            
+        }
         task?.resume()
     }
     
-//MARK: - Private
+    //MARK: - Private
     private let session: URLSession
     
     private var task: URLSessionDataTask?

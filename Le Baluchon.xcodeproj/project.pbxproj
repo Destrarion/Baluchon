@@ -36,11 +36,14 @@
 		5F712E06259C7A9C00482390 /* NetworkManagerMockRate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F712E05259C7A9C00482390 /* NetworkManagerMockRate.swift */; };
 		5F7AAE08257D896D0079E685 /* WeatherService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F7AAE07257D896D0079E685 /* WeatherService.swift */; };
 		5F7AAE0D257D8AA80079E685 /* WeatherResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F7AAE0C257D8AA80079E685 /* WeatherResponse.swift */; };
+		5F7B35D225BA48AA00388051 /* TranslateUrlProviderMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F7B35D125BA48AA00388051 /* TranslateUrlProviderMock.swift */; };
 		5F7FB7C92593380D009885D0 /* AlertManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F7FB7C82593380D009885D0 /* AlertManager.swift */; };
 		5F83AABB2526182900EEE6AD /* TranslateViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F83AABA2526182900EEE6AD /* TranslateViewController.swift */; };
 		5FA08AA4256DAC91002BEDC2 /* Language.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FA08AA3256DAC91002BEDC2 /* Language.swift */; };
 		5FA6A90125478B610089FE8F /* ExchangeResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FA6A90025478B610089FE8F /* ExchangeResponse.swift */; };
 		5FB4C6CB25777FB1006DEF25 /* TranslateService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F330A6624D9626800E58069 /* TranslateService.swift */; };
+		5FD72BCE25B4A19A00BEFF21 /* Weather test.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FD72BCD25B4A19A00BEFF21 /* Weather test.swift */; };
+		5FE336F225B8E0F6001024FD /* WeatherUrlProviderMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FE336F125B8E0F6001024FD /* WeatherUrlProviderMock.swift */; };
 		5FEA718725804A4C00BAF489 /* WeatherViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FEA718625804A4C00BAF489 /* WeatherViewController.swift */; };
 /* End PBXBuildFile section */
 
@@ -98,10 +101,13 @@
 		5F712E05259C7A9C00482390 /* NetworkManagerMockRate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManagerMockRate.swift; sourceTree = "<group>"; };
 		5F7AAE07257D896D0079E685 /* WeatherService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherService.swift; sourceTree = "<group>"; };
 		5F7AAE0C257D8AA80079E685 /* WeatherResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherResponse.swift; sourceTree = "<group>"; };
+		5F7B35D125BA48AA00388051 /* TranslateUrlProviderMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TranslateUrlProviderMock.swift; sourceTree = "<group>"; };
 		5F7FB7C82593380D009885D0 /* AlertManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertManager.swift; sourceTree = "<group>"; };
 		5F83AABA2526182900EEE6AD /* TranslateViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TranslateViewController.swift; sourceTree = "<group>"; };
 		5FA08AA3256DAC91002BEDC2 /* Language.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Language.swift; sourceTree = "<group>"; };
 		5FA6A90025478B610089FE8F /* ExchangeResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExchangeResponse.swift; sourceTree = "<group>"; };
+		5FD72BCD25B4A19A00BEFF21 /* Weather test.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Weather test.swift"; sourceTree = "<group>"; };
+		5FE336F125B8E0F6001024FD /* WeatherUrlProviderMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherUrlProviderMock.swift; sourceTree = "<group>"; };
 		5FEA718625804A4C00BAF489 /* WeatherViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -240,9 +246,7 @@
 			children = (
 				5F2EB4D825A864D2003ECC2B /* NetworkManagerTests */,
 				5F712E04259C7A7300482390 /* Mocks */,
-				5F330A6124D92E0200E58069 /* URLSessionFake.swift */,
-				5F10EAA525AED7400000F8F8 /* URLSessionDataTaskFake.swift */,
-				5F330A5F24D922C000E58069 /* FakeResponseData.swift */,
+				5FD72BCC25B4880D00BEFF21 /* Weather Test */,
 				5F330A5A24D9209A00E58069 /* Exchange Rate Tests */,
 				5F5115C22521391900B92A43 /* Translate Test */,
 				5F548F3624C6D479008EF19A /* Info.plist */,
@@ -293,9 +297,14 @@
 		5F712E04259C7A7300482390 /* Mocks */ = {
 			isa = PBXGroup;
 			children = (
-				5F712E05259C7A9C00482390 /* NetworkManagerMockRate.swift */,
+				5F330A6124D92E0200E58069 /* URLSessionFake.swift */,
+				5F10EAA525AED7400000F8F8 /* URLSessionDataTaskFake.swift */,
+				5F330A5F24D922C000E58069 /* FakeResponseData.swift */,
 				5F10EAB725AEDBF30000F8F8 /* NetworkManagerAlwysFailMock.swift */,
+				5F712E05259C7A9C00482390 /* NetworkManagerMockRate.swift */,
 				5F10EABC25AEDDCF0000F8F8 /* CurrencyUrlProviderMock.swift */,
+				5FE336F125B8E0F6001024FD /* WeatherUrlProviderMock.swift */,
+				5F7B35D125BA48AA00388051 /* TranslateUrlProviderMock.swift */,
 			);
 			path = Mocks;
 			sourceTree = "<group>";
@@ -315,6 +324,14 @@
 				5FA08AA3256DAC91002BEDC2 /* Language.swift */,
 			);
 			path = Translate;
+			sourceTree = "<group>";
+		};
+		5FD72BCC25B4880D00BEFF21 /* Weather Test */ = {
+			isa = PBXGroup;
+			children = (
+				5FD72BCD25B4A19A00BEFF21 /* Weather test.swift */,
+			);
+			path = "Weather Test";
 			sourceTree = "<group>";
 		};
 		5FEDEAA0251BAB4A0023D804 /* Supporting files */ = {
@@ -489,11 +506,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				5F712E06259C7A9C00482390 /* NetworkManagerMockRate.swift in Sources */,
+				5FD72BCE25B4A19A00BEFF21 /* Weather test.swift in Sources */,
 				5F10EAB325AED9940000F8F8 /* FakeResponseData.swift in Sources */,
 				5F330A6224D92E0200E58069 /* URLSessionFake.swift in Sources */,
 				5F10EAA625AED7400000F8F8 /* URLSessionDataTaskFake.swift in Sources */,
 				5F5115C425214A4D00B92A43 /* TranslateAPITests.swift in Sources */,
 				5F5115C82521626900B92A43 /* FakeResponseTranslate.swift in Sources */,
+				5FE336F225B8E0F6001024FD /* WeatherUrlProviderMock.swift in Sources */,
+				5F7B35D225BA48AA00388051 /* TranslateUrlProviderMock.swift in Sources */,
 				5F10EAB825AEDBF30000F8F8 /* NetworkManagerAlwysFailMock.swift in Sources */,
 				5F2EB4DA25A86505003ECC2B /* NetworkManagerTests.swift in Sources */,
 				5F330A5C24D921FF00E58069 /* ExchangeRateAPITests.swift in Sources */,

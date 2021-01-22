@@ -2,8 +2,8 @@
 class TranslateService {
     
     init(
-        networkManager: NetworkManager = NetworkManager(),
-        translateUrlProvider: TranslateUrlProvider = TranslateUrlProvider()
+        networkManager: NetworkManagerProtocol = NetworkManager(),
+        translateUrlProvider: TranslateUrlProviderProtocol = TranslateUrlProvider()
     ) {
         self.networkManager = networkManager
         self.translateUrlProvider = translateUrlProvider
@@ -11,8 +11,8 @@ class TranslateService {
     
     
     
-    private let networkManager: NetworkManager
-    private let translateUrlProvider: TranslateUrlProvider
+    private let networkManager: NetworkManagerProtocol
+    private let translateUrlProvider: TranslateUrlProviderProtocol
     
     // Creation de la requete
     func getTranslation(textToTranslate: String, targetLanguage: String, sourceLanguage: String, callback: @escaping (Result<TranslateResponse, NetworkManagerError>) -> Void) {

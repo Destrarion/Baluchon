@@ -10,6 +10,40 @@ import XCTest
 @testable import Le_Baluchon
 
 class TranslateAPITests: XCTestCase {
+    
+    func testGivenBadUrlWhenGetTranslateThenCouldNotCreateUrlError() {
+        let failUrlProvider = TranslateUrlProviderAlwaysFailMock()
+        let translateService = TranslateService(translateUrlProvider: failUrlProvider)
+        
+        translateService.getTranslation(textToTranslate: "world", targetLanguage: "FR", sourceLanguage: "EN") { (result) in
+            switch result {
+            case .failure(let error):
+                XCTAssertEqual(error, .couldNotCreateURL)
+            case .success:
+                XCTFail()
+            }
+        }
+    }
+    
+    func testGivenGoodUrlWhenGetWeatherThenSucceed() {
+        let urlProvider = TranslateUrlProvider()
+        let networkManagerMock = NetworkManagerTranslateSuccessMock()
+        let translateService = TranslateService(
+            networkManager: networkManagerMock,
+            translateUrlProvider: urlProvider
+        )
+
+        translateService.getTranslation(textToTranslate: "world", targetLanguage: "FR", sourceLanguage: "EN") { (result) in
+            switch result {
+            case .failure:
+                XCTFail()
+            case .success:
+                XCTAssertNotNil(result)
+            }
+        }
+    }
+    
+    
 //
  //  func testGetTranslationShouldPostFailedCallbackifError(){
  //     let translate = TranslateService(

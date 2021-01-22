@@ -13,7 +13,7 @@ class ExchangeRateService {
     private let networkManager: NetworkManagerProtocol
     private let currencyUrlProvider: CurrencyUrlProviderProtocol
     
-    // Here is the function that should replace getExchangeRate, inspired by getTranslation
+
     func getRate(callback : @escaping (Result<ExchangeResponse, NetworkManagerError>) -> Void) {
         guard let requestURL = currencyUrlProvider.createExchangeRateRequestUrl() else {
             callback(.failure(.couldNotCreateURL))
@@ -29,7 +29,8 @@ class ExchangeRateService {
             let targetRate = rates[selectedTargetCurrency.currencyCode]
             else { return nil  }
        
-        return targetRate / sourceRate
+        let rateAsDecimal = Decimal(targetRate) / Decimal(sourceRate)
+        return Double(truncating: rateAsDecimal as NSNumber)
     }
     // should be private 
     var rates: [String: Double]?

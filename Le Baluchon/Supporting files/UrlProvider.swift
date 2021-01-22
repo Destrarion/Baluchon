@@ -1,7 +1,5 @@
 import Foundation
 
-extension URLComponents: URLComponentsProtocol { }
-
 
 
 
@@ -13,14 +11,10 @@ protocol CurrencyUrlProviderProtocol {
 }
 
 class CurrencyUrlProvider: CurrencyUrlProviderProtocol {
-    
-    init(urlComponents: URLComponentsProtocol = URLComponents()) {
-        self.urlComponents = urlComponents
-    }
-    
-    private var urlComponents: URLComponentsProtocol
+
     
     func createExchangeRateRequestUrl() -> URL? {
+        var urlComponents = URLComponents()
         urlComponents.scheme = "http"
         urlComponents.host = "data.fixer.io"
         urlComponents.path = "/api/latest"
@@ -34,15 +28,16 @@ class CurrencyUrlProvider: CurrencyUrlProviderProtocol {
 }
 
 //MARK:- TRANSLATE
-class TranslateUrlProvider {
-    init(urlComponents: URLComponentsProtocol = URLComponents()) {
-        self.urlComponents = urlComponents
-    }
+
+protocol TranslateUrlProviderProtocol {
+    func createTranslateRequestUrl(textToTranslate: String, targetLanguage: String, sourceLanguage: String) -> URL?
+}
+
+class TranslateUrlProvider: TranslateUrlProviderProtocol {
     
-    private var urlComponents: URLComponentsProtocol
     
     func createTranslateRequestUrl(textToTranslate: String, targetLanguage: String, sourceLanguage: String) -> URL? {
-        
+        var urlComponents = URLComponents()
         urlComponents.scheme = "https"
         urlComponents.host = "translation.googleapis.com"
         urlComponents.path = "/language/translate/v2"
@@ -61,14 +56,15 @@ class TranslateUrlProvider {
 
 
 // MARK:- WEATHER
-class WeatherUrlProvider {
+
+protocol WeatherUrlProviderProtocol {
+    func createWeatherRequestUrl(town: String) -> URL?
     
-    init(urlComponents: URLComponentsProtocol = URLComponents()) {
-        self.urlComponents = urlComponents
-    }
-    
-    
-    private var urlComponents: URLComponentsProtocol
+    func createWeatherImageCodeRequestUrl(imageCode: String) -> URL?
+}
+
+class WeatherUrlProvider: WeatherUrlProviderProtocol {
+
     
     func createWeatherRequestUrl(town: String) -> URL? {
         var urlComponents = URLComponents()
@@ -85,7 +81,6 @@ class WeatherUrlProvider {
     
     
     
-    // http://openweathermap.org/img/wn/10d@2x.png
     
     func createWeatherImageCodeRequestUrl(imageCode: String) -> URL? {
         var urlComponents = URLComponents()
@@ -96,38 +91,4 @@ class WeatherUrlProvider {
         return urlComponents.url
     }
 }
-
-
-
-
-
-
-
-//MARK:- URL COMPONENTS
-protocol URLComponentsProtocol {
-    var scheme: String? { get set }
-    var host: String? { get set }
-    var path: String { get set }
-    var queryItems: [URLQueryItem]? { get set }
-    var url: URL? { get }
-}
-
-
-class URLComponentsMock: URLComponentsProtocol {
-    init(scheme: String? = nil, host: String? = nil, path: String = "", queryItems: [URLQueryItem]? = nil, url: URL? = nil) {
-        self.scheme = scheme
-        self.host = host
-        self.path = path
-        self.queryItems = queryItems
-        self.url = url
-    }
-    
-    
-    var scheme: String?
-    var host: String?
-    var path: String
-    var queryItems: [URLQueryItem]?
-    var url: URL?
-}
-
 

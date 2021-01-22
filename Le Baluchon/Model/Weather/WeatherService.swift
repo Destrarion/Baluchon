@@ -3,19 +3,19 @@ import Foundation
 class WeatherService {
     
     init(
-        networkManager: NetworkManager = NetworkManager(),
-        weatherUrlProvider: WeatherUrlProvider = WeatherUrlProvider()
+        networkManager: NetworkManagerProtocol = NetworkManager(),
+        weatherUrlProvider: WeatherUrlProviderProtocol = WeatherUrlProvider()
     ) {
         self.networkManager = networkManager
         self.weatherUrlProvider = weatherUrlProvider
     }
     
-    private let networkManager : NetworkManager
-    private let weatherUrlProvider : WeatherUrlProvider
+    private let networkManager : NetworkManagerProtocol
+    private let weatherUrlProvider : WeatherUrlProviderProtocol
     
     //MARK:- GET Temperature
     // Request Creation
-    func getWeather (town: String , callback: @escaping (Result<WeatherResponse, NetworkManagerError>) -> Void) {
+    func getWeather(town: String , callback: @escaping (Result<WeatherResponse, NetworkManagerError>) -> Void) {
         guard let requestURL = weatherUrlProvider.createWeatherRequestUrl(
             town: town
         )else {

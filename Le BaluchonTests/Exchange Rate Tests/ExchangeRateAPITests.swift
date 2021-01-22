@@ -14,7 +14,7 @@ class taux_de_change_APITests: XCTestCase {
     
     
     func testGivenBadUrlWhenGetRateThenGetCouldNotCreateUrlError() {
-        let failUrlProvider = CurrencyUrlProviderAlwazsFailMock()
+        let failUrlProvider = CurrencyUrlProviderAlwaysFailMock()
         let exchangeRateService = ExchangeRateService(currencyUrlProvider: failUrlProvider)
         
         
@@ -44,7 +44,19 @@ class taux_de_change_APITests: XCTestCase {
         }
     }
     
-
+    func testGivenSimpleRatesWhenGetUsedRateThenGetCorrectResult() {
+        let exchangeService = ExchangeRateService()
+        exchangeService.rates = ["EUR" : 1 , "USD" : 1.2]
+        XCTAssertEqual(exchangeService.usedRate, 1.2)
+       
+    }
+    
+    func testGivenComplexRatesWhenGetUsedRateThenGetCorrectResult() {
+        let exchangeService = ExchangeRateService()
+        exchangeService.rates = ["EUR" : 1.5 , "USD" : 1.2]
+        XCTAssertEqual(exchangeService.usedRate, 0.8)
+       
+    }
 
 //    func testGetExchangeRateShouldPostFailedCallbackifError() {
 //        //Given

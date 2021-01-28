@@ -320,8 +320,8 @@
 		5FAEAC9724E277B300C5A69D /* Translate */ = {
 			isa = PBXGroup;
 			children = (
-				5F83AABA2526182900EEE6AD /* TranslateViewController.swift */,
 				5FA08AA3256DAC91002BEDC2 /* Language.swift */,
+				5F83AABA2526182900EEE6AD /* TranslateViewController.swift */,
 			);
 			path = Translate;
 			sourceTree = "<group>";

@@ -58,110 +58,33 @@ class taux_de_change_APITests: XCTestCase {
        
     }
 
-//    func testGetExchangeRateShouldPostFailedCallbackifError() {
-//        //Given
-//        let exchangeRate = ExchangeRate(
-//            exchangeRateSession: URLSessionFake(data: nil, response: nil, error: FakeResponseData.error))
-//
-//        //When
-//        let expectation = XCTestExpectation(description: "Wait for queue change.")
-//        exchangeRate.getExchangeRate { ( success, fixerResponse ) in
-//            //Then
-//            XCTAssertFalse(success)
-//            XCTAssertNil(fixerResponse)
-//            expectation.fulfill()
-//        }
-//        wait(for: [expectation], timeout: 0.01)
-//    }
-//
-//    func testGetExchangeRateShouldPostFailedCallbackNoData() {
-//        //Given
-//        let exchangeRate = ExchangeRate(
-//            exchangeRateSession: URLSessionFake(data: nil, response: nil, error: nil))
-//
-//        //When
-//        let expectation = XCTestExpectation(description: "Wait for queue change.")
-//        exchangeRate.getExchangeRate { ( success, fixerResponse ) in
-//            //Then
-//            XCTAssertFalse(success)
-//            XCTAssertNil(fixerResponse)
-//            expectation.fulfill()
-//        }
-//        wait(for: [expectation], timeout: 0.01)
-//    }
-//
-//    func testGetExchangeRateShouldPostFailedIfIncorrectResponse() {
-//        //Given
-//        let exchangeRate = ExchangeRate(
-//            exchangeRateSession: URLSessionFake(data: FakeResponseData.rateCorrectData, response: FakeResponseData.responseKO, error: nil))
-//
-//        //When
-//        let expectation = XCTestExpectation(description: "Wait for queue change.")
-//        exchangeRate.getExchangeRate { ( success, fixerResponse ) in
-//            //Then
-//            XCTAssertFalse(success)
-//            XCTAssertNil(fixerResponse)
-//            expectation.fulfill()
-//        }
-//        wait(for: [expectation], timeout: 0.01)
-//    }
-//
-//    func testGetExchangeRateShouldPostFailedCallbackIfIncorrectData() {
-//        //Given
-//        let exchangeRate = ExchangeRate(
-//            exchangeRateSession: URLSessionFake(data: FakeResponseData.rateIncorrectData, response: FakeResponseData.responseOK, error: nil))
-//
-//        //When
-//        let expectation = XCTestExpectation(description: "Wait for queue change.")
-//        exchangeRate.getExchangeRate { ( success, fixerResponse ) in
-//            //Then
-//            XCTAssertFalse(success)
-//            XCTAssertNil(fixerResponse)
-//            expectation.fulfill()
-//        }
-//        wait(for: [expectation], timeout: 0.01)
-//    }
-//    func testGetExchangeRateShouldPostFailedCallbackIfNoErroreAndCorrectData() {
-//        //Given
-//        let exchangeRate = ExchangeRate(
-//            exchangeRateSession: URLSessionFake(data: FakeResponseData.rateCorrectData, response: FakeResponseData.responseKO, error: nil))
-//
-//        //When
-//        let expectation = XCTestExpectation(description: "Wait for queue change.")
-//        exchangeRate.getExchangeRate { ( success, fixerResponse ) in
-//            //Then
-//            XCTAssertFalse(success)
-//            XCTAssertNil(fixerResponse)
-//            expectation.fulfill()
-//        }
-//        wait(for: [expectation], timeout: 0.01)
-//    }
-//
-//    func testGivenEmptyValueNumber_WhenCalculExchangeRate_ThenReturn(){
-//        //Given
-//        let exchangeRate = ExchangeRate(
-//            exchangeRateSession: URLSessionFake(data: FakeResponseData.rateCorrectData, response: FakeResponseData.responseOK, error: nil))
-//
-//        exchangeRate.getExchangeRate{ (success , fixerResponse) in
-//            if success, let _ = fixerResponse{
-//                exchangeRate.calculExchangeRateWithValue("USD", "")
-//                XCTAssertTrue(exchangeRate.resultCalculationRate == 0)
-//                
-//            }
-//        }
-//    }
-//
-//    func testGivenAValueNumber_WhenCalculExchangeRate_ThenReturn(){
-//        //Given
-//        let exchangeRate = ExchangeRate(
-//            exchangeRateSession: URLSessionFake(data: FakeResponseData.rateCorrectData, response: FakeResponseData.responseOK, error: nil))
-//
-//        exchangeRate.getExchangeRate{ (success , fixerResponse) in
-//            if success, let _ = fixerResponse{
-//                exchangeRate.calculExchangeRateWithValue("USD", "1")
-//                XCTAssertTrue(exchangeRate.resultCalculationRate == 1.124352)
-//
-//            }
-//        }
-//    }
+    func test_GivenCurrencyEuro_WhenCurrencyCodeEnumerationSwitch_ThenReceiveEUR() {
+        let currency : Currency = .euro
+        XCTAssertEqual(currency.currencyCode, "EUR")
+    }
+    
+    func test_GivenCurrencySwissFrancs_WhenCurrencyCodeEnumerationSwitch_ThenReceiveCHF(){
+        let currency : Currency = .swissFrancs
+        XCTAssertEqual(currency.currencyCode, "CHF")
+    }
+    
+    func test_GivenCurrencyDollar_WhenCurrencyCodeEnumerationSwitch_ThenReceiveUSD(){
+        let currency : Currency = .usDollar
+        XCTAssertEqual(currency.currencyCode, "USD")
+    }
+    
+    func test_GivenSymbolEuro_WhenSymbolEnumerationSwitch_ThenReceiveCorrectSymbol(){
+        let symbol : Currency = .euro
+        XCTAssertEqual(symbol.symbol , "€")
+    }
+    
+    func test_GivenSymbolSwissFrancs_WhenSymbolEnumerationSwitch_ThenReceiveCorrectSymbol(){
+        let symbol : Currency = .swissFrancs
+        XCTAssertEqual(symbol.symbol , "CHF")
+    }
+    
+    func test_GivenSymbolUsDollar_WhenSymbolEnumerationSwitch_ThenReceiveCorrectSymbol(){
+        let symbol : Currency = .usDollar
+        XCTAssertEqual(symbol.symbol , "$")
+    }
 }

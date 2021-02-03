@@ -92,14 +92,17 @@ class TranslateViewController: UIViewController {
             targetLanguage: targetLanguageSelected.languageCode,
             sourceLanguage: sourceLanguageSelected.languageCode
         ) { [weak self] (result) in
-            self?.spinner.stopAnimating()
+            DispatchQueue.main.async {
+                self?.spinner.stopAnimating()
+            }
             switch result {
             case .failure(let error):
                 self?.alertManager.presentAlert(on: self, error: error)
             case .success(let response):
                 guard let translatedText = response.data.translations.first?.translatedText else { return }
-                
-                self?.translatedTextTextView.text = translatedText.htmlDecoded
+                DispatchQueue.main.async {
+                    self?.translatedTextTextView.text = translatedText.htmlDecoded
+                }
             }
         }
     }

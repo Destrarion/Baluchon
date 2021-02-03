@@ -102,7 +102,9 @@ class ExchangeRateViewController: UIViewController, UITextFieldDelegate {
         spinner.startAnimating()
         
         self.exchangeRate.getRate { [weak self] (result) in
-            self?.spinner.stopAnimating()
+            DispatchQueue.main.async {
+                self?.spinner.stopAnimating()
+            }
             
             switch result{
             case .failure(let error):
@@ -141,9 +143,11 @@ extension ExchangeRateViewController: TableViewControllerSymbolDelegate {
         case .source:
             selectSourceCurrencyButton.setTitle(currency.currencyCode, for: .normal)
             exchangeRate.selectedSourceCurrency = currency
+            convertValueWithRate()
         case .target:
             selectTargetCurrencySymbolButton.setTitle(currency.currencyCode, for: .normal)
             exchangeRate.selectedTargetCurrency = currency
+            convertValueWithRate()
         }
        
     }

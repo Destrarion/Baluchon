@@ -23,6 +23,7 @@
 		5F482F7F2535B8DE001DD924 /* TranslateResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F482F7E2535B8DE001DD924 /* TranslateResponse.swift */; };
 		5F495968256CFAD300CFD804 /* Currency.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F495967256CFAD300CFD804 /* Currency.swift */; };
 		5F49596D256CFC9900CFD804 /* CurrencySelectionType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F49596C256CFC9900CFD804 /* CurrencySelectionType.swift */; };
+		5F4F98B725C3F361009B73F4 /* Language.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FA08AA3256DAC91002BEDC2 /* Language.swift */; };
 		5F5115C425214A4D00B92A43 /* TranslateAPITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F5115C325214A4D00B92A43 /* TranslateAPITests.swift */; };
 		5F5115C6252157F800B92A43 /* TranslateTest.json in Resources */ = {isa = PBXBuildFile; fileRef = 5F5115C5252157F800B92A43 /* TranslateTest.json */; };
 		5F5115C82521626900B92A43 /* FakeResponseTranslate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F5115C72521626900B92A43 /* FakeResponseTranslate.swift */; };
@@ -39,7 +40,6 @@
 		5F7B35D225BA48AA00388051 /* TranslateUrlProviderMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F7B35D125BA48AA00388051 /* TranslateUrlProviderMock.swift */; };
 		5F7FB7C92593380D009885D0 /* AlertManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F7FB7C82593380D009885D0 /* AlertManager.swift */; };
 		5F83AABB2526182900EEE6AD /* TranslateViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F83AABA2526182900EEE6AD /* TranslateViewController.swift */; };
-		5FA08AA4256DAC91002BEDC2 /* Language.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FA08AA3256DAC91002BEDC2 /* Language.swift */; };
 		5FA6A90125478B610089FE8F /* ExchangeResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FA6A90025478B610089FE8F /* ExchangeResponse.swift */; };
 		5FB4C6CB25777FB1006DEF25 /* TranslateService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F330A6624D9626800E58069 /* TranslateService.swift */; };
 		5FD72BCE25B4A19A00BEFF21 /* Weather test.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FD72BCD25B4A19A00BEFF21 /* Weather test.swift */; };
@@ -167,6 +167,7 @@
 		5F330A6524D9624600E58069 /* Translate */ = {
 			isa = PBXGroup;
 			children = (
+				5FA08AA3256DAC91002BEDC2 /* Language.swift */,
 				5F330A6624D9626800E58069 /* TranslateService.swift */,
 				5F482F7E2535B8DE001DD924 /* TranslateResponse.swift */,
 			);
@@ -320,7 +321,6 @@
 		5FAEAC9724E277B300C5A69D /* Translate */ = {
 			isa = PBXGroup;
 			children = (
-				5FA08AA3256DAC91002BEDC2 /* Language.swift */,
 				5F83AABA2526182900EEE6AD /* TranslateViewController.swift */,
 			);
 			path = Translate;
@@ -484,13 +484,13 @@
 				5F330A5924D9207700E58069 /* ExchangeRateService.swift in Sources */,
 				5F482F7B2535B88A001DD924 /* NetworkManager.swift in Sources */,
 				5F3BB98724EBD59C004C3BB8 /* UrlProvider.swift in Sources */,
+				5F4F98B725C3F361009B73F4 /* Language.swift in Sources */,
 				5F4727CA24CFE8EC009AF6A9 /* ExchangeRateViewController.swift in Sources */,
 				5F55279624E972ED00B84E80 /* CurrencySymbolPickerViewController.swift in Sources */,
 				5F548F1E24C6D477008EF19A /* AppDelegate.swift in Sources */,
 				5FB4C6CB25777FB1006DEF25 /* TranslateService.swift in Sources */,
 				5F7FB7C92593380D009885D0 /* AlertManager.swift in Sources */,
 				5F7AAE0D257D8AA80079E685 /* WeatherResponse.swift in Sources */,
-				5FA08AA4256DAC91002BEDC2 /* Language.swift in Sources */,
 				5F83AABB2526182900EEE6AD /* TranslateViewController.swift in Sources */,
 				5F49596D256CFC9900CFD804 /* CurrencySelectionType.swift in Sources */,
 				5FA6A90125478B610089FE8F /* ExchangeResponse.swift in Sources */,

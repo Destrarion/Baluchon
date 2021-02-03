@@ -39,19 +39,25 @@ class WeatherViewController: UIViewController {
                 self?.alertManager.presentAlert(on: self, error: error)
             case .success(let response):
                 let cityTemperature = response.main.temp
-                temperatureLabel.text = "\(cityTemperature)°C"
+                DispatchQueue.main.async {
+                    temperatureLabel.text = "\(cityTemperature)°C"
+                }
                 guard let imageCode = response.weather.first?.icon.description else { return }
                 
                 self?.weatherService.getWeatherImageData(
                     imageCode: imageCode
                 ) { [weak self] (result) in
-                    spinner.stopAnimating()
+                    DispatchQueue.main.async {
+                        spinner.stopAnimating()
+                    }
                     switch result {
                     case .failure(let error):
                         self?.alertManager.presentAlert(on: self, error: error)
                     case .success(let response):
                         let loadedImage = UIImage(data: response)
-                        WeatherImage.image = loadedImage
+                        DispatchQueue.main.async {
+                            WeatherImage.image = loadedImage
+                        }
                     }
                 }
                 

@@ -22,7 +22,7 @@ class ExchangeRateService {
         networkManager.fetch(url: requestURL, callback: callback)
     }
     
-    var usedRate: Double? {
+    private var usedRate: Double? {
         guard
             let rates = rates,
             let sourceRate = rates[selectedSourceCurrency.currencyCode],
@@ -32,6 +32,23 @@ class ExchangeRateService {
         let rateAsDecimal = Decimal(targetRate) / Decimal(sourceRate)
         return Double(truncating: rateAsDecimal as NSNumber)
     }
+    
+    func convertValueWithRate(valueToConvert: Double) -> String {
+        guard let usedRate = usedRate else { return "" }
+        let convertedValue = valueToConvert * usedRate
+        
+        
+        let numberFormatter = NumberFormatter()
+        
+        numberFormatter.numberStyle = .currency
+        numberFormatter.maximumFractionDigits = 2
+        numberFormatter.currencySymbol = selectedTargetCurrency.symbol
+        
+        guard let formattedStringValue = numberFormatter.string(from: convertedValue as NSNumber) else { return ""}
+        
+        return formattedStringValue
+    }
+    
     // should be private 
     var rates: [String: Double]?
     

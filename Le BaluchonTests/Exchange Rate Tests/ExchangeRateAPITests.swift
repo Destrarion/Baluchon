@@ -47,14 +47,16 @@ class taux_de_change_APITests: XCTestCase {
     func testGivenSimpleRatesWhenGetUsedRateThenGetCorrectResult() {
         let exchangeService = ExchangeRateService()
         exchangeService.rates = ["EUR" : 1 , "USD" : 1.2]
-        XCTAssertEqual(exchangeService.usedRate, 1.2)
+        let result = exchangeService.convertValueWithRate(valueToConvert: 1)
+        XCTAssertEqual(result, "$1.20")
        
     }
     
     func testGivenComplexRatesWhenGetUsedRateThenGetCorrectResult() {
         let exchangeService = ExchangeRateService()
         exchangeService.rates = ["EUR" : 1.5 , "USD" : 1.2]
-        XCTAssertEqual(exchangeService.usedRate, 0.8)
+        let result = exchangeService.convertValueWithRate(valueToConvert: 1)
+        XCTAssertEqual(result, "$0.80")
        
     }
 

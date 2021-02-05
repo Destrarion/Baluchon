@@ -32,9 +32,7 @@
 		5F548F2524C6D477008EF19A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5F548F2324C6D477008EF19A /* Main.storyboard */; };
 		5F548F2724C6D479008EF19A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5F548F2624C6D479008EF19A /* Assets.xcassets */; };
 		5F548F2A24C6D479008EF19A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5F548F2824C6D479008EF19A /* LaunchScreen.storyboard */; };
-		5F548F4024C6D479008EF19A /* Le_BaluchonUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F548F3F24C6D479008EF19A /* Le_BaluchonUITests.swift */; };
 		5F55279624E972ED00B84E80 /* CurrencySymbolPickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F55279524E972ED00B84E80 /* CurrencySymbolPickerViewController.swift */; };
-		5F712E06259C7A9C00482390 /* NetworkManagerMockRate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F712E05259C7A9C00482390 /* NetworkManagerMockRate.swift */; };
 		5F7AAE08257D896D0079E685 /* WeatherService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F7AAE07257D896D0079E685 /* WeatherService.swift */; };
 		5F7AAE0D257D8AA80079E685 /* WeatherResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F7AAE0C257D8AA80079E685 /* WeatherResponse.swift */; };
 		5F7B35D225BA48AA00388051 /* TranslateUrlProviderMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F7B35D125BA48AA00388051 /* TranslateUrlProviderMock.swift */; };
@@ -49,13 +47,6 @@
 
 /* Begin PBXContainerItemProxy section */
 		5F548F3124C6D479008EF19A /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 5F548F1224C6D477008EF19A /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 5F548F1924C6D477008EF19A;
-			remoteInfo = "Le Baluchon";
-		};
-		5F548F3C24C6D479008EF19A /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 5F548F1224C6D477008EF19A /* Project object */;
 			proxyType = 1;
@@ -94,9 +85,6 @@
 		5F548F2B24C6D479008EF19A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		5F548F3024C6D479008EF19A /* Le BaluchonTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Le BaluchonTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		5F548F3624C6D479008EF19A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		5F548F3B24C6D479008EF19A /* Le BaluchonUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Le BaluchonUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
-		5F548F3F24C6D479008EF19A /* Le_BaluchonUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Le_BaluchonUITests.swift; sourceTree = "<group>"; };
-		5F548F4124C6D479008EF19A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		5F55279524E972ED00B84E80 /* CurrencySymbolPickerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencySymbolPickerViewController.swift; sourceTree = "<group>"; };
 		5F712E05259C7A9C00482390 /* NetworkManagerMockRate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManagerMockRate.swift; sourceTree = "<group>"; };
 		5F7AAE07257D896D0079E685 /* WeatherService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherService.swift; sourceTree = "<group>"; };
@@ -120,13 +108,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 		5F548F2D24C6D479008EF19A /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		5F548F3824C6D479008EF19A /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -216,7 +197,6 @@
 			children = (
 				5F548F1C24C6D477008EF19A /* Le Baluchon */,
 				5F548F3324C6D479008EF19A /* Le BaluchonTests */,
-				5F548F3E24C6D479008EF19A /* Le BaluchonUITests */,
 				5F548F1B24C6D477008EF19A /* Products */,
 			);
 			sourceTree = "<group>";
@@ -226,7 +206,6 @@
 			children = (
 				5F548F1A24C6D477008EF19A /* Le Baluchon.app */,
 				5F548F3024C6D479008EF19A /* Le BaluchonTests.xctest */,
-				5F548F3B24C6D479008EF19A /* Le BaluchonUITests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -255,21 +234,12 @@
 			path = "Le BaluchonTests";
 			sourceTree = "<group>";
 		};
-		5F548F3E24C6D479008EF19A /* Le BaluchonUITests */ = {
-			isa = PBXGroup;
-			children = (
-				5F548F3F24C6D479008EF19A /* Le_BaluchonUITests.swift */,
-				5F548F4124C6D479008EF19A /* Info.plist */,
-			);
-			path = "Le BaluchonUITests";
-			sourceTree = "<group>";
-		};
 		5F548F4D24C6D4D9008EF19A /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				5F330A6924D963C800E58069 /* ExchangeRate Controller */,
-				5FAEAC9724E277B300C5A69D /* Translate */,
 				5F7AAE11257D91090079E685 /* Weather */,
+				5FAEAC9724E277B300C5A69D /* Translate */,
+				5F330A6924D963C800E58069 /* ExchangeRate Controller */,
 				5F7FB7C82593380D009885D0 /* AlertManager.swift */,
 			);
 			path = Controller;
@@ -278,9 +248,9 @@
 		5F548F4E24C6D4F8008EF19A /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				5F330A5724D9204500E58069 /* Exchange rate */,
-				5F330A6524D9624600E58069 /* Translate */,
 				5F330A6824D9629500E58069 /* Weather */,
+				5F330A6524D9624600E58069 /* Translate */,
+				5F330A5724D9204500E58069 /* Exchange rate */,
 				5F482F792535B870001DD924 /* NetworkManager */,
 			);
 			path = Model;
@@ -384,24 +354,6 @@
 			productReference = 5F548F3024C6D479008EF19A /* Le BaluchonTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
-		5F548F3A24C6D479008EF19A /* Le BaluchonUITests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 5F548F4A24C6D479008EF19A /* Build configuration list for PBXNativeTarget "Le BaluchonUITests" */;
-			buildPhases = (
-				5F548F3724C6D479008EF19A /* Sources */,
-				5F548F3824C6D479008EF19A /* Frameworks */,
-				5F548F3924C6D479008EF19A /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				5F548F3D24C6D479008EF19A /* PBXTargetDependency */,
-			);
-			name = "Le BaluchonUITests";
-			productName = "Le BaluchonUITests";
-			productReference = 5F548F3B24C6D479008EF19A /* Le BaluchonUITests.xctest */;
-			productType = "com.apple.product-type.bundle.ui-testing";
-		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -416,10 +368,6 @@
 						CreatedOnToolsVersion = 11.5;
 					};
 					5F548F2F24C6D479008EF19A = {
-						CreatedOnToolsVersion = 11.5;
-						TestTargetID = 5F548F1924C6D477008EF19A;
-					};
-					5F548F3A24C6D479008EF19A = {
 						CreatedOnToolsVersion = 11.5;
 						TestTargetID = 5F548F1924C6D477008EF19A;
 					};
@@ -440,7 +388,6 @@
 			targets = (
 				5F548F1924C6D477008EF19A /* Le Baluchon */,
 				5F548F2F24C6D479008EF19A /* Le BaluchonTests */,
-				5F548F3A24C6D479008EF19A /* Le BaluchonUITests */,
 			);
 		};
 /* End PBXProject section */
@@ -462,13 +409,6 @@
 			files = (
 				5F5115C6252157F800B92A43 /* TranslateTest.json in Resources */,
 				5F330A5E24D9229D00E58069 /* Rate.json in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		5F548F3924C6D479008EF19A /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -505,7 +445,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				5F712E06259C7A9C00482390 /* NetworkManagerMockRate.swift in Sources */,
 				5FD72BCE25B4A19A00BEFF21 /* Weather test.swift in Sources */,
 				5F10EAB325AED9940000F8F8 /* FakeResponseData.swift in Sources */,
 				5F330A6224D92E0200E58069 /* URLSessionFake.swift in Sources */,
@@ -521,14 +460,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		5F548F3724C6D479008EF19A /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				5F548F4024C6D479008EF19A /* Le_BaluchonUITests.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
@@ -536,11 +467,6 @@
 			isa = PBXTargetDependency;
 			target = 5F548F1924C6D477008EF19A /* Le Baluchon */;
 			targetProxy = 5F548F3124C6D479008EF19A /* PBXContainerItemProxy */;
-		};
-		5F548F3D24C6D479008EF19A /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 5F548F1924C6D477008EF19A /* Le Baluchon */;
-			targetProxy = 5F548F3C24C6D479008EF19A /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -615,7 +541,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.5;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -670,7 +596,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.5;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
@@ -762,46 +688,6 @@
 			};
 			name = Release;
 		};
-		5F548F4B24C6D479008EF19A /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 578R27WKR9;
-				INFOPLIST_FILE = "Le BaluchonUITests/Info.plist";
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
-				PRODUCT_BUNDLE_IDENTIFIER = "Fabien-Dietrich.Le-BaluchonUITests";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_TARGET_NAME = "Le Baluchon";
-			};
-			name = Debug;
-		};
-		5F548F4C24C6D479008EF19A /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 578R27WKR9;
-				INFOPLIST_FILE = "Le BaluchonUITests/Info.plist";
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
-				PRODUCT_BUNDLE_IDENTIFIER = "Fabien-Dietrich.Le-BaluchonUITests";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_TARGET_NAME = "Le Baluchon";
-			};
-			name = Release;
-		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -828,15 +714,6 @@
 			buildConfigurations = (
 				5F548F4824C6D479008EF19A /* Debug */,
 				5F548F4924C6D479008EF19A /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		5F548F4A24C6D479008EF19A /* Build configuration list for PBXNativeTarget "Le BaluchonUITests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				5F548F4B24C6D479008EF19A /* Debug */,
-				5F548F4C24C6D479008EF19A /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

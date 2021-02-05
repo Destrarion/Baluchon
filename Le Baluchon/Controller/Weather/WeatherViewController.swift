@@ -17,54 +17,60 @@ class WeatherViewController: UIViewController {
     
     @IBOutlet weak var TopActivityIndicator: UIActivityIndicatorView!
     @IBOutlet weak var BottomActivityIndicator: UIActivityIndicatorView!
+    @IBOutlet weak var TopWeatherDescription: UILabel!
+    @IBOutlet weak var BottomWeatherDescription: UILabel!
     
     private let weatherService = WeatherService()
     private let alertManager = AlertManager()
     
     private func getAllWeather() {
-        getWeather(town: "New York", temperatureLabel: TopLabelTemperature, WeatherImage: TopImageContainer, spinner: TopActivityIndicator)
-        getWeather(town: "Paris", temperatureLabel: BottomLabelTemperature, WeatherImage: BottomImageContainer, spinner: BottomActivityIndicator)
+        getWeather(town: "New York", temperatureLabel: TopLabelTemperature, weatherImage: TopImageContainer, weatherDescription: TopWeatherDescription, spinner: TopActivityIndicator)
+        getWeather(town: "Paris", temperatureLabel: BottomLabelTemperature, weatherImage: BottomImageContainer, weatherDescription: BottomWeatherDescription, spinner: BottomActivityIndicator)
     }
     
-    private func getWeather(town: String, temperatureLabel: UILabel, WeatherImage: UIImageView, spinner: UIActivityIndicatorView) {
-        
+    private func getWeather(town: String, temperatureLabel: UILabel, weatherImage: UIImageView, weatherDescription: UILabel, spinner: UIActivityIndicatorView) {
         spinner.startAnimating()
         weatherService.getWeather(
             town: town
         ) { [weak self] (result) in
-            
-            switch result {
-            case .failure(let error):
-                spinner.stopAnimating()
-                self?.alertManager.presentAlert(on: self, error: error)
-            case .success(let response):
-                let cityTemperature = response.main.temp
-                DispatchQueue.main.async {
+            DispatchQueue.main.async {
+                switch result {
+                case .failure(let error):
+                    spinner.stopAnimating()
+                    self?.alertManager.presentAlert(on: self, error: error)
+                case .success(let response):
+                    let cityTemperature = response.main.temp
+                    guard let cityWeatherDescription = response.weather.first?.weatherDescription else { return }
+                    
                     temperatureLabel.text = "\(cityTemperature)°C"
-                }
-                guard let imageCode = response.weather.first?.icon.description else { return }
-                
-                self?.weatherService.getWeatherImageData(
-                    imageCode: imageCode
-                ) { [weak self] (result) in
-                    DispatchQueue.main.async {
-                        spinner.stopAnimating()
-                    }
-                    switch result {
-                    case .failure(let error):
-                        self?.alertManager.presentAlert(on: self, error: error)
-                    case .success(let response):
-                        let loadedImage = UIImage(data: response)
+                    weatherDescription.text = "\(cityWeatherDescription)"
+                    
+                    guard let imageCode = response.weather.first?.icon.description else { return }
+                    
+                    self?.weatherService.getWeatherImageData(
+                        imageCode: imageCode
+                    ) { [weak self] (result) in
                         DispatchQueue.main.async {
-                            WeatherImage.image = loadedImage
+                            spinner.stopAnimating()
+                            
+                            switch result {
+                            case .failure(let error):
+                                self?.alertManager.presentAlert(on: self, error: error)
+                            case .success(let response):
+                                let loadedImage = UIImage(data: response)
+                                weatherImage.image = loadedImage
+                                
+                                
+                            }
                         }
                     }
                 }
-                
             }
         }
+        
     }
-    
-   
-    
 }
+
+
+
+ 

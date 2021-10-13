@@ -3,12 +3,11 @@ import Foundation
 
 
 enum Currency {
-    case usDollar, euro, swissFrancs
+    case usDollar, euro
     
     var currencyCode: String {
         switch self {
         case .euro: return "EUR"
-        case .swissFrancs: return "CHF"
         case .usDollar: return "USD"
         }
     }
@@ -16,7 +15,6 @@ enum Currency {
     var symbol: String {
         switch self {
         case .euro: return "€"
-        case .swissFrancs: return "CHF"
         case .usDollar: return "$"
         }
     }

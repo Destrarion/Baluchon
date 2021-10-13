@@ -14,7 +14,7 @@ class WeatherService {
     private let weatherUrlProvider : WeatherUrlProviderProtocol
     
     //MARK:- GET Temperature
-    // Request Creation
+    /// Request Weather text API
     func getWeather(town: String , callback: @escaping (Result<WeatherResponse, NetworkManagerError>) -> Void) {
         guard let requestURL = weatherUrlProvider.createWeatherRequestUrl(
             town: town
@@ -26,7 +26,7 @@ class WeatherService {
     }
     
     //MARK:- Get Image
-    
+    /// Request Weather Image API
     func getWeatherImageData(imageCode: String, callback: @escaping (Result<Data, NetworkManagerError>) -> Void) {
         guard let requestURL = weatherUrlProvider.createWeatherImageCodeRequestUrl(
             imageCode: imageCode

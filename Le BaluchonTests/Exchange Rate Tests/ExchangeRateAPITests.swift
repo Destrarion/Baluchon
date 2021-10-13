@@ -1,11 +1,3 @@
-//
-//  taux_de_change_APITests.swift
-//  taux de change APITests
-//
-//  Created by Fabien Dietrich on 23/05/2020.
-//  Copyright © 2020 Fabien Dietrich. All rights reserved.
-//
-
 import XCTest
 @testable import Le_Baluchon
 
@@ -65,10 +57,6 @@ class taux_de_change_APITests: XCTestCase {
         XCTAssertEqual(currency.currencyCode, "EUR")
     }
     
-    func test_GivenCurrencySwissFrancs_WhenCurrencyCodeEnumerationSwitch_ThenReceiveCHF(){
-        let currency : Currency = .swissFrancs
-        XCTAssertEqual(currency.currencyCode, "CHF")
-    }
     
     func test_GivenCurrencyDollar_WhenCurrencyCodeEnumerationSwitch_ThenReceiveUSD(){
         let currency : Currency = .usDollar
@@ -78,11 +66,6 @@ class taux_de_change_APITests: XCTestCase {
     func test_GivenSymbolEuro_WhenSymbolEnumerationSwitch_ThenReceiveCorrectSymbol(){
         let symbol : Currency = .euro
         XCTAssertEqual(symbol.symbol , "€")
-    }
-    
-    func test_GivenSymbolSwissFrancs_WhenSymbolEnumerationSwitch_ThenReceiveCorrectSymbol(){
-        let symbol : Currency = .swissFrancs
-        XCTAssertEqual(symbol.symbol , "CHF")
     }
     
     func test_GivenSymbolUsDollar_WhenSymbolEnumerationSwitch_ThenReceiveCorrectSymbol(){

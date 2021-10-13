@@ -1,7 +1,7 @@
 import UIKit
 
 // MARK: - PUBLIC
-protocol TableViewControllerSymbolDelegate: class {
+protocol TableViewControllerSymbolDelegate: AnyObject {
     func didSelectSymbol(currency: Currency, currencySelectionType: CurrencySelectionType)
 }
 
@@ -30,7 +30,7 @@ class CurrencySymbolPickerViewController: UIViewController {
     
     var currencySelectionType: CurrencySelectionType?
     
-    private let selectableCurrencies: [Currency] = [.usDollar, .euro, .swissFrancs]
+    private let selectableCurrencies: [Currency] = [.usDollar, .euro]
 }
 
 extension CurrencySymbolPickerViewController : UITableViewDelegate{

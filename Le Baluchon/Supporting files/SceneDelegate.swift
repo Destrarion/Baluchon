@@ -1,11 +1,3 @@
-//
-//  SceneDelegate.swift
-//  Le Baluchon
-//
-//  Created by Fabien Dietrich on 21/07/2020.
-//  Copyright © 2020 Fabien Dietrich. All rights reserved.
-//
-
 import UIKit
 
 @available(iOS 13.0, *)

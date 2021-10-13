@@ -18,9 +18,21 @@ class NetworkManagerTests: XCTestCase {
     // MARK: - Test - Fetch
     
     func testFetchGivenNoErrorAndNoResponseWhenFetchThenGetInvalidCodeError() {
-        let urlSessionFake = URLSessionFake(data: nil, response: nil, error: nil)
+        //let urlSessionFake = URLSessionFake(data: nil, response: nil, error: nil)
         
-        let networkManager = NetworkManager(session: urlSessionFake)
+        MockURLProtocol.requestHandler = { request in
+            let response = FakeResponseData.responseKO
+            return (response, nil)
+        }
+
+        
+        let configuration = URLSessionConfiguration.default
+        configuration.protocolClasses = [MockURLProtocol.self]
+        
+        let networkManager = NetworkManager(sessionConfiguration: configuration)
+        
+        
+        let expectation = expectation(description: "Wait for callback...")
         
         
         networkManager.fetch(url: URL(string: "www.test.com")!) { (result: Result<CodableFake, NetworkManagerError>) in
@@ -30,90 +42,157 @@ class NetworkManagerTests: XCTestCase {
             case .failure(let error):
                 XCTAssertEqual(error, .responseCodeIsInvalid)
             }
+            expectation.fulfill()
         }
+        
+        wait(for: [expectation], timeout: 0.1)
     }
     
-    func testFetchGivenNoDataWhenFetchThenNoDataError(){
-        let urlSessionFake = URLSessionFake(data: nil, response: FakeResponseData.responseOK , error: nil)
+    
+    func testFetchGivenErrorNetworkWhenFetchThenGetUnknownError() {
         
-        let networkManager = NetworkManager(session: urlSessionFake)
+        MockURLProtocol.requestHandler = { request in
+            throw MockError.test
+        }
+
+        
+        let configuration = URLSessionConfiguration.default
+        configuration.protocolClasses = [MockURLProtocol.self]
+        
+        let networkManager = NetworkManager(sessionConfiguration: configuration)
+        
+        
+        let expectation = expectation(description: "Wait for callback...")
+        
         
         networkManager.fetch(url: URL(string: "www.test.com")!) { (result: Result<CodableFake, NetworkManagerError>) in
             switch result {
             case .success:
                 XCTFail()
             case .failure(let error):
-                XCTAssertEqual(error, .noData)
-            }
-        }
-    }
-    
-    func testFetchGivenErrorWhenFetchThenUnknownError(){
-        let urlSessionFake = URLSessionFake(data: FakeResponseData.rateCorrectData , response: FakeResponseData.responseOK , error: FakeResponseData.error )
-        
-        let networkManager = NetworkManager(session: urlSessionFake)
-        
-        networkManager.fetch(url: URL(string: "www.test.com")!) { (result: Result<CodableFake, NetworkManagerError>) in
-            switch result {
-            case .success :
-                XCTFail()
-            case.failure(let error):
                 XCTAssertEqual(error, .unknownError)
             }
+            expectation.fulfill()
         }
+        
+        wait(for: [expectation], timeout: 0.1)
     }
     
-    func testFetchGivenIncorrectDataWhenFetchThenFailedToDecodeJsonToCodableStruct(){
-        let urlSessionFake = URLSessionFake(data: FakeResponseData.incorrectData, response: FakeResponseData.responseOK , error: nil)
+    
+    
+    func testFetchGivenWrongFormatDatakWhenFetchThenGetDecoddedDataError() {
+        //let urlSessionFake = URLSessionFake(data: nil, response: nil, error: nil)
         
-        let networkManager = NetworkManager(session: urlSessionFake)
+        let wrongFormatData = """
+    {
+      "base": "EUR",
+      "date": 10,
+      "rates": {
+        "CAD": 1.565,
+        "CHF": 1.1798,
+        "GBP": 0.87295,
+        "SEK": 10.2983,
+        "EUR": 1.092,
+        "USD": 1.2234
+      }
+    }
+    """.data(using: .utf8)!
         
-        networkManager.fetch(url: URL(string: "www.test.com")!) { (result: Result<CodableFake, NetworkManagerError>) in
+        MockURLProtocol.requestHandler = { request in
+            let response = FakeResponseData.responseOK
+            return (response, wrongFormatData)
+        }
+
+        
+        let configuration = URLSessionConfiguration.default
+        configuration.protocolClasses = [MockURLProtocol.self]
+        
+        let networkManager = NetworkManager(sessionConfiguration: configuration)
+        
+        
+        let expectation = expectation(description: "Wait for callback...")
+        
+        
+        networkManager.fetch(url: URL(string: "www.test.com")!) { (result: Result<ExchangeResponse, NetworkManagerError>) in
             switch result {
-            case .success :
+            case .success:
                 XCTFail()
-            case.failure(let error):
+            case .failure(let error):
                 XCTAssertEqual(error, .failedToDecodeJsonToCodableStruct)
             }
+            expectation.fulfill()
+        }
+        
+        wait(for: [expectation], timeout: 0.1)
+    }
+
+    
+    
+    func testFetchGivenValidFormatDatakWhenFetchThenGetSuccessDecodedData() {
+        //let urlSessionFake = URLSessionFake(data: nil, response: nil, error: nil)
+        
+        let validFormatData = """
+    {
+        "success": true,
+        "timestamp": 1593491765,
+        "base": "EUR",
+        "date": "2020-06-30",
+        "rates": {
+            "AED": 4.12997,
+            "AFN": 87.084667
         }
     }
-    
-    func testFetchGivenDataCorrectResponseOkNoErrorWhenFetchThenSuccessDecoding(){
-        let urlSessionFake = URLSessionFake(data: FakeResponseData.rateCorrectData , response: FakeResponseData.responseOK , error: nil )
+    """.data(using: .utf8)!
         
-        let networkManager = NetworkManager(session: urlSessionFake)
-        
-        networkManager.fetch(url: URL(string: "www.test.com")!) { (result: Result<CodableFake, NetworkManagerError>) in
-            switch result {
-            case .success (let response):
-                XCTAssertNotNil(response)
-            case.failure:
-                XCTFail()
-            }
+        MockURLProtocol.requestHandler = { request in
+            let response = FakeResponseData.responseOK
+            return (response, validFormatData)
         }
-    }
-    
-    // MARK: - Test - FetchData
-    func testFetchDataGivenDataCorrectResponseOkNoErrorWhenFetchDataThenSuccessDecoding(){
-        let urlSessionFake = URLSessionFake(data: FakeResponseData.rateCorrectData , response: FakeResponseData.responseOK , error: nil )
+
         
-        let networkManager = NetworkManager(session: urlSessionFake)
+        let configuration = URLSessionConfiguration.default
+        configuration.protocolClasses = [MockURLProtocol.self]
         
-        networkManager.fetchData(url: URL(string: "www.test.com")!) { (result: Result<Data, NetworkManagerError>) in
+        let networkManager = NetworkManager(sessionConfiguration: configuration)
+        
+        
+        let expectation = expectation(description: "Wait for callback...")
+        
+        
+        networkManager.fetch(url: URL(string: "www.test.com")!) { (result: Result<ExchangeResponse, NetworkManagerError>) in
             switch result {
-            case .success (let response):
-                XCTAssertNotNil(response)
+            case .success(let decoddedResponse):
+                XCTAssertTrue(decoddedResponse.success)
             case .failure:
                 XCTFail()
+                
             }
+            expectation.fulfill()
         }
+        
+        wait(for: [expectation], timeout: 0.1)
     }
+
+    // MARK: - Test - FetchData
+    
     
     
     func testFetchDataGivenNoErrorAndNoResponseWhenFetchThenGetInvalidCodeError() {
-        let urlSessionFake = URLSessionFake(data: nil, response: nil, error: nil)
+        //let urlSessionFake = URLSessionFake(data: nil, response: nil, error: nil)
         
-        let networkManager = NetworkManager(session: urlSessionFake)
+        MockURLProtocol.requestHandler = { request in
+            let response = FakeResponseData.responseKO
+            return (response, nil)
+        }
+
+        
+        let configuration = URLSessionConfiguration.default
+        configuration.protocolClasses = [MockURLProtocol.self]
+        
+        let networkManager = NetworkManager(sessionConfiguration: configuration)
+        
+        
+        let expectation = expectation(description: "Wait for callback...")
         
         
         networkManager.fetchData(url: URL(string: "www.test.com")!) { (result: Result<Data, NetworkManagerError>) in
@@ -123,44 +202,28 @@ class NetworkManagerTests: XCTestCase {
             case .failure(let error):
                 XCTAssertEqual(error, .responseCodeIsInvalid)
             }
+            expectation.fulfill()
         }
+        
+        wait(for: [expectation], timeout: 0.1)
     }
     
-    func testFetchDataGivenNoDataWhenFetchThenNoDataError(){
-        let urlSessionFake = URLSessionFake(data: nil, response: FakeResponseData.responseOK , error: nil)
-        
-        let networkManager = NetworkManager(session: urlSessionFake)
-        
-        networkManager.fetchData(url: URL(string: "www.test.com")!) { (result: Result<Data, NetworkManagerError>) in
-            switch result {
-            case .success:
-                XCTFail()
-            case .failure(let error):
-                XCTAssertEqual(error, .noData)
-            }
-        }
-    }
     
-    func testFetchDataGivenCorrectDataResponseOkNoErrorWhenFetchDateThenSuccess(){
-        let urlSessionFake = URLSessionFake(data: FakeResponseData.rateCorrectData, response: FakeResponseData.responseOK, error: nil)
+    func testFetchDataGivenErrorNetworkWhenFetchThenGetUnknownError() {
         
-        let networkManager = NetworkManager(session: urlSessionFake)
-        
-        networkManager.fetchData(url: URL(string: "www.test.com")!) { (result: Result<Data,NetworkManagerError>) in
-            switch result {
-            case .success(let response):
-                XCTAssertNotNil(response)
-                
-            case .failure:
-                XCTFail()
-            }
+        MockURLProtocol.requestHandler = { request in
+            throw MockError.test
         }
-    }
-    
-    func testFetchDataGivenEroorWhenFetchThenError(){
-        let urlSessionFake = URLSessionFake(data: FakeResponseData.rateCorrectData, response: FakeResponseData.responseOK , error: FakeResponseData.error)
+
         
-        let networkManager = NetworkManager(session: urlSessionFake)
+        let configuration = URLSessionConfiguration.default
+        configuration.protocolClasses = [MockURLProtocol.self]
+        
+        let networkManager = NetworkManager(sessionConfiguration: configuration)
+        
+        
+        let expectation = expectation(description: "Wait for callback...")
+        
         
         networkManager.fetchData(url: URL(string: "www.test.com")!) { (result: Result<Data, NetworkManagerError>) in
             switch result {
@@ -169,7 +232,50 @@ class NetworkManagerTests: XCTestCase {
             case .failure(let error):
                 XCTAssertEqual(error, .unknownError)
             }
+            expectation.fulfill()
         }
+        
+        wait(for: [expectation], timeout: 0.1)
     }
+    
+    
+    
+    func testFetchDataGivenValidFormatDatakWhenFetchThenGetSuccessData() {
+        //let urlSessionFake = URLSessionFake(data: nil, response: nil, error: nil)
+        
+        let validFormatData = "data".data(using: .utf8)!
+        
+        MockURLProtocol.requestHandler = { request in
+            let response = FakeResponseData.responseOK
+            return (response, validFormatData)
+        }
+
+        
+        let configuration = URLSessionConfiguration.default
+        configuration.protocolClasses = [MockURLProtocol.self]
+        
+        let networkManager = NetworkManager(sessionConfiguration: configuration)
+        
+        
+        let expectation = expectation(description: "Wait for callback...")
+        
+        
+        networkManager.fetchData(url: URL(string: "www.test.com")!) { (result: Result<Data, NetworkManagerError>) in
+            switch result {
+            case .success:
+                XCTAssertTrue(true)
+            case .failure:
+                XCTFail()
+                
+            }
+            expectation.fulfill()
+        }
+        
+        wait(for: [expectation], timeout: 0.1)
+    }
+    
+    
+    
+    
 }
 

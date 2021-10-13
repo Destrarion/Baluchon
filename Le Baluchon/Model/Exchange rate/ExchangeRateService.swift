@@ -49,7 +49,6 @@ class ExchangeRateService {
         return formattedStringValue
     }
     
-    // should be private 
     var rates: [String: Double]?
     
     var selectedSourceCurrency: Currency = .euro

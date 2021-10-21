@@ -1,7 +1,7 @@
 import Foundation
 
 // MARK: - CurrencyResponse
-struct ExchangeResponse: Codable {
+struct ExchangeResponse: Decodable {
     let success: Bool
     let timestamp: Int
     let base, date: String

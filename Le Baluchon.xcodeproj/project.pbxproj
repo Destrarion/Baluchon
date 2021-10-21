@@ -10,6 +10,7 @@
 		5F10EAB325AED9940000F8F8 /* FakeResponseData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F330A5F24D922C000E58069 /* FakeResponseData.swift */; };
 		5F10EAB825AEDBF30000F8F8 /* NetworkManagerAlwaysFailMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F10EAB725AEDBF30000F8F8 /* NetworkManagerAlwaysFailMock.swift */; };
 		5F10EABD25AEDDCF0000F8F8 /* CurrencyUrlProviderMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F10EABC25AEDDCF0000F8F8 /* CurrencyUrlProviderMock.swift */; };
+		5F1BFB3E271812DE005E855C /* MockError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F1BFB3D271812DE005E855C /* MockError.swift */; };
 		5F2EB4DA25A86505003ECC2B /* NetworkManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F2EB4D925A86505003ECC2B /* NetworkManagerTests.swift */; };
 		5F330A5924D9207700E58069 /* ExchangeRateService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F330A5824D9207700E58069 /* ExchangeRateService.swift */; };
 		5F330A5C24D921FF00E58069 /* ExchangeRateAPITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F330A5B24D921FF00E58069 /* ExchangeRateAPITests.swift */; };
@@ -23,8 +24,6 @@
 		5F49596D256CFC9900CFD804 /* CurrencySelectionType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F49596C256CFC9900CFD804 /* CurrencySelectionType.swift */; };
 		5F4F98B725C3F361009B73F4 /* Language.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FA08AA3256DAC91002BEDC2 /* Language.swift */; };
 		5F5115C425214A4D00B92A43 /* TranslateAPITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F5115C325214A4D00B92A43 /* TranslateAPITests.swift */; };
-		5F5115C6252157F800B92A43 /* TranslateTest.json in Resources */ = {isa = PBXBuildFile; fileRef = 5F5115C5252157F800B92A43 /* TranslateTest.json */; };
-		5F5115C82521626900B92A43 /* FakeResponseTranslate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F5115C72521626900B92A43 /* FakeResponseTranslate.swift */; };
 		5F548F1E24C6D477008EF19A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F548F1D24C6D477008EF19A /* AppDelegate.swift */; };
 		5F548F2024C6D477008EF19A /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F548F1F24C6D477008EF19A /* SceneDelegate.swift */; };
 		5F548F2524C6D477008EF19A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5F548F2324C6D477008EF19A /* Main.storyboard */; };
@@ -57,6 +56,7 @@
 /* Begin PBXFileReference section */
 		5F10EAB725AEDBF30000F8F8 /* NetworkManagerAlwaysFailMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManagerAlwaysFailMock.swift; sourceTree = "<group>"; };
 		5F10EABC25AEDDCF0000F8F8 /* CurrencyUrlProviderMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyUrlProviderMock.swift; sourceTree = "<group>"; };
+		5F1BFB3D271812DE005E855C /* MockError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockError.swift; sourceTree = "<group>"; };
 		5F2EB4D925A86505003ECC2B /* NetworkManagerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManagerTests.swift; sourceTree = "<group>"; };
 		5F330A5824D9207700E58069 /* ExchangeRateService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExchangeRateService.swift; sourceTree = "<group>"; };
 		5F330A5B24D921FF00E58069 /* ExchangeRateAPITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExchangeRateAPITests.swift; sourceTree = "<group>"; };
@@ -71,8 +71,6 @@
 		5F495967256CFAD300CFD804 /* Currency.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Currency.swift; sourceTree = "<group>"; };
 		5F49596C256CFC9900CFD804 /* CurrencySelectionType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencySelectionType.swift; sourceTree = "<group>"; };
 		5F5115C325214A4D00B92A43 /* TranslateAPITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TranslateAPITests.swift; sourceTree = "<group>"; };
-		5F5115C5252157F800B92A43 /* TranslateTest.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = TranslateTest.json; sourceTree = "<group>"; };
-		5F5115C72521626900B92A43 /* FakeResponseTranslate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FakeResponseTranslate.swift; sourceTree = "<group>"; };
 		5F548F1A24C6D477008EF19A /* Le Baluchon.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Le Baluchon.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		5F548F1D24C6D477008EF19A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		5F548F1F24C6D477008EF19A /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -183,8 +181,6 @@
 			isa = PBXGroup;
 			children = (
 				5F5115C325214A4D00B92A43 /* TranslateAPITests.swift */,
-				5F5115C5252157F800B92A43 /* TranslateTest.json */,
-				5F5115C72521626900B92A43 /* FakeResponseTranslate.swift */,
 			);
 			path = "Translate Test";
 			sourceTree = "<group>";
@@ -271,6 +267,7 @@
 				5FE336F125B8E0F6001024FD /* WeatherUrlProviderMock.swift */,
 				5F7B35D125BA48AA00388051 /* TranslateUrlProviderMock.swift */,
 				5F5B7B942701FF280038BC86 /* MockURLProtocol.swift */,
+				5F1BFB3D271812DE005E855C /* MockError.swift */,
 			);
 			path = Mocks;
 			sourceTree = "<group>";
@@ -402,7 +399,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				5F5115C6252157F800B92A43 /* TranslateTest.json in Resources */,
 				5F330A5E24D9229D00E58069 /* Rate.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -443,13 +439,13 @@
 				5FD72BCE25B4A19A00BEFF21 /* Weather test.swift in Sources */,
 				5F10EAB325AED9940000F8F8 /* FakeResponseData.swift in Sources */,
 				5F5115C425214A4D00B92A43 /* TranslateAPITests.swift in Sources */,
-				5F5115C82521626900B92A43 /* FakeResponseTranslate.swift in Sources */,
 				5FE336F225B8E0F6001024FD /* WeatherUrlProviderMock.swift in Sources */,
 				5F5B7B952701FF280038BC86 /* MockURLProtocol.swift in Sources */,
 				5F7B35D225BA48AA00388051 /* TranslateUrlProviderMock.swift in Sources */,
 				5F10EAB825AEDBF30000F8F8 /* NetworkManagerAlwaysFailMock.swift in Sources */,
 				5F2EB4DA25A86505003ECC2B /* NetworkManagerTests.swift in Sources */,
 				5F330A5C24D921FF00E58069 /* ExchangeRateAPITests.swift in Sources */,
+				5F1BFB3E271812DE005E855C /* MockError.swift in Sources */,
 				5F10EABD25AEDDCF0000F8F8 /* CurrencyUrlProviderMock.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -535,7 +531,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -590,7 +586,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
@@ -607,7 +603,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 578R27WKR9;
 				INFOPLIST_FILE = "Le Baluchon/Supporting files/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -626,7 +622,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 578R27WKR9;
 				INFOPLIST_FILE = "Le Baluchon/Supporting files/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -646,7 +642,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 578R27WKR9;
 				INFOPLIST_FILE = "Le BaluchonTests/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -668,7 +664,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 578R27WKR9;
 				INFOPLIST_FILE = "Le BaluchonTests/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

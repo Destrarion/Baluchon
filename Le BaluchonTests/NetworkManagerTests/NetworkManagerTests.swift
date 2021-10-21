@@ -18,7 +18,6 @@ class NetworkManagerTests: XCTestCase {
     // MARK: - Test - Fetch
     
     func testFetchGivenNoErrorAndNoResponseWhenFetchThenGetInvalidCodeError() {
-        //let urlSessionFake = URLSessionFake(data: nil, response: nil, error: nil)
         
         MockURLProtocol.requestHandler = { request in
             let response = FakeResponseData.responseKO
@@ -45,7 +44,7 @@ class NetworkManagerTests: XCTestCase {
             expectation.fulfill()
         }
         
-        wait(for: [expectation], timeout: 0.1)
+        wait(for: [expectation], timeout: 0.5)
     }
     
     
@@ -75,13 +74,12 @@ class NetworkManagerTests: XCTestCase {
             expectation.fulfill()
         }
         
-        wait(for: [expectation], timeout: 0.1)
+        wait(for: [expectation], timeout: 0.5)
     }
     
     
     
     func testFetchGivenWrongFormatDatakWhenFetchThenGetDecoddedDataError() {
-        //let urlSessionFake = URLSessionFake(data: nil, response: nil, error: nil)
         
         let wrongFormatData = """
     {
@@ -123,26 +121,14 @@ class NetworkManagerTests: XCTestCase {
             expectation.fulfill()
         }
         
-        wait(for: [expectation], timeout: 0.1)
+        wait(for: [expectation], timeout: 0.5)
     }
 
     
     
     func testFetchGivenValidFormatDatakWhenFetchThenGetSuccessDecodedData() {
-        //let urlSessionFake = URLSessionFake(data: nil, response: nil, error: nil)
         
-        let validFormatData = """
-    {
-        "success": true,
-        "timestamp": 1593491765,
-        "base": "EUR",
-        "date": "2020-06-30",
-        "rates": {
-            "AED": 4.12997,
-            "AFN": 87.084667
-        }
-    }
-    """.data(using: .utf8)!
+        let validFormatData = FakeResponseData.rateCorrectData
         
         MockURLProtocol.requestHandler = { request in
             let response = FakeResponseData.responseOK
@@ -170,7 +156,7 @@ class NetworkManagerTests: XCTestCase {
             expectation.fulfill()
         }
         
-        wait(for: [expectation], timeout: 0.1)
+        wait(for: [expectation], timeout: 0.5)
     }
 
     // MARK: - Test - FetchData
@@ -178,7 +164,6 @@ class NetworkManagerTests: XCTestCase {
     
     
     func testFetchDataGivenNoErrorAndNoResponseWhenFetchThenGetInvalidCodeError() {
-        //let urlSessionFake = URLSessionFake(data: nil, response: nil, error: nil)
         
         MockURLProtocol.requestHandler = { request in
             let response = FakeResponseData.responseKO
@@ -205,7 +190,7 @@ class NetworkManagerTests: XCTestCase {
             expectation.fulfill()
         }
         
-        wait(for: [expectation], timeout: 0.1)
+        wait(for: [expectation], timeout: 0.5)
     }
     
     
@@ -235,13 +220,12 @@ class NetworkManagerTests: XCTestCase {
             expectation.fulfill()
         }
         
-        wait(for: [expectation], timeout: 0.1)
+        wait(for: [expectation], timeout: 0.5)
     }
     
     
     
     func testFetchDataGivenValidFormatDatakWhenFetchThenGetSuccessData() {
-        //let urlSessionFake = URLSessionFake(data: nil, response: nil, error: nil)
         
         let validFormatData = "data".data(using: .utf8)!
         
@@ -271,7 +255,7 @@ class NetworkManagerTests: XCTestCase {
             expectation.fulfill()
         }
         
-        wait(for: [expectation], timeout: 0.1)
+        wait(for: [expectation], timeout: 0.5)
     }
     
     

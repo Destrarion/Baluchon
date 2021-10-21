@@ -45,9 +45,6 @@ class NetworkManager: NetworkManagerProtocol {
             
         }
         task?.resume()
-        
-        
-        
     }
     
     

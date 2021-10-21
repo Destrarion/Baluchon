@@ -6,13 +6,13 @@
 import Foundation
 
 // MARK: - WeatherResponse
-struct WeatherResponse: Codable {
+struct WeatherResponse: Decodable {
     let weather: [Weather]
     let main: Main
 }
 
 // MARK: - Main
-struct Main: Codable {
+struct Main: Decodable {
     let temp : Double
 
     enum CodingKeys: String, CodingKey {
@@ -21,7 +21,7 @@ struct Main: Codable {
 }
 
 // MARK: - Weather
-struct Weather: Codable {
+struct Weather: Decodable {
     let weatherDescription, icon: String
 
     enum CodingKeys: String, CodingKey {

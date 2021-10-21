@@ -39,6 +39,30 @@ class ExchangeRateViewController: UIViewController, UITextFieldDelegate {
     
     // MARK: Private - Methods - IBActions
     
+    @IBAction func didTapSourceSymbol() {
+        presentSymbolPickerViewController(currencySelectionType: .source)
+    }
+    
+    @IBAction func didTapTargetSymbol() {
+        presentSymbolPickerViewController(currencySelectionType: .target)
+    }
+    
+    private func presentSymbolPickerViewController(currencySelectionType: CurrencySelectionType) {
+        
+        let storyBoard = UIStoryboard(name: "Main", bundle: nil)
+        
+        
+        guard let currencySelectionViewController = storyBoard.instantiateViewController(withIdentifier: "CurrencySymbolPickerViewController") as? CurrencySymbolPickerViewController else { return }
+        
+        currencySelectionViewController.delegate = self
+        
+        currencySelectionViewController.currencySelectionType = currencySelectionType
+        
+        tabBarController?.present(currencySelectionViewController, animated: true, completion: nil)
+        
+    }
+    
+    
     @IBAction private func dismissKeyboard(_ sender: UITapGestureRecognizer) {
         valueToExchangeTextField.resignFirstResponder()
     }
@@ -53,6 +77,7 @@ class ExchangeRateViewController: UIViewController, UITextFieldDelegate {
     private var valueToConvert: Double? {
         guard
             let textValue = valueToExchangeTextField.text,
+            !textValue.isEmpty,
             let doubleValue = Double(textValue)
         else { return nil }
         
@@ -64,41 +89,30 @@ class ExchangeRateViewController: UIViewController, UITextFieldDelegate {
     private func getRateInformation() {
         spinner.startAnimating()
         
-        self.exchangeRate.getRate { [weak self] (result) in
-            DispatchQueue.main.async {
+        exchangeRate.getRate { [weak self] (result) in
+            DispatchQueue.main.async { [weak self] in
                 self?.spinner.stopAnimating()
-            }
-            
-            switch result{
-            case .failure(let error):
-                self?.alertManager.presentAlert(on: self, error: error)
-            case .success(let response):
-                self?.exchangeRate.rates = response.rates
                 
+                
+                switch result{
+                case .failure(let error):
+                    
+                    self?.alertManager.presentAlert(on: self, error: error)
+                    
+                case .success(let response):
+                    self?.exchangeRate.rates = response.rates
+                    
+                }
             }
         }
     }
     
-    private func resultUpdate () {
-        if valueToExchangeTextField.text != "" {
-            resultCalculExchangeLabel.text = exchangeRate.convertValueWithRate(valueToConvert: valueToConvert!)
-        }
+    private func resultUpdate() {
+        guard let valueToConvert = valueToConvert else { return }
+        resultCalculExchangeLabel.text = exchangeRate.convertValueWithRate(valueToConvert: valueToConvert)
     }
     
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        super.prepare(for: segue, sender: sender)
-        
-        guard let currencySelectionViewController = segue.destination as? CurrencySymbolPickerViewController else { return }
-        
-        currencySelectionViewController.delegate = self
-        
-        if segue.identifier == "SourceCurrencySegue" {
-            currencySelectionViewController.currencySelectionType = .source
-        } else {
-            currencySelectionViewController.currencySelectionType = .target
-        }
-        
-    }
+    
 }
 
 

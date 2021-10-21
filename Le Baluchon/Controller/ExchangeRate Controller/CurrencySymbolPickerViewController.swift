@@ -9,15 +9,17 @@ protocol TableViewControllerSymbolDelegate: AnyObject {
 class CurrencySymbolPickerViewController: UIViewController {
 
 //MARK: - Internal - Methods
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        
+    
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
         tableViewSymbol.delegate = self
         tableViewSymbol.dataSource = self
     }
     
 // MARK: Private - Properties - Outlets
-    @IBOutlet private var tableViewSymbol: UITableView!
+
+    @IBOutlet weak var tableViewSymbol: UITableView!
     
     
 // MARK: Private - Methods - IBActions
